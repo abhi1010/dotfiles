@@ -7,7 +7,6 @@ app_name='abhi1010-dotfiles'
 [ -z "$REPO_BRANCH" ] && REPO_BRANCH='master'
 debug_mode='0'
 fork_maintainer='0'
-[ -z "$VUNDLE_URI" ] && VUNDLE_URI="https://github.com/gmarik/vundle.git"
 
 ############################  BASIC SETUP TOOLS
 msg() {
@@ -70,13 +69,13 @@ lnif() {
 
 do_backup() {
     if [ -e "$1" ] || [ -e "$2" ] || [ -e "$3" ]; then
-        msg "Attempting to back up your original vim configuration."
+        msg "Attempting to back up your original dot configuration."
         today=`date +%Y%m%d_%s`
         for i in "$1" "$2" "$3"; do
             [ -e "$i" ] && [ ! -L "$i" ] && mv -v "$i" "$i.$today";
         done
         ret="$?"
-        success "Your original vim configuration has been backed up."
+        success "Your original dot configuration has been backed up."
         debug
    fi
 }
@@ -108,23 +107,17 @@ create_symlinks() {
     local target_path="$2"
 
     lnif "$source_path/.vimrc"         "$target_path/.vimrc"
-    lnif "$source_path/.vimrc.bundles" "$target_path/.vimrc.bundles"
     lnif "$source_path/.vimrc.before"  "$target_path/.vimrc.before"
     lnif "$source_path/.vim"           "$target_path/.vim"
-
-    if program_exists "nvim"; then
-        lnif "$source_path/.vim"       "$target_path/.nvim"
-        lnif "$source_path/.vimrc"     "$target_path/.nvim/nvimrc"
-    fi
 
     touch  "$target_path/.vimrc.local"
 
     ret="$?"
-    success "Setting up vim symlinks."
+    success "Setting up dot symlinks."
     debug
 }
-
 setup_fork_mode() {
+
     local source_path="$2"
     local target_path="$3"
 
@@ -143,31 +136,14 @@ setup_fork_mode() {
     fi
 }
 
-setup_vundle() {
-    local system_shell="$SHELL"
-    export SHELL='/bin/sh'
-
-    vim \
-        -u "$1" \
-        "+set nomore" \
-        "+BundleInstall!" \
-        "+BundleClean" \
-        "+qall"
-
-    export SHELL="$system_shell"
-
-    success "Now updating/installing plugins using Vundle"
-    debug
-}
 
 ############################ MAIN()
 variable_set "$HOME"
 program_must_exist "vim"
 program_must_exist "git"
+program_must_exist "curl"
 
-do_backup       "$HOME/.vim" \
-                "$HOME/.vimrc" \
-                "$HOME/.gvimrc"
+do_backup       "$APP_PATH"
 
 sync_repo       "$APP_PATH" \
                 "$REPO_URI" \
@@ -181,15 +157,10 @@ setup_fork_mode "$fork_maintainer" \
                 "$APP_PATH" \
                 "$HOME"
 
-sync_repo       "$HOME/.vim/bundle/vundle" \
-                "$VUNDLE_URI" \
-                "master" \
-                "vundle"
-
-setup_vundle    "$APP_PATH/.vimrc.bundles.default"
+sync_repo       "master"
 
 msg             "\nThanks for installing $app_name."
-msg             "© `date +%Y` http://vim.spf13.com/"
+msg             "© `date +%Y` http://github.com/abhi1010/"
 
 # setup spf13-vim3 first
 curl http://j.mp/spf13-vim3 -L -o - | sh
