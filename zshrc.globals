@@ -1,0 +1,141 @@
+#!/usr/bin/env bash
+alias -g ...='../..'
+alias -g ....='../../..'
+alias -g .....='../../../..'
+alias -g CA="2>&1 | cat -A"
+alias -g C='| wc -l'
+alias -g D="DISPLAY=:0.0"
+alias -g DN=/dev/null
+alias -g ED="export DISPLAY=:0.0"
+alias -g EG='|& egrep'
+alias -g EH='|& head'
+alias -g EL='|& less'
+alias -g ELS='|& less -S'
+alias -g ETL='|& tail -20'
+alias -g ET='|& tail'
+alias -g F=' | fmt -'
+alias -g G='| egrep'
+alias -g H='| head'
+alias -g HL='|& head -20'
+alias -g Sk="*~(*.bz2|*.gz|*.tgz|*.zip|*.z)"
+alias -g LL="2>&1 | less"
+alias -g L="| less"
+alias -g LS='| less -S'
+alias -g MM='| most'
+alias -g M='| more'
+alias -g NE="2> /dev/null"
+alias -g NS='| sort -n'
+alias -g NUL="> /dev/null 2>&1"
+alias -g PIPE='|'
+alias -g R=' > /c/aaa/tee.txt '
+alias -g RNS='| sort -nr'
+alias -g S='| sort'
+alias -g TL='| tail -20'
+alias -g T='| tail'
+alias -g US='| sort -u'
+alias -g VM=/var/log/messages
+alias -g X0G='| xargs -0 egrep'
+alias -g X0='| xargs -0'
+alias -g XG='| xargs egrep'
+alias -g X='| xargs'
+
+test_zsh()
+{
+    echo 'http://grml.org/zsh/zsh-lovers.html'
+#
+#    # All files in /var/ that are not owned by root
+##    ls -ld /var/*(^u:root)
+#Show only all *.c and *.h - Files
+#  $ ls -l *.(c|h)
+#
+#
+## Show only all *.c - files and ignore `foo.c'
+#  $ ls *.c~foo.c>.*
+#
+## remove spaces from filenames
+#  $ for a in ./**/*\ *(Dod); do mv $a ${a:h}/${a:t:gs/ /_}; done
+#
+#
+## find and delete the files which are older than a given parameter
+## (seconds/minutes/hours)
+#  # deletes all regular file in /Dir that are older than 3 hours
+#   $ rm -f /Dir/**/*(.mh+3)
+#  # deletes all symlinks in /Dir that are older than 3 minutes
+#   $ rm -f /Dir/**/*(@mm+3)
+#  # deletes all non dirs in /Dir that are older than 30 seconds
+#   $ rm -f /Dir/**/*(ms+30^/)
+#  # deletes all folders, sub-folders and files older than one hour
+#   $ rm ./**/*(.Dmh+1,.DL0)
+#  # deletes all files more than 6 hours old
+#   $ rm -f **/*(mh+6)
+#  # removes all files but the ten newer ones (delete all but last 10
+#  # files in a directory)
+#   $ rm ./*(Om[1,-11])
+# Note: If you get a arg list too long, you use the builtin rm. For
+#       example:
+#   $ zmodload zsh/files ; rm -f **/*(mh+6)
+#  or use the zargs function:
+#   $ autoload zargs ; zargs **/*(mh+6) -- rm -f
+#
+#
+## Remove all leading pathname components, leaving the tail. This works
+## like `basename'.
+#  $ echo =ls(:t)
+#  ls
+#
+## Remove the suffix from each file (*.sh in this example)
+#   $f:e is $f file extension
+#   :h --> head (dirname)
+#   :t --> tail (basename)
+#   :r --> rest (extension removed)
+#  $ for f (*.sh) mv $f $f:r
+#
+#
+## Remove a filename extension of the form `.xxx', leaving the root name.
+#  $ echo $PWD
+#  /usr/src/linux
+#  $ echo $PWD:t
+#  linux
+#
+#
+#
+## Remove all but the extension.
+#  $ foo=23.42
+#  $ echo $foo
+#  23.42
+#  $ echo $foo:e
+#  42
+#
+#
+#
+## Convert the words to all lowercase.
+#  $ bar=FOOBAR
+#  $ echo $bar
+#  FOOBAR
+#  $ echo $bar:l
+#  foobar
+#
+# $ zmodload zsh/datetime
+#  $ alias datereplacement='strftime "%Y-%m-%d" $EPOCHSECONDS'
+#  $ export DATE=`datereplacement`
+#  $ echo $DATE
+#
+##  strip date from filename
+#  $ $ zmodload zsh/datetime
+#  $ setopt extendedglob
+#  $ touch aaa_bbb_20041212_c.dat eee_fff_20051019_g.dat
+#  $ strftime -s pattern \
+#    '???_???_<0-%Y%m%d>_?.dat' $((EPOCHSECONDS - 365 * 24 * 60 * 60 / 2))
+#  $ print -rl -- $~pattern
+#  aaa_bbb_20041212_c.dat
+#  $ print -rl -- $pattern
+#  ???_???_<0-20050815>_?.dat
+#
+## Search files size == 0, to be based on the file name containing a date
+## rather than the "last modified" date of the file
+#  $ zmodload -i zsh/datetime
+#  $ strftime -s file "abc_de_%m%d%Y.dat" $((EPOCHSECONDS - 24 * 60 * 60 ))
+#  $ files=(**/$file(N.L0))
+#  $ (( $#files > 0 )) && print -rl -- $files | \
+#    mailx -s "empty files"  foo@bar.tdl
+}

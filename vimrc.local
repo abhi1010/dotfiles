@@ -1,0 +1,34 @@
+set mouse=
+set nocursorline                  " Highlight current line
+set nospell
+"set nofoldenable
+let g:spf13_no_fastTabs = 1
+
+if !exists('g:override_spf13_bundles') && filereadable(expand("~/.vim/bundle/vim-colors-solarized/colors/solarized.vim"))
+    let g:solarized_termcolors=256
+    let g:solarized_termtrans=1
+    let g:solarized_contrast="normal"
+    let g:solarized_visibility="normal"
+    " color molokai " Load a colorscheme
+    color molokai  " Load a colorscheme
+endif
+au FileType python IndentGuidesEnable
+au FileType python let indent_guides_auto_colors = 0
+au FileType python autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=darkgrey   ctermbg=236
+au FileType python autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=darkgrey   ctermbg=237
+au FileType python let indent_guides_color_change_percent = 10
+au FileType python let indent_guides_guide_size = 1
+
+let g:nerdtree_tabs_open_on_gui_startup=1
+let g:spf13_no_fastTabs=1
+
+unmap <C-e>
+map <C-u> <plug>NERDTreeTabsToggle<CR>
+" map <C-u> <plug>NERDTreeTabsToggle<CR>
+"    if !exists('g:override_spf13_bundles') && filereadable(expand("~/.vim/bundle/vim-colorschemes/colors/monokai-chris.vim"))
+"        let g:solarized_termcolors=256
+"        let g:solarized_termtrans=1
+"        let g:solarized_contrast="normal"
+"        let g:solarized_visibility="normal"
+"        color monokai-chris
+"    endif

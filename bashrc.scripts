@@ -1,0 +1,196 @@
+#!/usr/bin/env bash
+#!/bin/bash
+
+
+
+# Useful command to get the group of log lines that:
+#   - Start with a keyword
+#   - End with a keyword
+# Breaks all groups by printing ---- in between as well.
+# Note: Only works well when you have a well defined begin and end keyword else everything might be printed out
+_group() #Usage = '_group filename.log printBeginKeyword printUntilKeyword NumOfLines' // Works with regex
+{
+    if [[ "$#" -lt 3 ]]
+    then
+        echo ...... Number of arguments are not enough. Please try again..
+        echo _____ Usage=\"group FileName   PrintBeginKeyword   PrintUntilKeyword NumOfLines\[Optional\]\"
+        echo _____ Example=group tmp.log    wotDA5              op_if_sell_c      55
+        return
+    fi
+
+    NUM_LINES=50
+    if [[ "$#" -gt 3 ]]
+    then
+        NUM_LINES=$4
+    fi
+    VERBOSE=1
+    if [ $VERBOSE -eq 1 ]
+    then
+        echo Begin Section=$2
+        echo End Section=$3
+        echo File=$1
+        echo NUM of lines=$NUM_LINES
+    fi
+
+    if [[ $1 == *.gz ]]
+        then
+            GREP_RESULT='gunzip -c $1 | grep -A $NUM_LINES $2'
+    else
+            GREP_RESULT='grep -A $NUM_LINES $2 $1'
+    fi
+
+    eval $GREP_RESULT | awk 'BEGIN { BB=0 }   \
+                            /'$2'/ { BB=1; } \
+                            /'$3'/ { if (BB==1) print $0  "\n------------------------" ; BB=0; } \
+                            ( BB==1 )  { print $0  }  '
+}
+
+# Pulls all related logs of a given security from a log file, including regression/debug or verbose
+_pull()
+{
+    #pull filename symbolname
+    perl $VARSPACE/scripts/regressionfilter.pl $1 $2 "Debug|Info|Verbose"  0 0 0
+}
+_numUpdatesPerSec()
+{
+    if [[ "$#" -ne 1 ]]
+    then
+        echo "# of Updates/sec: Too few/much params. "
+        echo "Usage: _numUpdatesPerSec [logFile]"
+        return
+    fi
+    grep wLineTime $1 | egrep -v added | sed -e 's/\..*//' | sed -e 's/.*| //' | uniq -c
+}
+
+# Modify the title of the Putty window on your windows env
+window_title()
+{
+    if [ "$TERM" == "xterm" ]; then
+    # Remove the old title string in the PS1, if one is already set.
+        PS1="echo $PS1 | sed -r 's/^\\\\\[.+\\\\\]//g'"
+        export PS1="\[\033]0;$* - \u@\h:\w\007\]$PS1 "
+        export PROMPT_COMMAND=''
+    else
+        echo You are not working in xterm. I cannot set the title.
+    fi
+}
+
+# Creates a dash-separated version of the camel-cased input
+camel()
+{
+    echo $1 | sed -e 's/\([A-Z]\)/-\l\1/g' -e 's/^_\([a-z]\)/\1/g' -e 's/^/-/'
+}
+# Opposite of camel() function
+uncamel()
+{
+    echo $1 | sed -e 's/\(-.\)/\U\1/g' | sed -e 's/-//g' |  sed -e 's/\(^.\)/\U\1/g'
+}
+
+# Grep the input locally
+lgrep()
+{
+    grep $1 *
+}
+
+# Grep the input recursively
+rgrep()
+{
+    grep -r "$@" ./*
+}
+
+rlgrep()
+{
+    grep -rl "$@" ./*
+}
+
+# Prints out the full path of a given file
+path()
+{
+    ls -d -l $PWD/$1*
+}
+
+# Kills a given process by taking it's name as input.
+kilp()
+{
+    myps | egrep " $1$" | awk '{print $1}' | xargs kill -9
+}
+
+# Shows the IP address of the machine you are working on
+showip()
+{
+    \/sbin\/ifconfig | grep 'inet addr' | awk '{print $2}'
+}
+
+# Find a file with the extension $1 recursively from the current folder
+lfind()
+{
+    find ./ -name \*.$*
+}
+
+# Remove all log files from the current and /tmp folders
+rmllg()
+{
+    rm -f *.log
+    rm -f /tmp/*.log
+}
+
+# List all log and text files from the current and /tmp folders
+llg()
+{
+    echo -e ${Black}${On_Green}Log FILES LOCALLY....${Color_Off}
+    ll -h *.log *.txt 2>/dev/null | egrep apandey
+    echo -e ${Red}${On_Green}Log FILES LOCALLY....${Color_Off}
+    echo -e '\E[37;45m'"\033[1mLOG FILES IN TMP......\033[0m"
+    ll -h /tmp/*.log /tmp/*.txt 2>/dev/null | egrep apandey
+    echo -e '\E[37;41m'"\033[1mMy other FILES IN TMP......\033[0m"
+    ll -qh /tmp/*  2>/dev/null | egrep apandey | egrep -v "\.txt$|\.log$" | egrep -v denied  | egrep "\/tmp\/"
+}
+
+# watch tail [of] file
+# You can include any additional commands too using pipes
+wtf()
+{
+    echo Args = $*
+    watch -n 0.1 "tail -f $* "
+}
+
+lwtf()
+{
+    echo test
+    watch -n 0.1 "tail -f $* | egrep wLineTime -a "
+}
+
+
+
+
+# The following two functions are used to print a CSV file in a pretty format
+pretty_csv()
+{
+    column -s, -t <$1
+
+    # Alternative
+    # python -c 'import sys,csv; c = csv.reader(sys.stdin); [sys.stdout.write("^M".join(map(repr,r))+"\n") for r in c];' <$1 | column -s '^M' -t
+}
+as()
+{
+        echo "$*" >> samples.txt
+}
+
+
+
+
+
+
+# So much helpful when you want to view different parts of a file in bash scripts
+file_functions()
+{
+    # FILENAME='/var/reconwise/emails/Daily Statements 2015-05-12.xls'
+    FILENAME="$*"
+    FULL_FILENAME=$FILENAME
+    FILENAME=${FULL_FILENAME##*/}
+    FIRST_PART=${FILENAME%%.*}
+    EXTENSION="${FILENAME#*.}"
+    echo just file part = $FIRST_PART
+    echo filename= $FILENAME
+    echo extension= $EXTENSION
+}

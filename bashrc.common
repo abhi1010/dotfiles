@@ -1,0 +1,189 @@
+if [[ -z $ZSH_VERSION ]];
+then
+    # export PS1="$(~/powerline-shell.py $? 2> /dev/null)"
+    # if [ -f ~/.bash_colors ]; then source ~/.bash_colors ; fi
+    # if [ -f ~/.bash_scripts ]; then source ~/.bash_scripts ; fi
+    echo "1"
+fi
+
+# Add folders to $PATH
+# Ensures that $PATH always has only one instance of folder names in it
+pathadd()
+{
+    if [ -d "$1" ] && [[ ":$PATH:" != *":$1:"* ]]; then
+        PATH="${PATH:+"$PATH:"}$1"
+    fi
+}
+
+pathadd ~/code/githubs/depot_tools/
+pathadd /Library/Frameworks/Python.framework/Versions/3.4/bin/
+pathadd /usr/local/mysql/bin
+pathadd /opt/local/bin/
+pathadd /Users/apandey/code/scripts/
+pathadd $EC2_HOME/bin
+pathadd /Applications/Postgres.app/Contents/Versions/9.4/bin
+pathadd .
+pathadd /Users/apandey/q/m32/
+
+
+
+
+export TMOUT=0
+
+
+#Long Version of Putty Title - We don't need it since ZSH
+#PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME}: ${PWD}\007"'
+# PROMPT_COMMAND='echo -ne "\033]0;${PWD}\007"'
+
+
+alias gs='git status '
+
+
+export LC_ALL="en_US.UTF-8"
+
+
+alias ls='ls -G'
+alias p3='python3.4'
+alias p2='python2.7'
+alias pt3='py.test-3.4'
+
+export GREP_OPTIONS='--color=auto'
+
+
+
+
+# Set the process to a single core - Core #0
+alias cpuset='taskset -c -p 0 '
+
+export CC=gcc
+export GCC=gcc
+
+alias wl='watch -n 60 ls'
+
+alias sortu='sort -u'
+
+#
+alias k1='kil %1'
+alias fk1='fkil %1'
+alias k2='kil %2'
+alias fk2='fkil %2'
+alias kil='kill -15'
+alias fkil='kill -9'
+alias pykil='kill -s INT '
+
+
+alias namefind='find ./ -iname '
+alias dirs='ls -d */'
+
+alias igrep='egrep -i'
+
+alias myps='ps -u apandey | egrep -v " \/System| \/Users\/| \/Applications| \/usr\/|ssh|bash| ps$|grep$"'
+
+
+kildjango()
+{
+    ps -u apandey | grep -e "manage.py runserver" | awk '{print $2}' | xargs kill -9
+}
+
+
+alias kdj='kildjango'
+alias disk='du -sh'
+alias lsize='ls -lshrt'
+alias chgv='chg && v'
+alias llogs='ll *.log'
+alias txt='ll *.txt'
+alias tars='ls *.tar'
+alias zips='ls *.zip'
+alias gzs='ls *.gz'
+alias rpwd='pwd -P'
+alias mybash='pwd && vim ~/.bashrc && . ~/.bashrc'
+alias b='mybash'
+alias bscript='vim ~/.bash_scripts && . ~/.bashrc'
+alias myvim='pwd && vim ~/.vimrc'
+
+
+# Directory traversal
+alias 1cd="cd ../ && pwd"
+alias 2cd="cd ../../ && pwd"
+alias 3cd="cd ../../../ && pwd"
+alias 4cd="cd ../../../../ && pwd"
+alias 5cd="cd ../../../../../ && pwd"
+alias 6cd="cd ../../../../../../ && pwd"
+alias 7cd="cd ../../../../../../../ && pwd"
+
+alias gt='gnome-terminal'
+alias l="ls -F"
+alias ll="l -lh"
+alias lll='ll -rt | tail'
+
+# Who all are using the machine along with you?
+alias whos='who | sort | uniq -cw 10'
+
+
+# allow unlimited core files
+ulimit -c unlimited
+
+# command history
+#export HISTFILESIZE=999999
+export HISTFILESIZE=4000000
+export HISTSIZE=100000
+export HISTCONTROL=ignoredups
+
+
+# Creates a gzip file containing all files (including API)
+zipall()
+{
+    tar cf $1.tar --exclude=CVS --exclude=.git $1
+    gzip -9 $1.tar
+}
+
+# Creates a gzip file containing all files (excluding API)
+zipcode()
+{
+    tar cf $1.tar --exclude=CVS --exclude=docs --exclude=doc --exclude=api $1
+    gzip $1.tar
+}
+
+
+
+
+
+alias vd='vim Dockerfile'
+alias b2='boot2docker'
+dinit()
+{
+    # If you get a tcp error again, do "b2 restart"
+    b2 stop
+    b2 init
+    b2 start
+    $(b2 shellinit)
+}
+
+alias di='docker images'
+alias dr='docker run -t -i tamtech/${PWD##*/} /bin/bash'
+alias drr='docker run -d -p 80:80 --name ts tamtech/${PWD##*/}'
+alias drbash='docker exec -i -t ts bash'
+alias dstop='docker stop ts && docker rm  ts'
+alias db='echo "Building tamtech/${PWD##*/}" && docker build -t tamtech/${PWD##*/} .'
+alias dp='docker ps'
+alias dirmi='di | awk '\''{if ($1=="<none>") print $3}'\'' | xargs docker rmi -f'
+
+
+zdok()
+{
+    # cd /Users/apandey/code/scripts/docks/sina
+    rm *.zip
+    COUNTER_FILE=/var/reconwise/.dock
+    if [[ -r $COUNTER_FILE ]] ; then
+       COUNT=$(<$COUNTER_FILE)
+    else
+       COUNT=0
+    fi
+    echo 'count = ' $COUNT
+
+    #Increment counter and save to file
+    echo $(( $COUNT+ 1 )) > $COUNTER_FILE
+    zip recon$COUNT.zip * ./.eb*/*
+}
+
+export TERM="xterm-256color"

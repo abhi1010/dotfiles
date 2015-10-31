@@ -1,0 +1,168 @@
+
+
+
+## Reconwise
+
+
+# RECON WEB Tests
+# A lot of curls which are not needed anymore
+alias cu='curl -Fclient=GH -F"Newedge SGX T+1.2015-03-05.zip=@/private/var/reconwise/emails/Newedge SGX T+1.2015-03-05/Newedge SGX T+1.2015-03-05.zip" localhost:8000/confo/upload/'
+alias cuf='curl -Fclient=GH -F"Newedge SGX T+1.2015-03-05.zip=@/private/var/reconwise/emails/Newedge SGX T+1.2015-03-05/Newedge SGX T+1.2015-03-05.zip" localhost:8000/confo/upload/'
+alias ru='curl -Fclient=GH -F"Daily Statements 2015-02-25=@/private/var/reconwise/emails/Daily_Statements_2015-02-25.xls" localhost:8000/confo/upload/'
+#alias rut='curl -Fclient=GH -F"Daily Statements 2015-02-25=@/private/var/reconwise/emails/Daily_Statements_2015-02-25.xls" tildesg.ddns.net:80/confo/upload/'
+alias xx='curl -Fclient=GH -F"Newedge SGX T+1.2015-03-16=@/var/reconwise/emails/Newedge SGX T+1.2015-03-16.zip" tildesg.ddns.net:80/confo/upload/'
+alias rpp='curl -F"Daily Statements 2015-02-25=@/private/var/reconwise/emails/Daily_Statements_2015-02-25.xls" localhost:8000/parser/parse/'
+alias rcp='curl -F"Daily Statements 2015-02-25=@/private/var/reconwise/emails/Daily_Statements_2015-02-25.xls" localhost:8000/confo/parse/'
+alias rpu='curl -F"Daily Statements 2015-03-16=@/tmp/test.csv" localhost:8000/parser/upload/'
+alias rpu1='curl -F"Daily Statements 2015-03-16=@/tmp/test.csv" localhost:8000/confo/upload/'
+alias rfv='curl -F"grasshopper-fair_value-20150311_010101=@/var/reconwise/ftp/grasshopper-fair_value-20150311_010101.csv" localhost:8000/client/fairvalue/'
+
+export V1_SRC='/Users/apandey/code/tilde/reconwisev1/src'
+export V2_SRC='/Users/apandey/code/tilde/reconwisev2/rw'
+alias rw1_log='vim /tmp/rw.log'
+alias rw2_log='vim $V2_SRC/media/log/*.log'
+
+set_upload_site()
+{
+    SLOCAL='http://localhost:8000'
+    SAWS='http://recon.tilde.sg'
+    SITE=${1-$SLOCAL}
+    # echo $SITE
+}
+set_upload_site
+
+
+
+# Db setup
+# pg_dump -d tam_tech_1 -U djangouser -O > /Users/apandey/code/tilde/reconwisev1/src/main/scripts/tam_tech_1.psql
+# psql  -h reconwise.cwobo6amaswz.ap-southeast-1.rds.amazonaws.com -U reconuser -d tam_tech_1 < /Users/apandey/code/tilde/reconwisev1/src/main/scripts/tam_tech_1.psql
+
+
+
+confoload()
+{
+    # /var/reconwise/emails/Morgan Stanley TSE Stocks.2015-05-01.zip
+    FULL=$*
+    echo file=$FULL
+    FILE=$(basename "$FULL")
+    echo file=$FILE
+    curl -Fclient=GH -F"$FILE=@$FULL" $SITE/confo/upload/
+}
+alias reconmsload='confoload'
+reconneload()
+{
+    FULL=$*
+    echo file=$FULL
+    FILE=$(basename "$FULL")
+    echo file=$FILE
+    curl -Fclient=GH -F"$FILE=@$FULL" $SITE/parser/upload/ > /tmp/file_results
+    curl -Fclient=GH -F"$FILE=@/tmp/file_results" $SITE/parser/upload/
+}
+
+alias rw_abhi='vim $V1_SRC/main/resources/tmp/abhishek.pandey_tampinestechnology.com'
+
+
+export RW=/var/reconwise/
+
+# MARKET WISE Stuff
+alias tm='p2 /Users/apandey/code/marketwise/manage.py runserver'
+
+# DJANGO HELP
+#export DJANGO_SETTINGS_MODULE='web.settings'
+export SE='/usr/local/etc/nginx/sites-enabled/'
+export PYTHONPATH=.:test/python/reconwisetestPy:main/python:/Users/apandey/code/scripts/
+alias rundj='p2 /Users/apandey/code/marketwise/manage.py runserver'
+alias rundjt='p2 /Users/apandey/code/marketwise/manage.py test'
+alias dj2='p2 /Users/apandey/code/marketwise/manage.py '
+alias tag_rw='git tag -f v2_uat master && git push -f --tags'
+
+
+
+# AWS Help
+# scp -i  /Users/apandey/Documents/TamTech/tamtech.pem .vimrc ec2-user@tildesg.ddns.net:/tmp/abhivimrc
+# scp -i  /Users/apandey/Documents/TamTech/tamtech.pem ec2-user@tildesg.ddns.net:/tmp/pgdump.tdb.sql ./
+# ssh -i ~/Documents/TamTech/tamtech.pem ec2-user@54.169.4.132
+alias qtt='conaws tamtech.ddns.net'  # 52.74.187.73
+alias qt='conaws recon.tilde.sg'  # 52.74.222.148'
+alias qs='sftp -i /Users/apandey/Documents/TamTech/grasshopper.pem -P 22 gh-user@recon.tilde.sg'
+alias qs1='sftp -i /Users/apandey/Documents/TamTech/grasshopper.pem -P 22 gh-user@recon.tilde.sg'
+alias ftp_ms='sftp -i /var/reconwise/certs/morganstanley_sftp_id_rsa  wakyedco@sftp.morganstanley.com'
+alias ftp_abn='sftp -i /Users/apandey/Documents/TamTech/key_files/abnamro grasshopper@delivery.au.abnamroclearing.com'
+
+
+alias ptt='pdftotext -nopgbrk -layout "$FILE" new.txt'
+
+conaws()
+{
+    ssh -o ConnectTimeout=1000000 -i /Users/apandey/Documents/TamTech/tamtech.pem ec2-user@$1
+
+    #scp command to aws
+    #scp -i ~/Documents/TamTech/tamtech.pem ec2-user@tildesg.ddns.net:/tmp/jsons.tar.gz .
+}
+
+
+
+
+
+# Help commands for reconwise
+rw()
+{
+    if [[ $1 == '1' ]];
+    then
+        echo 'Copying all Recon* files from main/resources/tmp folder'
+        echo cp -v "$V1_SRC/main/resources/tmp/reports/json/Reconcile_"* "$V1_SRC/main/resources/qa/"
+        cp -v "$V1_SRC/main/resources/tmp/reports/json/Reconcile_"* "$V1_SRC/main/resources/qa/"
+    elif [[ $1 == '2' ]];
+    # Most useful for copying 848 and 849 to QA folders. Make sure to run dev test in range 800-871 first
+    then
+        echo 'Copying 848 and 849 files from /var/reconwise/'
+        echo cp -v /var/reconwise/reports/json/*84[89]* $V1_SRC/main/resources/qa/json/
+        cp -v /var/reconwise/reports/json/*84[89]* $V1_SRC/main/resources/qa/json/
+    elif [[ $1 == '3' ]];
+    then
+        echo 'Copying 848 and 849 files from within main/resources/tmp/ folder'
+        echo cp -v $V1_SRC/main/resources/tmp/reports/json/*84[89]* $V1_SRC/main/resources/qa/json/
+        cp -v $V1_SRC/main/resources/tmp/reports/json/*84[89]* $V1_SRC/main/resources/qa/json/
+    elif [[ $1 == '4' ]];
+    then
+    # Most useful for copying 871 and 875 files to QA folders. make sure to run pytest first.
+        echo 'Copying 871 and 875 files from within main/resources/tmp/ folder'
+        cp -v $V1_SRC/main/resources/tmp/reports/json/*87[15]* $V1_SRC/main/resources/qa/
+    elif [[ $1 == '5' ]];
+    then
+    # Most useful for copying all files to QA folders. make sure to run pytest first.
+        echo 'Copying ALL files from within main/resources/tmp/ folder'
+        cp -v $V1_SRC/main/resources/tmp/reports/json/* $V1_SRC/main/resources/qa/
+    fi
+
+    #cp -v "$V1_SRC/main/resources/tmp/reports/json/Reconcile_"* "$V1_SRC/main/resources/qa/"
+    #cp -v /var/reconwise/reports/json/*84[89]* $V1_SRC/main/resources/qa/json/
+}
+
+
+
+
+
+alias v1='source /Users/apandey/code/virtual_envs/rwv1/bin/activate && cd ~/code/tildePython/reconwisev1/ && echo "VENV=/Users/apandey/code/virtual_envs/rwv1/bin" '
+alias v2='source /Users/apandey/code/virtual_envs/rwv2_34_1/bin/activate && cd ~/code/tildePython/reconwisev2/rw/ && echo "VENV = /Users/apandey/code/virtual_envs/rwv2_34_1/bin" '
+alias ve_sub='source /Users/apandey/code/virtual_envs/ve_sublime/bin/activate && cd ~/code/tildePython/reconwisev2/rw/ && echo "VENV=/Users/apandey/code/virtual_envs/ve_sublime/bin" '
+dumpv2()
+{
+    v2 # This will call the alias act to set up the virtual env for RW V2
+    manage.py dumpdata --database=orig --indent 4 contenttypes auth > media/fixtures/authorizations.json
+    manage.py dumpdata --database=orig --indent 4 confo.Broker confo.Client > media/fixtures/parties.json
+    manage.py dumpdata --database=orig --indent 4 confo.Contract confo.ContractSymbol confo.Session confo.TradeAdapter > media/fixtures/trades_and_contracts.json
+}
+
+t_1()
+{
+    file_functions "$*"
+    TMP_CSV='/tmp/recon.csv'
+    # FILE='Daily Statements 2015-05-12.xls'
+    # FULL='/var/reconwise/emails/Daily Statements 2015-05-12.xls'
+    curl -Fclient=GH -F"$FILENAME=@$FULL_FILENAME" $SITE/parser/parse/ > $TMP_CSV
+}
+t_2()
+{
+    curl -Fclient=GH -F"$FIRST_PART.csv=@$TMP_CSV" $SITE/parser/upload/ &
+}

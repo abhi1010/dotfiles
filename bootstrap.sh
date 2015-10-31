@@ -2,11 +2,13 @@
 
 ############################  SETUP PARAMETERS
 app_name='abhi1010-dotfiles'
-[ -z "$APP_PATH" ] && APP_PATH="$HOME/adots"
+# [ -z "$APP_PATH" ] && APP_PATH="$HOME/adots"
+[ -z "$APP_PATH" ] && APP_PATH="$HOME/code/dotfiles"
 [ -z "$REPO_URI" ] && REPO_URI='https://github.com/abhi1010/dotfiles.git'
 [ -z "$REPO_BRANCH" ] && REPO_BRANCH='master'
-debug_mode='0'
+debug_mode='1'
 fork_maintainer='0'
+echo "APP_PATH=" $APP_PATH
 
 ############################  BASIC SETUP TOOLS
 msg() {
@@ -56,7 +58,13 @@ variable_set() {
         error "You must have your HOME environmental variable set to continue."
     fi
 }
-
+lnquiet() {
+    if [ -e "$1" ]; then
+        ln -s "$1" "$2" > /dev/null 2<&1
+    fi
+    ret="$?"
+    debug
+}
 lnif() {
     if [ -e "$1" ]; then
         ln -sf "$1" "$2"
@@ -106,11 +114,11 @@ create_symlinks() {
     local source_path="$1"
     local target_path="$2"
 
-    lnif "$source_path/.vimrc"         "$target_path/.vimrc"
-    lnif "$source_path/.vimrc.before"  "$target_path/.vimrc.before"
-    lnif "$source_path/.vim"           "$target_path/.vim"
+    lnif "$source_path/bashrc.main"         "$target_path/.bashrc"
+    lnif "$source_path/zshrc.main"         "$target_path/.zshrc"
 
-    touch  "$target_path/.vimrc.local"
+    touch "$source_path/bashrc.local"
+    touch "$source_path/zshrc.local"
 
     ret="$?"
     success "Setting up dot symlinks."
@@ -137,30 +145,43 @@ setup_fork_mode() {
 }
 
 
-############################ MAIN()
+# ------------------------------------ MAIN ------------------------------------
 variable_set "$HOME"
 program_must_exist "vim"
 program_must_exist "git"
 program_must_exist "curl"
 
-do_backup       "$APP_PATH"
+## 
+# do_backup       "$APP_PATH"
 
-sync_repo       "$APP_PATH" \
-                "$REPO_URI" \
-                "$REPO_BRANCH" \
-                "$app_name"
+# sync_repo       "$APP_PATH" "$REPO_URI" "$REPO_BRANCH" "$app_name"
 
-create_symlinks "$APP_PATH" \
-                "$HOME"
+create_symlinks "$APP_PATH" "$HOME"
 
-setup_fork_mode "$fork_maintainer" \
-                "$APP_PATH" \
-                "$HOME"
+# setup_fork_mode "$fork_maintainer" "$APP_PATH" "$HOME"
 
-sync_repo       "master"
+# sync_repo       "master"
 
 msg             "\nThanks for installing $app_name."
 msg             "© `date +%Y` http://github.com/abhi1010/"
 
-# setup spf13-vim3 first
+# ------------------------------------ bashrc Setup ------------------------------------
+lnquiet $APP_PATH/.git ~/.git
+lnquiet $APP_PATH/.aws ~/.aws
+
+
+# ------------------------------------ ZSH Setup ------------------------------------
+# - via curl
+# sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+
+# - via wget
+# sh -c "$(wget https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
+
+# ------------------------------------ spf13-vim3 Setup ------------------------------------
 # curl http://j.mp/spf13-vim3 -L -o - | sh
+
+
+
+# ------------------------------------ Local VIM Setup ------------------------------------
+lnif $APP_PATH/vimrc.local ~/.vimrc.local
+lnif $APP_PATH/vimrc.before.local ~/.vimrc.before.local

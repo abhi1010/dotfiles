@@ -1,0 +1,185 @@
+#!/usr/bin/env bash
+
+export EC2_HOME=/usr/local/ec2
+
+export NGINX=/usr/local/Cellar/nginx/1.6.1_1/
+export NG2=/usr/local/etc/nginx/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# AWS .bashrc
+alias conf='ll /home/ec2-user/ws/tampines/confo | egrep "Mar "'
+shopt -s expand_aliases
+
+
+alias msconfig='sudo ntsysv'
+alias mem='top -u ec2-user'
+export V1_SRC=~/ws/tilde_bb/reconwisev1
+export V2_SRC=~/ws/tilde_bb/reconwisev2/rw
+export V1_DATA=/var/shared/data/v1/
+export VENV_RW1=/home/ec2-user/ws/venv_rw1
+export VENV_RW2='/home/ec2-user/ws/venv_rw'
+export DJANGO_SETTINGS_MODULE=rw.settings
+export PYTHONUNBUFFERED=1
+alias act_v2='cd $VENV_RW2 && source bin/activate'
+alias act_v1='cd $VENV_RW1 && source bin/activate'
+alias gg='git clone git@bitbucket.org:tampinestechnology/reconwisev2.git'
+alias kilp3='pkill -9 python3.4'
+alias gits='git status -uno -s'
+alias gitrevert='git checkout -- ./*'
+alias grh='git reset --hard origin/master && git pull'
+alias gitdiff='git difftool -y -x "colordiff -y -W $COLUMNS" | less -R'
+alias gdiff='git difftool -y -x "colordiff -y -W $COLUMNS"'
+alias rw1_log='vim /var/shared/data/rw_v1.log'
+alias rw2_log='vim /var/shared/data/rw_v2.log'
+alias vim_prod='vim $V1_SRC/src/main/resources/prod-config.ini'
+#alias rw_ini='vim rw_latest/reconwise/src/tam-config.ini'
+alias rw_ini='vim $V1_SRC/src/tam-config.ini'
+export RECON_CONFIG='main/resources/prod-config.ini'
+export PYTHONPATH=test/python/reconwisetestPy:main/python
+alias rundj='cd $V1_SRC/src && nohup python3.4 $V1_SRC/web/manage.py runserver 0.0.0.0:8002 > /tmp/django.log 2>&1 &'
+alias plrw='psql -h localhost -U postgres -d rwdb'
+alias pl='psql -h localhost -U postgres'
+alias prw1='vim ~/ws/scripts/p_rw1.py'
+alias start_db='sudo service postgresql93 start && sudo service mysqld start'
+alias rrw1="run_rw1_with_config 'main/resources/prod-config.ini'"
+alias rrw2="rw_v2"
+alias tailv1='tail -f ~/data/v1/nohup.log'
+
+
+fix_configs()
+{
+    sed -i 's/^password=$/password=passwords123/g' /home/ec2-user/rw_latest/reconwise/src/tam-config.ini
+    #sed -i 's/^run_main=True$/run_main=False/g' /home/ec2-user/rw_latest/reconwise/src/tam-config.ini
+    sed -i 's/^report_receivers=abhi.pandey@gmail.com$/report_receivers=shan.yeo@grasshopperasia.com,grasshopper-reconwise@tampinestechnology.com/g' /home/ec2-user/rw_latest/reconwise/src/tam-config.ini
+    sed -i 's/^enable_reports=False$/enable_reports=True/g' /home/ec2-user/rw_latest/reconwise/src/tam-config.ini
+    sed -i 's/^reporter_mail_from_name=AbhiMac Reports$/reporter_mail_from_name=TamTech Reports/g' /home/ec2-user/rw_latest/reconwise/src/tam-config.ini
+    sed -i 's/^common_folder=.var.reconwise.$/common_folder=\/home\/ec2-user\/data/v1/g' /home/ec2-user/rw_latest/reconwise/src/tam-config.ini
+    sed -i 's/^local_folder_save=\/var\/reconwise\/emails\/$/local_folder_save=\/home\/ec2-user\/data/v1\/emails\//g' /home/ec2-user/rw_latest/reconwise/src/tam-config.ini
+    sed -i 's/^report_folder=\/var\/reconwise\/reports\/$/report_folder=\/home\/ec2-user\/data/v1\/reports\//g' /home/ec2-user/rw_latest/reconwise/src/tam-config.ini
+    sed -i 's/\/tmp\/rw.log/\/home\/ec2-user\/data/v1\/logs\/rw.log/g' /home/ec2-user/rw_latest/reconwise/src/main/resources/logging.conf
+}
+alias rw_uat='rw_v1'
+rw_v1()
+{
+    echo '--> Killing all python3.4 processes'
+    ps -u ec2-user | egrep -v "ssh|bash| ps$|grep$"
+    pkill -9 python3.4  #kill any process that is running on the server with python3.4
+    cd $V1_SRC
+
+    echo '--> GIT Status'
+    gits  # Show the git status: Ensure no mistakes
+    echo '--> GIT Reverting all files.... '
+    git checkout -f tags/recon_prod
+    git pull origin tags/recon_prod
+    #gitrevert  # Revert all changes that we made with fix_configs()
+    #git pull   # Sync the latest changes
+
+    #echo '--> Fixing all configs'
+    #fix_configs  # Call the function to modify any settings and make the project production ready
+    sed -i 's/\/tmp\/rw.log/\/home\/ec2-user\/data\/v1\/logs\/rw.log/g' $V1_SRC/src/main/resources/logging.conf
+    mysql -u root -ppasswords123 < $V1_SRC/src/main/scripts/db_scripts.sql
+
+    echo '--> GIT Status'
+    gits  # Show the git status: Ensure no mistakes
+
+    # Run the process now with nohup
+    run_both
+}
+run_rw1_with_config()
+{
+    source $VENV_RW1/bin/activate
+    pip3.4 install -r $V1_SRC/requirements.txt
+
+    ### Set the pythonpath so that "py.test-3.4" knows how to search the paths relatively
+    export PYTHONPATH=test/python/reconwisetestPy:main/python
+
+    echo '--> Running nohup process now'
+    cd $V1_SRC/src
+
+    echo Config File= $1
+    nohup python3.4 $V1_SRC/src/main/python/main.py -c $1 > ~/data/v1/nohup.log 2>&1 &
+    echo 'Log File= ~/data/v1/nohup.log or rw1_log'
+}
+
+_setup_v2()
+{
+    cd $VENV_RW2
+    source bin/activate
+    echo 'Virtual Env activated'
+    which python && python --version
+    pip3.4 install -r $V2_SRC/../requirements.txt
+    cd $V2_SRC
+
+    mkdir -p media/log
+    mkdir -p media/statics
+    mkdir -p media/tmp
+}
+rw_v2()
+{
+    _setup_v2
+    pkill -9 python3.4  #kill any process that is running on the server with python3.4
+    git checkout -f tags/v2_uat
+    git pull origin tags/v2_uat
+    manage.py makemigrations
+    manage.py migrate
+
+    # We need to run this eventually to collect all static files, together with debug=False
+    manage.py collectstatic --noinput
+    mkdir -p $V2_SRC/log/
+    run_both
+}
+run_both()
+{
+    run_rw1_with_config 'main/resources/prod-config.ini'
+    # run_rw1_with_config 'main/resources/uat-config.ini'
+    # run_rw1_with_config 'main/resources/test-config.ini'
+    _setup_v2
+    nohup python3.4 manage.py runserver --settings=rw.uat_settings 0.0.0.0:8000 > ~/data/v2/nohup.rw.v2.log 2>&1 &
+
+    # Ensure that the process has started running
+    ps -u ec2-user | egrep -v "ssh|bash| ps$|grep$"
+}
+
+alias run_recon="cd $V1_SRC/src && p3 $V1_SRC/src/main/python/main.py -c 'main/resources/prod-config.ini'"
+alias run_hup="cd $V1_SRC/src && nohup python3.4 $V1_SRC/src/main/python/main.py -c 'main/resources/prod-config.ini'> ~/data/v1/nohup.log 2>&1 &"
+
+pathadd '/home/ec2-user/ws/scripts'
+pathadd '.'
+pathadd '/usr/local/bin/'
+# User specific aliases and functions
+# allow unlimited core files
+ulimit -c unlimited
+
+
+#PS1='\e[1;31;34m\e[1;31;36m\h: \e[0;0m\e[1;35m[\w]\e[0;0m\n\u > '
+PS1='RW: \e[0;0m\e[1;35m[\w]\e[0;0m\n > '
+
+alias p3='python3.4'
+# grep stuff
+export GREP_OPTIONS='--color=auto'
+
+# =====================================================================================================================================
+alias myps='ps -u ec2-user | egrep -v "ssh|bash| ps$|grep$" && echo ------------ && ps -ef | egrep python'
+
+
+# Passphrase for deployment key on bitbucket is awstilde
+# alias pubip='echo Reconwise Server && curl ipecho.net/plain && echo '
+if [[ $- =~ "i" ]]; then
+    IP=$(curl -s ipecho.net/plain)
+    echo '################################################################'
+    echo '             RECONWISE SERVER : tildesg.ddns.net'
+    echo '                  Public IP: '  $IP
+    echo '################################################################'
+fi

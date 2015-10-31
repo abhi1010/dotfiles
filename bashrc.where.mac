@@ -1,0 +1,69 @@
+
+export PG_DUMP="/Applications/Postgres.app/Contents/Versions/9.4/bin/"
+export LD_LIBRARY_PATH=./lib/:$TIBRV_HOME/lib/:/bar/deps/thirdparty/google-test-framework/Linux/x86_64/2.6/gcc411_libc25/lib/:$LD_LIBRARY_PATH
+
+export JAVA_HOME=$(/usr/libexec/java_home)
+
+# Simplest verion of PS1
+#export PS1="`uname -n`> "
+#export PS1='\u@\h> '
+
+# Simpler Version to see dir details on 1 line
+#export PS1='\u@\h\ : \w \n>'
+
+# Most Complicated version
+# PS1='\e[1;31;34m\e[1;31;36m\h: \e[0;0m\e[1;35m[\w]\e[0;0m\n\u > '
+echo "...... "
+
+export PS1="$(~/powerline-shell.py $? 2> /dev/null)"
+
+function _update_ps1()
+{
+    if [[ -z $ZSH_VERSION ]];
+    then
+        export PS1="$(~/powerline-shell.py $? 2> /dev/null)"
+    else
+       export PS1="$(~/powerline-zsh.py $? 2> /dev/null) "
+    fi
+}
+
+
+
+ps1_add()
+{
+    if [ -d "$1" ] && [[ ":$PROMPT_COMMAND:" != *":$1:"* ]]; then
+        PATH="${PROMPT_COMMAND:+"$PROMPT_COMMAND:"}$1"
+    fi
+}
+
+precmd()
+{
+    _update_ps1
+}
+# ps1_add "_update_ps1"
+export PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
+alias vim='/usr/local/Cellar/vim/7.4.712/bin/vim'
+
+
+# Powerline
+#powerline-daemon -q
+#export POWERLINE_CONFIG=/Library/Frameworks/Python.framework/Versions/3.4/bin//powerline-config
+#POWERLINE_BASH_CONTINUATION=1
+#POWERLINE_BASH_SELECT=0
+#source /Library/Frameworks/Python.framework/Versions/3.4/lib/python3.4/site-packages/powerline/bindings/bash/powerline.sh
+
+
+
+powerline-daemon -q
+#source /Library/Frameworks/Python.framework/Versions/3.4/lib/python3.4/site-packages/powerline/bindings/bash/powerline.sh
+if [  -f /Library/Frameworks/Python.framework/Versions/3.4/lib/python3.4/site-packages/powerline/bindings/bash/powerline.sh  ]; then
+    source /Library/Frameworks/Python.framework/Versions/3.4/lib/python3.4/site-packages/powerline/bindings/bash/powerline.sh
+fi
+if [[  -f /Users/apandey/code/virtual_envs/rwv1/lib/python3.4/site-packages/powerline/bindings/bash/powerline.sh ]]; then
+    source /Users/apandey/code/virtual_envs/rwv1/lib/python3.4/site-packages/powerline/bindings/bash/powerline.sh
+fi
+
+
+export DEV='abhishek.pandey:Tsuguro0@dev02-ws.grass.corp'
+export DEV_NOPASS='abhishek.pandey@dev02-ws.grass.corp'
+alias sdev='ssh -L8011:$DEV_NOPASS:8001 -Y $DEV_NOPASS'

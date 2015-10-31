@@ -1,0 +1,966 @@
+#!/usr/bin/env bash
+
+
+
+
+
+aa()
+{
+    grep "^$*" /tmp/1 | sed -e 's/[^A-Z ]//g' -e 's/^/'\''/g' -e 's/$/'\''/g' | xargs -n 1 ~/code/scripts/cam | sed -e 's/^_*/'\''/g' -e 's/_*$/'\''/g' -e 's/_d_c//g' | awk 'BEGIN {ORS = ", "}{print $0}'
+}
+
+
+
+export TMOUT=0
+export LD_LIBRARY_PATH=./lib/:$TIBRV_HOME/lib/:/bar/deps/thirdparty/google-test-framework/Linux/x86_64/2.6/gcc411_libc25/lib/:$LD_LIBRARY_PATH
+
+#Long Version of Putty Title
+#PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME}: ${PWD}\007"'
+# PROMPT_COMMAND='echo -ne "\033]0;${PWD}\007"'
+
+# Simplest verion of PS1
+#export PS1="`uname -n`> "
+#export PS1='\u@\h> '
+
+# Simpler Version to see dir details on 1 line
+#export PS1='\u@\h\ : \w \n>'
+
+# Most Complicated version
+#PS1='\e[1;31;40m\u \e[1;31;40mon \h \e[0;0m\e[1;31m[\w]\n > \e[0;0m'
+#PS1='\e[1;31;34m\u\e[1;31;34m@\h: \e[0;0m\e[1;31m[\w]\n>\e[0;0m'
+# PS1='\e[1;31;34m\e[1;31;36m\h: \e[0;0m\e[1;35m[\w]\e[0;0m\n\u > '
+
+alias ls='ls -G'
+
+# =====================================================================================================================================
+#######################################################################################################################################
+# CVS Commands
+
+# Finds out the cv[s] [m]odified list of files while also indentating them nicely with only the important data pulled out
+alias sd='cvsd'
+alias sm='cvs -Q status  | egrep "File: " -A 4 | egrep -v "Up-to-date" | egrep "File: " -A 3 |  sed -e "s/ Status:/\t\tStatus:/" -e "s/,v$/\n-------------------------------------------------------------------------\n/" -e "s/.*${PWD##*/}\//Location:\t\t /" -e "s/Attic\///" | egrep "Location:|Repository|Status:|File:|--------"'
+
+# Recursively add all files to CVS for committing from the current directory
+alias cvsadd='find . -type d -print | grep -v CVS | xargs cvs add'
+
+# Single Threaded cvs update and finding out all modified files after that
+alias usm='cvs -Q update && sm'
+
+# Show the tag/branch of the current folder
+alias showtag='cat CVS/Tag | cut -c2-'
+alias tag='cat CVS/Tag | cut -c2-'
+
+# Create a file called ChangeLog containing all commit information (containing revision numbers)
+#alias lastr='cvslast -r'
+
+# Create a file called ChangeLog containing all commit information (containing branch names)
+#alias lastb='cvslast -b'
+
+# Get the Status of the given file name or all, if none provided
+alias cvss='cvs status'
+
+# Silent update and tell the status of the files
+alias scvsm='cvs -q -n update'
+
+# CVS Status of the local files, without actually updating. Results in short form
+alias lcvsm='cvs -Q -n update -l'
+
+# CVS update
+alias cvsu='cvs update'
+
+# Async cvs update of all files
+alias cvsuq='cvs -Q update &'
+alias cu='cvsuq'
+
+# Clear all files with the "?" mark on them, that are either created by feedbuilder or other useless files
+# like *.ann or ChangeLog or tmp files
+alias cvsuc='cvsuq | awk "{print $2}" | xargs rm'
+
+# Check out 2.16 QA branch
+alias co216qa='cvs -Q co -r Version_2_16_stable qa && rm -rf qa/regression/playbacks && cvs co qa/regression/playbacks'
+# Check out 2.16 src branch
+alias co216src='cvs -Q co -r Version_2_16_stable src'
+# Check out 2.17 QA branch
+alias co217qa='cvs -Q co -r Version_2_17_dev qa && rm -rf qa/regression/playbacks && cvs co qa/regression/playbacks'
+# Check out 2.17 src from dev head
+alias co217src='cvs -Q co -r Version_2_17_dev src/feeds/multicast'
+# Check out products branch from release 4.0
+alias co40api='cvs -Q co -r api_dev_4_0 products'
+# =====================================================================================================================================
+
+
+#######################################################################################################################################
+#BUILDING commands
+alias bdj='buildn japannextitch'
+alias bbse='buildn bsebcast'
+alias bts='buildn tsestandard'
+alias btf='buildn tsefull'
+alias bst='buildn sgxst'
+alias bdt='buildn sgxdt'
+alias bdx='buildn tdex'
+alias bdw='buildn twse'
+alias bda='buildn asxtrade'
+alias bke='buildn krxequities'
+alias bdo='buildn osederiv'
+alias bdu='buildn unittest'
+alias bdi='cd /home/apandey/krx.2*/ && buildn iconnect'
+alias sbdi='cd /home/apandey/krx.2*/ && buildn iconnect && scp bld/lbt/iconnect NYX\\apandey@pcasvesx03v:/home/NYX/apandey/'
+fbdi()
+{
+     rgrep $1 | egrep  "StaticData|MarketData|BuyQueue|SellQueue|BidQueue|OfferQueue|BidDepth|OfferDepth|BidPriceDepth|OfferPriceDepth|Attribution|StaticDataBroker|MarketDataBroker"
+}
+fnew()
+{
+    rgrep $1  | egrep IssueUpdateNew | sed -e  's/.*\///g' -e 's/:.*//g'
+}
+
+vcm()
+{
+    vim include/iCMsg/$*
+}
+
+# Builds a $FH with a product - example would be mamaperf
+buildp()
+{
+    ./src/devtools/build/productbuilder.sh -N -A -h -q -y -v -w -n -m lbm -m wmw -jn -i $PWD/api -d -p $*
+}
+
+# Build FH, + verbose
+buildn()
+{
+    echo Forking build process
+    ./src/devtools/build/feedbuilder.sh -A 3.3 -m lbm -jn -p $*
+    return
+}
+
+# Build FH, no verbose, Regression tests
+buildt()
+{
+    echo Forking build process
+    ./src/devtools/build/feedbuilder.sh -A 4.0 -t -m lbm -jn -p $*
+    return
+}
+# =====================================================================================================================================
+
+#######################################################################################################################################
+# SETTING PATHs
+if [ ! $VAR ]
+then
+    export VARSPACE='/home/apandey'
+    export VAR=$VARSPACE
+#     if [ -d '/var/userspace2/apandey' ]
+#     then
+#         export VARSPACE='/var/userspace2/apandey'
+#         export VAR=$VARSPACE
+#     fi
+fi
+
+export JAVA_HOME=/usr/java/jdk1.6.0_13/
+export PATH=$PATH:/opt/Coverity/cov-sa/bin/
+export PATH=$PATH:/home/apandey/scripts/
+export PATH=$PATH:/home/apandey/utils/perforce/
+export PATH=$PATH:/opt/nyset/python/2.7.3/bin/
+export PATH=$PATH:/home/apandey/FHs/FH_WADMIN/bin/
+#export CPLUS_INCLUDE_PATH=/var/userspace/acanfora/gtest-1.6.0/include/
+export PATH=$JAVA_HOME/bin/:$PATH
+export PATH=./:$PATH
+#export PATH=/usr/bin/:$PATH
+# REM: ctrl-alt-enter to exit rdesktop fullscreen mode
+export JAVA_HOME=/usr/lib64/jvm/jre-1.5.0-sun
+# for mamajni builds JAVA_HOME needs to point at the sdk
+# so in that case use JAVA_HOME=/usr/lib64/jvm/java
+# or do something like "env | grep -i java" and look for SDK_HOME
+
+export SAXON_HOME=/usr/local/XML/saxon
+export BROWSER=firefox
+
+
+if [ `uname -s` = "SunOS" ]; then
+    export PATH=/opt/SUNWspro/bin:/usr/bin:/usr/local/bin:/usr/ccs/bin:/usr/sbin:$PATH
+    export MANPATH=/opt/SUNWspro/man:/usr/share/man:$MANPATH
+    export JAVA_HOME=/usr/j2se
+fi
+
+
+if test -z "$SOURCED_HOME_BASHRC" ; then
+   readonly SOURCED_HOME_BASHRC=true
+fi
+
+# less stuff
+export LESS='-Ri'
+export LESSOPEN='|~/.lessfilter %s'
+
+# grep stuff
+export GREP_OPTIONS='--color=auto'
+
+# use "kd" as "less" editor
+#if [ $HOSTNAME = "apandey-desktop" ]; then
+#   export VISUAL=kd
+#   export LESSEDIT="%E %f?lm\:%lm.\:"
+#fi
+
+# Only display message for interactive shells, can mess up scp otherwise
+case "$-" in
+*i*) echo "this is .bashrc. VARSPACE=$VARSPACE"
+esac
+
+# =====================================================================================================================================
+ ################ K Section
+gettrades()
+{
+    echo open the bashrc
+    #_group ttksfldm01.tsefull.2014.03.28.log.gz  "Type:.Trade" "wTradeTime"  40 | egrep "Type: Trade|wTradeTime|wIssueSymbol|wTradePrice" | awk 'BEGIN{ORS=";"}{print $0}' | sed -e 's/Type..Trade/\nTrade: /g'| sed -e 's/;Regression://g' | awk '{print $8, $15, $22}' > /tmp/trades.tsefull.2014.03.28.log
+}
+rr()
+{
+    line=$(head -2 script.sh)
+    for file in $line
+    do
+       $command $file
+    done
+}
+gens()
+{
+    FILES=$(ls | sed -e 's/Bid_//g' -e 's/Ask_//g'  -e 's/_EQ//g' | sort -u)
+    for file in $FILES
+    do
+        FILE_BID=$(ls Bid_$file* 2>/dev/null)
+        FILE_ASK=$(ls Ask_$file* 2>/dev/null)
+        #if [ -f $FILE_ASK ] && [ -f $FILE_BID ];
+        if [[ -f $FILE_ASK && -f $FILE_BID ]]
+        then
+            echo "checkcross.pl" $FILE_BID  $FILE_ASK
+            #echo "checkcross.pl" $FILE_BID  $FILE_ASK
+        fi
+    done
+}
+alias llpbs='echo ~/jnx.pbs/pbs/&& ll ~/jnx.pbs/pbs/'
+alias lllogs='echo ~/jnx.pbs/logs/ && ll ~/jnx.pbs/logs/'
+alias extsym="sed -e 's/ ## /\n\t/g' "
+ccsv()
+{
+    cat $1 | awk 'BEGIN { ORS=""; print "--trace-symbol-csv=\"|"} {print $0"|"$0"_EQ|";} END{print "\""; }'
+}
+
+alias quotecount='grep "Type: Quote" -c '
+alias bookcount='grep "Publish: b" -c '
+gensecstatus()
+{
+    VAR=$(echo $1 | sed -e 's/.log.gz//g' )
+    echo Security Status Log file = /tmp/$VAR.secstatus.log
+    nohup zcat $1 | awk 'BEGIN { BB1=0; } { if (/Regression.*wIssueSymbol/) BB1=$0 ;  if (/Regression.*wSec.*Status/) print $0 ; if (/wSecStatusQual|wShortSaleCircuitBreaker/) print BB1 "\n ----------\n"; } ' > /tmp/$VAR.secstatus.log 2>&1 &
+}
+getsecstatus()
+{
+    FILE=$2
+    SECURITY=$1
+    grep $SECURITY -B 5 $FILE
+}
+comm()
+{
+    # Options are "comm $TSCT $TSCJ" ; "$TSCJ $TSCC"; "$TSCT $TSCO";
+    # comm $TSCJ $TSCC
+    # comm $TSCT $TSCC
+    # comm $TSCT $TSCJ
+    echo $1 | sed -e 's/|/\n/g' | awk '{if (NR > 1) print $0 }' | egrep -v "\"" | sed -e 's/\..*//g' | sort -u  > /tmp/del1.txt
+    echo $2  | sed -e 's/|/\n/g' | awk '{if (NR > 1) print $0 }' | egrep -v "\"" | sed -e 's/\..*//g' | sort -u > /tmp/del2.txt
+    cat /tmp/del1.txt  | xargs -I str grep str /tmp/del2.txt
+    rm /tmp/del*.txt
+}
+# Find matching symbols? .... "cat nse.2.top50 | xargs -I str grep str bse.top50"
+tellsec()
+{
+    echo $1  | sed -e 's/.*=.//g' -e 's/.$//g' -e 's/.CHIX//g' -e 's/.DAY.*|/|/g' -e 's/.T|/|/g' | awk 'BEGIN{RS="|"}{print $0}' | sort -u
+}
+gzmove()
+{
+    gzip -9 $1 && mv $1.gz ~/jnx.pbs/logs/ &
+}
+genbooks()
+{
+    zgrep -m 5 -A 4 "Debug: Book: "$2 $1  | egrep -v "Debug:   Side   Price|Regression" |  awk 'BEGIN { BB=0;} { if (/\-\-/) BB++; if (/Bid: /) a[BB,0]=$0 ;  if (/Ask: /) a[BB,1]=$0 ; } END { for (x = 0; x <= BB; x++) {print a[x,0],a[x,1];} }'
+}
+rnse()
+{
+
+    VAR=$(echo $1 | sed -e 's/.pb.gz//g' )
+    echo BSE Log file = /tmp/$VAR.log
+    nohup nsecash $EC $TSCB --publish-time-zone="Asia/Kolkata" --publish-top-of-book --calculate-top-of-book --input=/home/apandey/jnx.pbs/pbs/$1 --trace-symbol-include-books > /tmp/$VAR.log 2>&1 &
+}
+rbse()
+{
+    VAR=$(echo $1 | sed -e 's/.pb.gz//g' )
+    echo BSE Log file = /tmp/$VAR.log
+    nohup bseacast $EC $TSCB --publish-time-zone="Asia/Kolkata" --publish-top-of-book --calculate-top-of-book --input=/home/apandey/jnx.pbs/pbs/$1 --trace-symbol-include-books > /tmp/$VAR.log 2>&1 &
+}
+rose()
+{
+    cd ~/new_rel_2_17_285
+    lp
+    VAR=$(echo $1 | sed -e 's/.pb.gz//g' )
+    echo Ose Log file = /tmp/$VAR.log
+    nohup osederiv $EC $TSCO --publish-time-zone="Asia/Tokyo" --input=/home/apandey/jnx.pbs/pbs/$1 > /tmp/$VAR.log 2>&1 &
+}
+rtse()
+{
+    cd ~/new_rel_2_17_285
+    lp
+    VAR=$(echo $1 | sed -e 's/.pb.gz//g' )
+    echo Log file = /tmp/$VAR.log
+    nohup tsefull $EC $TSCT_ARB --publish-time-zone="Asia/Tokyo" --tse-publish-special-quote-orders=false --input=/home/apandey/jnx.pbs/pbs/$1 > /tmp/$VAR.log 2>&1 &
+    #nohup tsefull $EC $DV --trace-symbol-csv="|7261|7261.T|" --publish-time-zone="Asia/Tokyo" --tse-publish-special-quote-orders=false --input=/home/apandey/jnx.pbs/pbs/$1 > /tmp/$VAR.log 2>&1 &
+    #TSCT
+    #TSCT_TPX
+}
+rjnx1()
+{
+    cd ~/new_rel_2_17_285
+    lp
+    VAR=$(echo $1 | sed -e 's/.pb.gz//g' -e 's/.*\///g')
+    echo Log file = /tmp/$VAR.log
+    nohup japannextitch $EC $DV --publish-time-zone="Asia/Tokyo" --input=$1 --name=japannextitch_test --trace-symbol-csv="|1719|1719.DAYL1|1719.DAYXL1|1719.DAYLX1|1719.DAYXL|1306|1306.DAYL1|1306.DAYXL1|1306.DAYLX1|1306.DAYXL|" > /tmp/$VAR.debug.log 2>&1 &
+}
+rjnx()
+{
+    cd ~/new_rel_2_17_285
+    lp
+    VAR=$(echo $1 | sed -e 's/.pb.gz//g' )
+    echo Log file = /tmp/$VAR.log
+    nohup japannextitch $EC --publish-time-zone="Asia/Tokyo" --input=/home/apandey/jnx.pbs/pbs/$1 --name=japannextitch_test $TSCJ > /tmp/$VAR.log 2>&1 &
+    #nohup japannextitch $EC $DV --publish-time-zone="Asia/Tokyo" --input=/home/apandey/jnx.pbs/pbs/$1 --name=japannextitch_test --trace-symbol-csv="|1306|1306.DAYL1|1306.DAYXL1|1306.DAYLX1|1306.DAYXL|" > /tmp/$VAR.debug.log 2>&1 &
+}
+symstats()
+{
+     egrep "^[0-9]|wExchTotalVol|wExchTotalValue|wExchVwap|wTotalVolume |wTotalVolume |wTotalValue |wVwap " $1 | awk '{ORS="; "}{if (NF ==3) print "\n" $1 ; else print $1, $5}'
+    # Once you are happy wit that
+    # cat $1.stats | awk '{print $1 $3 $5 $7 $9}' | sed -e 's/;/,/g' -e 's/,$//g'
+}
+cleansym()
+{
+    cat $1 |  sed -e 's/\x1f/ | /g'  -e 's/\x9/ ## /g' -e 's/\xA/ ## /g'  > $1.cleaned.sym
+    echo Cleaned File is $1.cleaned.sym
+}
+    #grep "wTotalVolume " $1 | sed -e 's/.*wTotalVolume /wTotalVolume /g'  | awk '{print $5}' | sort -k 1 -n  | sed -e 's/^/wTotalVolume | quantity | /g' -e 's/$/ ## /g' | xargs -I str grep str $1 | awk '{print $1}'
+
+ftsym()
+{
+    grep "wTotalVolume " $1 | sed -e 's/ .*wTotalVolume / wTotalVolume /g'  | awk '{print $1 , $6 }' | sort -k 2 -n -r | head -$2 | awk '{print $1}'
+}
+    # Expects a clean symbol file that must have been created by using cleanSym()
+    # grep "wTotalVolume " $1 | sed -e 's/.*wTotalVolume /wTotalVolume /g'  | awk '{print $5}' | sort -k 1 -n  | tail -$2 | sed -e 's/^/wTotalVolume | quantity | /g' -e 's/$/ ## /g' | xargs -I str grep str $1 | awk '{print $1}'
+alias push='grep "pushGroup (\"L" *'
+ft50()
+{
+    cat $1 | grep Instrument | awk '{print $8}' |  uniq | sort -k 1 -n  | tail -50 | xargs -I str grep str $1
+}
+createcsv()
+{
+    ft50 $1 | sed -e 's/Instrument..//g' -e 's/ has.*//g'  | awk 'BEGIN {ORS="|"} {str =$0; sub(/\..*/, "", str); print $0 "|" str }'
+}
+createBook()
+{
+    # Should contain Order book updates - generally available through trace symbol or debug
+     grep "Debug: Book: " -A 3 $1 | egrep -v "Debug:   Side   Price" |  egrep -v "Regression" | egrep -v "\-\-"
+}
+# =====================================================================================================================================
+
+
+alias records='grep -c " Publish: " '
+# export UNIT_TEST_HOME=/home/apandey/utils/gtest/gtest_install
+alias wl='watch -n 60 ls'
+alias fhs='ll -d */| egrep " FH"'
+alias hdirs='ll ~/| egrep -v "217|cap|sdk|tmp|utils|FHs|install"'
+alias findex='ll | egrep w+x'
+alias sneax='ssh neax-vmrh43201' #32 bit machine
+alias sneax64='ssh baxtsrh401' #64 bit machine
+alias bax6='ssh baxtsrh601' #64 bit machine
+#Speical RH4 box given by Neil - fast: IP=10.119.18.141
+alias dax4='ssh daxvtsrh401'
+alias pcas2='ssh NYX\\apandey@pcasvesx02v'
+alias pcas3='ssh NYX\\apandey@pcasvesx03v'
+cpcore()
+{
+    scp NYX\\apandey@pcasvesx02v:/tmp/core* /home/apandey/tmp/
+}
+cpi()
+{
+   scp /home/apandey/triage.p4/bld/lbt/iconnect NYX\\apandey@pcasvesx02v:/home/NYX/apandey
+}
+cplib()
+{
+    scp $ICONNECT_HOME/lib/libiconnect.* NYX\\apandey@pcasvesx02v:/home/NYX/apandey
+}
+
+rcplib()
+{
+    scp daxtsdev06:$ICONNECT_HOME/lib/libiconnect.* /home/NYX/apandey
+}
+
+#Michael Gu's Machine
+alias smg='ssh 10.119.20.245'
+# Synthetic machine
+alias syn='ssh 10.119.20.187'
+
+# aliai
+alias su='sort -u'
+alias mdf='vim Master_Field_Definitions.xml'
+alias pdf='vim productdefs.xml'
+alias wt='vim wombat_trade_exec_venue_mapping.xml'
+alias vc='vim config*.xml'
+alias vmake='vim Makefile'
+alias ut='unittest --gtest_filter="*OnOff*"'
+alias us='unittest --gtest_filter="StringUtilsTest.LogicParseGrocery"'
+alias gz='zipcode'
+alias ec='echo --log --no-lbt --mode=normal --symbol-file= --regression --regression-ignore-unmodified-fields'
+alias tt='tail tmp.log'
+#This is for google test
+alias exglib='export LD_LIBRARY_PATH=/home/apandey/utils/gtest/gtest_install/lib/amd64'
+alias d='dax'
+alias showv='echo -e Current VARSPACE=${URed}$VARSPACE'
+alias k1='kil %1'
+alias fk1='fkil %1'
+alias k2='kil %2'
+alias fk2='fkil %2'
+alias namefind='find ./ -name '
+alias dirs='ls -d */'
+alias fbwar='grep -i warning feedbuilder.sh.log'
+alias myps='ps -u apandey | egrep -v "ssh|bash| ps$|grep$"'
+alias kil='kill -15'
+alias fkil='kill -9'
+alias disk='du -sh'
+alias reg='ruby /home/qa/scripts/regressionparser.rb -fblog feedbuilder.sh.log'
+alias reg='ruby /home/qa/scripts/regressionparser.rb -fblog feedbuilder.sh.log'
+alias lsize='ls -lshrt'
+alias myvar='cd $VARSPACE && showv'
+alias v='myvar'
+alias chgv='chg && v'
+alias a2='cd /home2/apandey'
+alias ap='cd $VAR'
+alias smb='smbclient //10.224.193.151/internalfiles -U nyx/apandey'
+alias smbex='smbclient //10.224.193.151/externalfiles -U nyx/apandey'
+alias rmbld='rm -rf bld'
+alias rmo='rm bld/lbt/*.o'
+alias llogs='ll *.log'
+alias txt='ll *.txt'
+alias tars='ls *.tar'
+alias zips='ls *.zip'
+alias gzs='ls *.gz'
+alias rpwd='pwd -P'
+alias mul='cd src/src/feeds/multicast/ && pwd'
+alias m='mul'
+alias mybash='pwd && vim ~/.bashrc && . ~/.bashrc'
+alias b='mybash'
+alias bscript='vim ~/.bash_scripts && . ~/.bashrc'
+alias myvim='pwd && vim ~/.vimrc'
+alias start='kfmclient exec'
+
+
+# Directory traversal
+alias 1cd="cd ../ && pwd"
+alias 2cd="cd ../../ && pwd"
+alias 3cd="cd ../../../ && pwd"
+alias 4cd="cd ../../../../ && pwd"
+alias 5cd="cd ../../../../../ && pwd"
+alias 6cd="cd ../../../../../../ && pwd"
+alias 7cd="cd ../../../../../../../ && pwd"
+
+
+alias edit=kd
+alias fixbird="rm -f ~/.thunderbird/zaxocis8.default/.parentlock"
+alias ftpw='lftp ftp.wombatfs.com'
+alias gt='gnome-terminal'
+alias l="ls -F"
+alias ll="l -lh"
+alias lll='ll -rt | tail'
+alias made='grep make apandey.history'
+alias md='mkdir -p'
+alias nicerm='source /nfs/apandey/.rmnice.sh'
+alias shave="history 40 | sed -e 's/^ *[^ ]* //' >> apandey.history"
+alias whos='who | sort | uniq -cw 10'
+alias tunnel='ssh -Nf -p 12345 -g -L 9878:10.119.20.238:9878 localhost'
+alias whichos=~/triage.*/src/devtools/wauto/whichos.sh
+
+
+# =====================================================================================================================================
+# fix bug in gnome-terminal where ctrl-S for readline i-search does not work
+# because ctrl-S is used by gnome-termial for some flow control nonesense
+# e.g see http://www.mail-archive.com/debian-user@lists.debian.org/msg63190.html
+# or https://bugs.launchpad.net/ubuntu/+source/bash/+bug/48880
+stty stop ''
+stty start ''
+
+# allow unlimited core files
+ulimit -c unlimited
+
+# command history
+export HISTFILESIZE=999999
+export HISTCONTROL=ignoredups
+
+export TIBRV_HOME=/home/tibco/tibrv74-Linux-x86_64-2.6
+#export ELVIN_HOME=/nfs/elvin/java/
+
+#export LD_LIBRARY_PATH=./lib/:$TIBRV_HOME/lib/:/var/userspace/acanfora/gtest-1.6.0/:/usr/local/lib:/var/userspace/acanfora/gtest-1.6.0/lib/:$LD_LIBRARY_PATH
+export LD_LIBRARY_PATH=./lib/:$TIBRV_HOME/lib/:$LD_LIBRARY_PATH
+export LD_LIBRARY_PATH=/usr/local/lib:/usr/lib:/usr/local/lib64:/usr/lib64:$LD_LIBRARY_PATH
+export LD_LIBRARY_PATH=/usr/local/gcc/4.8.2/lib64/:/usr/local/gcc/4.8.2/libexec/gcc/x86_64-unknown-linux-gnu/4.8.2/:/usr/local/gcc/4.8.2/:$LD_LIBRARY_PATH
+
+# remove duplicate entries from $PATH
+
+if [ -d /home/apandey/utils/python ]
+then
+    #export PATH=/home/apandey/utils/python/:/home/apandey/utils/colourgcc:$TIBRV_HOME/bin:/usr/local/Borland/JBuilder2005/bin:$PATH
+    export PATH=/home/apandey/utils/python/:$PATH
+    #export PATH=`$VARSPACE/utils/python/uniqpath`:$PATH
+fi
+
+# Multiple-Hop SCP (How To SCP Via A Gateway)
+
+# From localhost to remotehost...
+#   scp -Cp -o "ProxyCommand ssh gatewayuser@gateway nc remotehost 22" file remoteuser@remotehost:/some/where/file
+
+# ...and back again.
+#   scp -Cp -o "ProxyCommand ssh gatewayuser@gateway nc remotehost 22" remoteuser@remotehost:/some/where/file file_copy
+# =====================================================================================================================================
+
+
+# ssh into a dax server
+# Usage  = dax [0-9]
+dax()
+{
+	ssh daxtsdev0$1
+}
+
+# Go directly into multicast folder of a given folder
+# Ideally you should be on your home folder
+go()
+{
+	cd $1
+	mul
+	return
+}
+
+# Create Symbolic links to multicast folder
+__linkmul()
+{
+    if [ -d ./src/src ]
+    then
+        ln -s src/feeds/multicast src/m
+        ln -s src/m
+    else
+        ln -s ./src/feeds/multicast m
+        ln -s src/m ../m
+    fi
+}
+
+# Creates symbolic links
+# Note: Can use multiple values in here like "link config osederiv asxtrade om"
+link()
+{
+    for var in "$@"
+    do
+        if [ -d ./src/src ]
+        then
+            ln -s ./src/feeds/multicast/$var src/$var
+            ln -s src/$var
+        else
+            ln -s ./src/feeds/multicast/$var
+            ln -s src/$var ../$var
+        fi
+    done
+    __linkmul
+}
+
+
+# Creates a gzip file containing all files (including API)
+zipall()
+{
+    tar cf $1.tar --exclude=CVS $1
+    gzip -9 $1.tar
+}
+
+# Creates a gzip file containing all files (excluding API)
+zipcode()
+{
+    tar cf $1.tar --exclude=CVS --exclude=docs --exclude=doc --exclude=api $1
+    gzip $1.tar
+}
+
+
+#######################################################################################################################################
+##### START of CVS related functions
+# Create side by side of the input files (anything that you'd give as input to ls)
+cvsd()
+{
+	cvs -Q diff -t -y --suppress-common-lines -W 190 $*
+}
+
+# Create a unix style diff (that other developers would understand - Except Abhishek)
+cvsdiff()
+{
+	cvs -Q diff -c -t $*
+}
+
+# Function to clear the files from cvs. Works recusively
+cvsrmall()
+{
+    for var in $(find . -type d -print | grep -v CVS)
+    do
+        echo starting loop for ......... $var
+        for file in $(ls --hide=CVS $var)
+        do
+            echo file... $file
+            rm $var/$file
+            cvs remove $var/$file
+        done
+        echo now removing folder $var
+        #rm -rf $var
+        cvs remove $var
+    done
+}
+
+# Function to add all files into CVS. Works recusively
+cvsaddall()
+{
+    for var in $(find . -type d -print | grep -v CVS)
+    do
+        cvs add $var
+        cvs add $var/*
+    done
+}
+
+# Check out branch xxx. Checks out a branch in the format new_rel_2_17_xxx or mnt_rel_2_17_xxx
+# Note: Don't worry about new** or mnt** as the function finds it out automatically
+cob() #Usage = "cob xxx"
+{
+    if [[ "$#" -ne 1 ]]
+    then
+        echo "COB: Too few/much params. Usage= cob 201"
+        return
+    fi
+    if [[ $(($1%2)) -eq 0 ]]
+    then
+        TEAM=mnt
+    else
+        TEAM=new
+    fi
+
+    v
+    BRANCH=${TEAM}_rel_2_17_$1
+    echo Checking out Branch $BRANCH
+    mkdir $BRANCH
+    cd $BRANCH
+    mkdir src
+    cd src
+    ln -s $VARSPACE/217.head/devtools devtools
+    cvs -Q co -r $BRANCH src
+}
+
+# Check if QA files exist already in your default dev head folder.
+# Note: It checks out the pb file as well as expected files.
+# Whether the files exist or not, it won't touch them.
+checkqa() #Usage= "checkqa tdex"
+{
+    if [[ "$#" -ne 1 ]]
+    then
+        echo "checkqa: Too few/much params. Usage= checkqa FH_NAME"
+        return
+    fi
+    FH_NAME=$1
+    BRANCH_NAME='Version_2_17_dev'
+
+    echo Checking if $FH_NAME folder exists in 217.head
+    cd $VARSPACE/217.head/qa.head/
+
+    if [ -d qa/regression/playbacks/$FH_NAME ]
+    then
+        echo OK. FH already folder exists for $FH_NAME
+        echo Searched in $VARSPACE/217.head/qa.head/qa/regression/playbacks
+    else
+        echo NO FH FOUND for $FH_NAME. Attempting checkout....
+        cvs -Q co qa/regression/playbacks/$FH_NAME
+    fi
+    if [ -d qa/regression/standard/expectedresults/$FH_NAME ]
+    then
+        echo OK. Expected files found for $FH_NAME
+    else
+        echo NO Exp files found for $FH_NAME. Attemping checkout...
+        cvs -Q co -r $BRANCH_NAME qa/regression/standard/expectedresults/$FH_NAME
+    fi
+}
+
+# Create QA files if they don't exist already for a given branch.
+# Checks out pb files as well as expected files
+createqa() #Usage= createqa new/mnt 201 osederiv
+{
+    if [[ "$#" -ne 2 ]]
+    then
+        echo "Too few/much params. Usage= createqa 201 osederiv"
+        return
+    fi
+
+    FH_NAME=$2
+    if [[ $(($1%2)) -eq 0 ]]
+    then
+        BRANCH_NAME=mnt_rel_2_17_$1
+    else
+        BRANCH_NAME=new_rel_2_17_$1
+    fi
+    QA_ROOT=qa.$BRANCH_NAME
+    echo BRANCH=$BRANCH_NAME
+    echo QA_ROOT=$QA_ROOT
+    echo FH Name=$FH_NAME
+    cd $VARSPACE/217.head/
+    mkdir $QA_ROOT
+    cd $QA_ROOT
+
+    if [ $FH_NAME ]
+    then
+        echo FH being checked out: $FH_NAME
+        cvs -Q co -r $BRANCH_NAME qa/regression/standard/expectedresults/$FH_NAME
+        checkqa $FH_NAME
+    else
+        echo No FH provided.
+        #Lets just disable this. too much space
+        #cvs -Q co -r new_rel_2_17_$1 qa/regression/standard
+    fi
+    cd $VARSPACE/217.head/$QA_ROOT/qa/regression/
+    ln -s $VARSPACE/217.head/qa.head/qa/regression/playbacks playbacks
+    if [ -d $VARSPACE/$BRANCH_NAME ]
+    then
+        ln -s $VARSPACE/217.head/$QA_ROOT/qa $VARSPACE/$BRANCH_NAME/src/qa
+    fi
+}
+
+# Creates a command that you can use to "merge" your code from dev head to this current branch.
+# Ideally you want to run this command from a folder where you want the code to merge to....
+merge()
+{
+    BRANCH=$(cat CVS/Tag | cut -c2-)
+    CMD=$(echo cvs update -j $BRANCH -j Version_2_17_dev .)
+    echo $CMD
+}
+
+# CVS Annotate a file. Creates a new file that is input + .ann
+# Suppose input=MesageHandler.cc. Output=MesageHandler.cc.ann
+cvsann()
+{
+    if [[ "$#" -ne 1 ]]
+    then
+        return "Too few params. Pls provide file name"
+    fi
+    if [[ ! -a $1 ]]
+    then
+        return "File not found. Pls provide file name correctly!"
+    fi
+    TAG=$(showtag)
+    cvs annotate -r $TAG $1 > $1.ann
+    echo "Annotated File: " $1.ann
+}
+
+# Go and create all SDK files
+# Would help in a checkout for a FH SDK
+gosdk()
+{
+    mkdir src
+    cd src
+    cvs -Q co thirdparty
+    cvs -Q update -d -r libevent_4_1_dev thirdparty/libevent
+    cvs -Q co -r api_dev_6_0 products
+    cvs -Q update -d -r wdf_release_5_4_1 products/wombatmw
+    cvs -Q co devtools
+    cd ..
+    buildp pcapi &
+}
+##### END of CVS related functions
+#######################################################################################################################################
+
+
+
+# Opens the Line Handler file within the current folder
+# If you want to open the header file and not cc, then just add anything after vl. E.g "vl 1"
+# NOTE: Ideally you must be inside a "multicast/$FH" folder
+vl()
+{
+   fastOpenFile LineHandler $*
+}
+
+# Opens the Message Handler file within the current folder
+# If you want to open the header file and not cc, then just add anything after vm. E.g "vm 1"
+# NOTE: Ideally you must be inside a "multicast/$FH" folder
+vm()
+{
+   fastOpenFile MessageHandler $*
+}
+
+# Helper function used by vl() and vm()
+fastOpenFile()
+{
+    if [ $# -eq 0 ]
+    then
+        echo Wrong Usage of fastOpenFile. Params: $*
+        return
+    fi
+
+    FILE_PREFIX=$1
+    EXT="cc"
+    if [ $# -gt 1 ]
+    then
+        EXT=h
+        # Doesn't matter what param is provided.
+        # cc = default when no param
+        # h = if any param provided
+    fi
+    FOLDER=$(pwd | sed -e 's/.*\///' )
+    FILE=$(find ./ -maxdepth 1 -iname $FILE_PREFIX$FOLDER\*$EXT)
+    if [ ! -z $FILE ]
+    then
+        vim "$FILE"
+    else
+        FILE=$(find ./ -maxdepth 1 -iname $FILE_PREFIX\*$FOLDER\*$EXT)
+        if [ ! -z $FILE ]
+        then
+            vim $FILE
+        else
+            COUNT=`(ls $FILE_PREFIX*.$EXT | wc -l)`
+            if [ $COUNT = "1" ] # Exactly one file with this extension
+            then
+                vim $FILE_PREFIX*.$EXT
+            else
+                echo Warning... No file found of type $FILE_PREFIX$FOLDER\*$EXT
+            fi
+        fi
+    fi
+}
+
+# Modify the "home" folder to varspace, it will affect ALL other functions
+# Setting the #VARSPACE is the key, that is used by other functions. Beware...
+chg()
+{
+    if [ "$VARSPACE" == "/home/apandey" ]
+    then
+        if [ -d '/var/userspace2/apandey' ]
+        then
+            VARSPACE='/var/userspace2/apandey'
+        else
+            VARSPACE='/var/userspace/apandey'
+        fi
+    else
+        VARSPACE='/home/apandey'
+    fi
+    showv
+}
+
+# Create symbolic links to devtools and qa folders
+# Ideally you should be inside either of the folders:
+    # ~/$FH/       or
+    # ~/FH/src
+lns()
+{
+    unlink qa
+    unlink devtools
+    ln -s $VARSPACE/217.head/devtools
+    ln -s $VARSPACE/217.head/qa
+}
+
+
+################ KRX STUFF
+alias types='vim KrxEquitiesData.h'
+alias st='vim KrxStocksImpl.cc'
+alias sth='vim KrxStocksImpl.h'
+
+kcc()
+{
+    egrep "RESULT.*] $1" $2 | egrep -v adding | egrep -v "=0$"
+}
+
+kc()
+{
+    egrep "RESULT.*] $1"  ~/tmp/krxequities/*.actual | egrep -v adding | egrep -v "=0$"
+    #egrep "RESULT.*] $1" ~/tmp/krxequities/*.actual | egrep -v adding | egrep -v "=0$"
+}
+
+kcfiles()
+{
+    CMD=$(kc $1 | sed -e 's/\.actual.*/.actual/g' | sort -u)
+    echo $CMD
+    echo $CMD | xargs grep "file parameter" -m 1 | sed -e 's/.*file parameter//g'
+    # search for pb file by grepping "file param"
+}
+
+casefind()
+{
+    grep "case '$1'" *
+}
+
+findabb()
+{
+    grep mKrxProductTypeArray.*$* /home/apandey/krx.22955/bld/lbt/src/krx/KrxMessageHeader.h  | sed -e 's/ =.*//g' -e 's/.*mKrxProductTypeArray//g' | awk 'BEGIN {RS="]";ORS="  ";} { print $0; }' | awk '{print $2 $1 }' | head -1 | sed -e 's/\[//g' | awk 'BEGIN {OFS="";ORS="";}{print $0}'
+}
+
+krxcoverage()
+{
+    at /tmp/krx.log
+}
+kcov()
+{
+    krxcoverage
+}
+
+# Tells the regression coverage of a given file
+cov()
+{
+    CMD=$(tail -100000 $1 | egrep "RESULT - Regression Coverage" -a | egrep -v "=0$" | sed -e 's/.*] //g' -e 's/\\/0 /g' -e 's/=/ =/g')
+    #CMD=$(egrep "RESULT - Regression Coverage" -a $1 | egrep -v "=0$" | sed -e 's/.*] //g' -e 's/\\/0 /g' -e 's/=/ =/g')
+    #CMD=$(grep "RESULT - Regression Coverage" /tmp/krx.log | sed -e 's/.*] //g' -e 's/\\/0 /g' -e 's/=/ =/g')
+    #grep "RESULT - Regression Coverage" /tmp/krx.log | egrep -v "=0$" | sed -e 's/.*] //g' -e 's/\\/0 /g' -e 's/=/ =/g'
+    echo .....results......
+    tail -10000 $1 | egrep -a "RESULT - Regression Coverage" $1 | egrep -v "=0$" #| sed -e 's/.*] //g' -e 's/\\/0 /g' -e 's/=/ =/g'
+    COUNTER=0
+    for var in $CMD
+    do
+        #echo ......  $var Counter= $COUNTER
+        if [[ $COUNTER -eq 0 ]]
+        then
+            S0=$var
+            echo -n $var
+        fi
+        if [[ $COUNTER -eq 1 ]]
+        then
+            S=$var
+            #echo -n $var " "
+        fi
+
+        COUNTER=$((($COUNTER+1)%3))
+        if [[ $COUNTER -eq 2 ]]
+        then
+            findabb $var
+            echo "   ----------> " $S0\\$S
+        fi
+
+    done
+}
+whatis()
+{
+    echo $* | sed -e 's/^\([0-9]\)/\1 /g' | awk '{print "mKrxProductTypeArray." $2 ".." $1  }' | xargs -0 -I str grep str /home/apandey/krx.22955/krx/KrxMessageHeader.h
+}
+krxwhat()
+{
+    echo $* | sed -e 's/^\([0-9]\)/\1 /g' | awk '{print "mKrxProductTypeArray." $2 ".." $1  }' | xargs -0 -I str grep str /home/apandey/krx.22955/krx/KrxMessageHeader.h
+}
+findfailed()
+{
+    echo Searching in $1
+    #grep "Error: Failed Message" /tmp/krx.log | cut -c '24-28'  | sort -u
+    grep "Error: Failed Message" $1 | cut -c '24-28'  | sort -u
+}
+# Find out all the available types in a pb file
+pbtypes()
+{
+    cat $1 | awk 'BEGIN{ FS="/";} {print $9}' | cut -c "16-20"  | sort -u
+}
+# Find out Changes Made in pb file?
+# p4d /home/apandey/krx.22955/src/qa/regression/playbacks/krxequities/krxequities_bond.play | awk 'BEGIN {FS="/";ORS="\n";OFS="\n";}{print $9}'  | cut -c '16-20' | egrep "^[A-Z]" | sort -u
+
+
+# Set the process to a single core - Core #0
+alias cpuset='taskset -c -p 0 '
