@@ -21,7 +21,7 @@ loadif() {
 
 # loadif "~/.bashrc"
 loadif "$APP_PATH/zshrc.common"
-# loadif "$APP_PATH/zshrc.globals"
+loadif "$APP_PATH/zshrc.globals"
 loadif "$APP_PATH/zshrc.local"
 
 # Local file can have loadif "$APP_PATH/bashrc.where.aws"

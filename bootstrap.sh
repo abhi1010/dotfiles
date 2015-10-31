@@ -6,7 +6,7 @@ app_name='abhi1010-dotfiles'
 [ -z "$APP_PATH" ] && APP_PATH="$HOME/code/dotfiles"
 [ -z "$REPO_URI" ] && REPO_URI='https://github.com/abhi1010/dotfiles.git'
 [ -z "$REPO_BRANCH" ] && REPO_BRANCH='master'
-debug_mode='1'
+debug_mode=':0'
 fork_maintainer='0'
 echo "APP_PATH=" $APP_PATH
 
@@ -151,7 +151,7 @@ program_must_exist "vim"
 program_must_exist "git"
 program_must_exist "curl"
 
-## 
+##
 # do_backup       "$APP_PATH"
 
 # sync_repo       "$APP_PATH" "$REPO_URI" "$REPO_BRANCH" "$app_name"
@@ -161,9 +161,6 @@ create_symlinks "$APP_PATH" "$HOME"
 # setup_fork_mode "$fork_maintainer" "$APP_PATH" "$HOME"
 
 # sync_repo       "master"
-
-msg             "\nThanks for installing $app_name."
-msg             "© `date +%Y` http://github.com/abhi1010/"
 
 # ------------------------------------ bashrc Setup ------------------------------------
 lnquiet $APP_PATH/.git ~/.git
@@ -185,3 +182,6 @@ lnquiet $APP_PATH/.aws ~/.aws
 # ------------------------------------ Local VIM Setup ------------------------------------
 lnif $APP_PATH/vimrc.local ~/.vimrc.local
 lnif $APP_PATH/vimrc.before.local ~/.vimrc.before.local
+
+msg             "\nThanks for installing $app_name."
+msg             "© `date +%Y` http://github.com/abhi1010/"
