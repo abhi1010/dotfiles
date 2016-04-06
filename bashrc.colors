@@ -1,4 +1,8 @@
 #!/usr/bin/env bash
+# Some examples:
+# echo $Red some text in red $OFF $Green now in green $OFF
+# echo "${BRed} Trying the same text with brackets $OFF ${Green} now in green $OFF"
+
 # Reset
 Color_Off='\e[0m'       # Text Reset
 
