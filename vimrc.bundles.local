@@ -1,0 +1,5 @@
+Plugin 'christoomey/vim-tmux-navigator'
+Plugin 'leafgarland/typescript-vim'
+Plugin 'weynhamz/vim-plugin-minibufexpl'
+ 
+

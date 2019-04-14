@@ -190,8 +190,6 @@ fi
 export LESS='-Ri'
 export LESSOPEN='|~/.lessfilter %s'
 
-# grep stuff
-export GREP_OPTIONS='--color=auto'
 
 # use "kd" as "less" editor
 #if [ $HOSTNAME = "apandey-desktop" ]; then

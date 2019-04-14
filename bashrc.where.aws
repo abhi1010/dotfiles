@@ -40,7 +40,7 @@ alias gits='git status -uno -s'
 alias gitrevert='git checkout -- ./*'
 alias grh='git reset --hard origin/master && git pull'
 alias gitdiff='git difftool -y -x "colordiff -y -W $COLUMNS" | less -R'
-alias gdiff='git difftool -y -x "colordiff -y -W $COLUMNS"'
+alias gdiff='git difftool  -y --tool sdiff'
 alias rw1_log='vim /var/shared/data/rw_v1.log'
 alias rw2_log='vim /var/shared/data/rw_v2.log'
 alias vim_prod='vim $V1_SRC/src/main/resources/prod-config.ini'
@@ -167,8 +167,6 @@ ulimit -c unlimited
 PS1='RW: \e[0;0m\e[1;35m[\w]\e[0;0m\n > '
 
 alias p3='python3.4'
-# grep stuff
-export GREP_OPTIONS='--color=auto'
 
 # =====================================================================================================================================
 alias myps='ps -u ec2-user | egrep -v "ssh|bash| ps$|grep$" && echo ------------ && ps -ef | egrep python'

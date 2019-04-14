@@ -1,0 +1,245 @@
+# User specific aliases and functions
+alias c='rm -f log/*'
+alias pyghweb='cd /usr/local/pyghweb'
+alias dps='ps -eo user,pid,ppid,stime,time,rss,cmd'
+alias pyghps='dps | grep -e python | grep -v -e "\-\-start " | sort -k 7,9 | cut -b 1-200'
+alias pyghsps='ps -eo user,cmd | grep -e python | grep -v -e "\-\-start " | sed -e "s/\/opt\/.*\/manage\.py //" | cut -b 1-78'
+export FAB='/usr/local/fabric/fab.sh'
+export SUPER='/usr/bin/supervisorctl -s http://localhost:9001'
+export LOGS='/usr/local/pygh/logs/'
+export CURR_PYGH='/usr/local/pygh/current/pygh/'
+export SOLSERVER="${SOLSERVER:-csqprod-sol01.grass.corp}"
+VAR1="${VAR1:-default value}"
+export SOLSERVERLOCAL='localhost'
+alias solocal='export SOLSERVER=$SOLSERVERLOCAL'
+crongrep () {
+  grep -v "^#" /etc/cron.d/tasks | grep -e "$1"
+}
+
+alias symsvc='chpp && epp manage.py symbologysvc --alias=symbologys02 --log-level=debug --application-id=CSQ/dev02/symbology01 \
+    --solace-session-prop-host=$SOLSERVER --solace-session-prop-username=testing \
+    --solace-session-prop-password=testing --solace-session-prop-vpn=testing \
+    --solace-session-prop-cache-name=test_dc --no-monitoring-heartbeat \
+    --listen-lb-topics'
+alias refsvc='manage refdatasvc --alias=refdatasvc02 --log-level=debug --application-id=CSQ/dev02/refdatasvc01 \
+    --solace-logging-level=DEBUG --solace-session-prop-host=localhost --no-monitoring-heartbeat \
+    --listen-lb-topics | hl "ABHI|solace"'
+
+alias ref='chp && ep app/refdata.py d GHW "FUTURE|SGX|NKV15|1510"'
+alias sjp='chp && ep app/refdata.py l -e OSE -s JP'
+alias solt='chp && inv testpy --path=pygh/gh/tests/unit/sol/sol.py 2>&1 '
+alias testmenk='timeout -s 9 20 ../env.sh $OPP manage.py test --noinput eve.menk.tests.module.evemenksvc 2>&1 '
+
+
+alias nlt_ef='opm evefillsvc \
+    --alias=evefillsvc01 --log-level=debug --application-id=CSQ/dev02-ws/evefillsvc01 \
+    --solace-session-prop-host=$SOLSERVER --solace-session-prop-username=testing \
+    --solace-session-prop-password=testing --solace-session-prop-vpn=testing \
+    --solace-session-prop-cache-name=test_dc --monitoring-service-name=evefillsvc01 \
+    --no-hostname-check --start '
+    # --listen-lb-topics --no-hostname-check | hl "ABHI"'
+
+
+
+alias nlt_em='echo -e "run opm first" && opr evemenksvc \
+    --alias=evemenksvc01 --log-level=debug --application-id=CSQ/dev02-ws/evemenksvc01 \
+    --solace-session-prop-host=$SOLSERVER --solace-session-prop-username=testing \
+    --solace-session-prop-password=testing --solace-session-prop-vpn=testing \
+    --solace-session-prop-cache-name=test_dc --monitoring-service-name=evemenksvc01 \
+    --daemonize --start'
+    # --listen-lb-topics --daemonize'
+alias testpysol='inv testpy --path=pygh/pyghweb/ghw/messaging/tests/solace'
+
+alias r3_sym='manage symbologysvc --alias=symbologys02 --log-level=debug --application-id=CSQ/dev02/symbology01 \
+    --solace-session-prop-host=$SOLSERVER --solace-session-prop-username=testing \
+    --solace-session-prop-password=testing --solace-session-prop-vpn=testing \
+    --solace-session-prop-cache-name=test_dc --no-monitoring-heartbeat \
+    --listen-lb-topics'
+alias ef='manage evefillsvc --alias=evefillsvc0a --log-level=debug \
+    --application-id=CSQ/dev02/evefillsvc0a --solace-session-prop-host=$SOLSERVER \
+    --solace-session-prop-username=testing --solace-session-prop-password=testing \
+    --solace-session-prop-vpn=testing --solace-session-prop-cache-name=test_dc --no-monitoring \
+    --listen-lb-topics --no-hostname-check --start --daemonize'
+alias ef_stop='../env.sh $OPP manage.py evefillsvc --stop'
+alias mdtbl="ls -1 | egrep -v "\.pyc$" | egrep -v '__init__.py' |  sed  -e 's/^/| \`/g'  -e 's/$/\` | No | Yes | |/g' -e 's/\`management\`/**Commands**: \`\`/g' "
+alias mdtbl1="ls -1 | egrep -v "\.pyc$" | egrep -v '__init__.py' |  sed  -e 's/^/| \`/g'  -e 's/$/\` | Yes | No | |/g' -e 's/\`management\`/**Commands**: \`\`/g' "
+alias r2_emf="manage evemosfill --solace-session-prop-host=$SOLSERVER \
+    --solace-session-prop-username=testing --solace-session-prop-password=testing \
+    --solace-session-prop-vpn=testing --solace-session-prop-cache-name=test_dc \
+    --log-level=DEBUG"
+alias r3_emf="manage evemosfill --log-level=DEBUG"
+alias r3_eft="manage evefilltransfersvc --start --daemonize --alias=evefilltransfersvc01 --application-id=CSQ/dev02-app04/evefilltransfersvc01 \
+    --monitoring-service-name=evefilltransfersvc01 --log-level=DEBUG --solace-session-prop-host=$SOLSERVER \
+    --solace-session-prop-username=testing --solace-session-prop-password=testing \
+    --solace-session-prop-vpn=testing --solace-session-prop-cache-name=test_dc --listen-lb-topics --listen-lb-topics"
+alias r3_elsvc="manage evelimitsvc --solace-logging-level=INFO --start --alias=evelimitsvc01 \
+    --application-id=CSQ/dev02-app04/evelimitsvc01 --monitoring-service-name=evelimitsvc01 \
+    --log-level=DEBUG --solace-session-prop-host=$SOLSERVER --solace-session-prop-username=testing \
+    --solace-session-prop-password=testing --solace-session-prop-vpn=testing \
+    --solace-session-prop-cache-name=test_dc --listen-lb-topics --listen-lb-topics"
+#alias ntfa='manage notificationsvc --alias=notificationsvc01 --solace-session-prop-host=$SOLSERVER --application-id=csq/abhi/dev --listen-lb-topics | hl ABHI'
+alias ntfa='manage notificationsvc --alias=notificationsvc01 --application-id=csq/abhi/dev --listen-lb-topics | hl ABHI'
+alias ntfs='manage notificationsvc --stop'
+#alias sreq="../env.sh /opt/py27env/bin/python ../app/mon.py --solace-session-prop-host=localhost notification_email --destination='default' \
+alias sreq="../env.sh /opt/py27env/bin/python ../app/mon.py --solace-session-prop-host=$SOLSERVER notification_email --destination='default' \
+	--source-service='notificationsvc01' --source-hostname='dev02-ws.grass.corp'  \
+	--short-description='subject1' --long-description='content1'"
+alias r3_pnl="manage  evepnlsvc --listen-lb-topics --alias=evepnlsvc01 --log-level=debug --application-id=CSQ/csqdev-app04/evepnlsvc01 \
+	--solace-session-prop-host=$SOLSERVER --solace-session-prop-username=testing --solace-session-prop-password=testing \
+	--solace-session-prop-vpn=testing --solace-session-prop-cache-name=test_dc --monitoring-service-name=evepnlsvc01 \
+	--start-time=0659 --mark-to-market --use-fill-if-no-mkt-price --save-disable --alert-disable \
+	--no-publish --no-monitor --no-send-mail | hl ABHI"
+alias r3_posadj="manage eveposadjsvc --alias=eveposadjsvc01 --log-level=debug --application-id=CSQ/dev02-ws/eveposadjsvc01 \
+	--solace-session-prop-host=$SOLSERVER --solace-session-prop-username=testing \
+	--solace-session-prop-password=testing --solace-session-prop-vpn=testing --solace-session-prop-cache-name=test_dc \
+	--monitoring-service-name=eveposadjsvc01 --listen-lb-topics --start"
+
+# --------------------------- 
+# Some quick references
+
+alias svc1="cd ~/code/higgs/pyapp/riskweb && manage refdatasvc --alias=refdatasvc02 --log-level=debug --application-id=CSQ/dev02/refdatasvc01 \
+    --solace-session-prop-host=$SOLSERVER --solace-session-prop-username=testing \
+    --solace-session-prop-password=testing --solace-session-prop-vpn=testing \
+    --solace-session-prop-cache-name=test_dc --no-monitoring-heartbeat \
+    --listen-lb-topics --no-hostname-check"
+alias ref1='chp && ep app/refdata.py d GHW "FUTURE|SGX|JGZ16|1612"'
+alias sjp1='chp && ep app/refdata.py l -e OSE -s JP'
+
+
+alias svc2='cd ~/code/higgs/pyapp/riskweb && manage refdatasvc --alias=refdatasvc02 --log-level=debug --application-id=CSQ/dev02/refdatasvc01 \
+    --solace-session-prop-host=$SOLSERVER --solace-session-prop-username=testing \
+    --solace-session-prop-password=testing --solace-session-prop-vpn=testing \
+    --solace-session-prop-cache-name=test_dc --no-monitoring-heartbeat \
+    --listen-lb-topics --no-hostname-check | hl "ABHI"'
+alias cylt="manage test"
+
+
+alias a1="manage evelimitsvc --solace-logging-level=DEBUG --alias=evelimitsvc01 \
+	--application-id=CSQ/dev02-app04/evelimitsvc01 --monitoring-service-name=evelimitsvc01 \
+	--log-level=DEBUG --solace-session-prop-host=$SOLSERVER --solace-session-prop-username=testing \
+	--solace-session-prop-password=testing --solace-session-prop-vpn=testing \
+	--solace-session-prop-cache-name=test_dc --listen-lb-topics --listen-lb-topics | hl ABHI"
+alias pnlmail="manage evepnlsnapshotemail --show-orderbook-pnl --email-dest=abhitest | hl ABHI"
+alias m='LIBLOG_logtostderr=1 LIBLOG_logtosyslog=1 LIBLOG_log_dir=./log ./mdsD --config=./mds.json'
+alias c='LIBLOG_logtostderr=1 LIBLOG_logtosyslog=1 LIBLOG_log_dir=./log ./hummerD --config=./hummer.json'
+alias runa='LIBLOG_logtostderr=1 LIBLOG_logtosyslog=1 LIBLOG_log_dir=./log ./aquaD --config=./aqua.json'
+alias runh='LIBLOG_logtostderr=1 LIBLOG_logtosyslog=1 LIBLOG_log_dir=./log ./hummerD --config=./hummer.json'
+alias runag='LIBLOG_logtostderr=1 LIBLOG_logtosyslog=1 LIBLOG_log_dir=./log  gdb --args aquaD --config=./aqua.json'
+alias bhum='cd ~/code/higgs/_build/d/ccgh/hummer/src'
+alias bhum2='cd ~/code/tmp/higgs-xraider/_build/d/ccgh/hummer/src'
+alias shum2='cd ~/code/tmp/higgs-xraider/ccgh/hummer/src'
+alias bmds='cd ~/code/higgs/_build/d/ccgh/mds/src'
+alias bmds2='cd ~/code/tmp/higgs-xraider/_build/d/ccgh/mds/src'
+alias h='ccgh/hummer/src/hummerD'
+# alias t='ccgh/hummer/test/reg/hummer_regD --gtest_filter="JkTickerTest*"'
+alias t='LIBLOG_logtostderr=1 LIBLOG_log_level=TRC ccgh/hummer/test/reg/hummer_regD --gtest_filter="*SlidingWindow*"'
+alias hrs='LIBLOG_logtostderr=1 LIBLOG_log_level=TRC ccgh/hummer/test/reg/hummer_regD --gtest_filter="*NimbleStackerTest.should_refresh_correctly*"'
+
+bldcmd()
+{
+	echo -e "building"
+    ag "$*" compile_commands.json --nonumbers | egrep -v '"file"' | sed -e 's/.*\(.opt.*g.. \)/\1/g' | sed -e 's/$/\n/g' | sed -e 's/",//g'
+}
+watch_build_file()
+{
+	echo -e "dir  = " $1
+	echo -e "file = " $2
+	LINE=${3:-1}
+    # watchexec -w $1 -- echo -e "building" && "ag "${@:2}" compile_commands.json --nonumbers | egrep -v '"file"' | sed -e 's/.*\(.opt.*g.. \)/\1/g' | sed -e 's/$/\n/g' | sed -e 's/",//g'
+	watchexec -w $1 -- ~/code/scripts/sh/bldcmd.sh $2 $LINE 
+}
+bldf()
+{
+	cds h6 bd
+	BB=$(eval cds h6 c)
+	echo -e "BB = $BB"
+	FULLNAME=$1
+
+	# Original dir, used to work ok
+	# however, now I need to watch ccgh directly
+	# DIR=$BB/${FULLNAME%/*}
+	DIR=$BB
+	FILE="\/"${FULLNAME##*/}
+	echo -e "DIR = " $DIR
+	echo -e "file  2 = " $1
+	
+	watch_build_file $DIR $FULLNAME $2
+}
+bsome() {
+	nb $* 2>&1 | \
+		tee /tmp/failed-full.log | \
+		egrep "ERROR: compile" | \
+		sed -e 's/.*: compile//g' -e 's/ on .*//g' | \
+		tee /tmp/failed-files-list.log
+}
+bld() {
+	nb $* 2>&1 | tee /tmp/failed-full.log | egrep "ERROR: compile" | sed -e 's/.*: compile//g' -e 's/ on .*//g'
+}
+
+jj2()
+{
+    egrep "error: " -B 2 /tmp/failed-full.log   \
+		| egrep "no member named" \
+		| sed -e 's/error.*//g' \
+		| awk 'BEGIN {FS=":"} {print "sed -i '\''" $2 "s/\\([_[:alpha:]]\\+\\)(\\?)\\?.to_string../std::string(\\1)/g'\''" ,  $1}'
+}
+blda()
+{
+	cds t0
+	BB=$(eval cds t1)
+
+	# Original dir, used to work ok
+	# however, now I need to watch ccgh directly
+	DIR=/home/abhishek.pandey/code/tmp/higgs-tmp/ccgh
+	echo -e "DIR = " $DIR
+	watchexec -w $DIR -- ninja-build -j 111 abhi &
+}
+	
+
+nbformat()
+{
+  nb  | egrep clang-format | sed -e 's/.*clang-format //g'  -e 's/ .*//g' | egrep -v on | xargs /opt/clang50/bin/clang-format -i 
+
+}
+bldf-tail()
+{
+	watchexec -w /tmp/failed.file.log -- ~/code/scripts/sh/tail-file.sh
+}
+alias tart='tar cf /tmp/trudgt.tar ~/code/githubs/quickfix/trudgt'
+alias ctest='./ccgh/libcore/test/reg/core_regD --gtest_filter="InstrumentMbpTseAquaTest*"'
+alias nbcr='nb core_reg'
+alias nba='nb aqua'
+alias nbar='nb aqua_reg'
+alias nba='nb aqua'
+alias sync-cfg='scp  -r csqmgmt-prov04:/usr/local/higgs-xraider-config/config/\* ~/code/docs/configs/instruments'
+
+
+alias tilde-dev="gcloud config set project tilde-dev-1363477224"
+alias t='echo -e "--gtest_filter="\""MachineGunTest*"\""  " && ccgh/aqua/test/reg/aqua_regD --gtest_filter="MachineGunTest*"'
+alias ts='echo -e "--gtest_filter="\""Sniper*"\""  " && ccgh/aqua/test/reg/aqua_regD --gtest_filter="Sniper*"'
+# alias t1='ccgh/aqua/test/reg/aqua_regD --gtest_filter="MachineGunTest.should_not_start_if_start_time_is_in_the_past"'
+alias t1='echo --gtest_filter="\""MachineGunTestTooEarlyPhaseChangeWithParam/MachineGunTestTooEarlyPhaseChange.should_not_react_to_too_early_phase_change/1"\"" && LOG ccgh/aqua/test/reg/aqua_regD --gtest_filter="MachineGunTestTooEarlyPhaseChangeWithParam/MachineGunTestTooEarlyPhaseChange.should_not_react_to_too_early_phase_change/1"  2>&1 | hl "ABHI"'
+alias t2='echo --gtest_filter="MachineGunTest.should_not_start_if_start_time_is_in_the_past" && LOG ccgh/aqua/test/reg/aqua_regD --gtest_filter="MachineGunTest.should_not_start_if_start_time_is_in_the_past"'
+alias t3='echo --gtest_filter="MachineGunTest.should_not_start_when_exceeding_guard" && LOG ccgh/aqua/test/reg/aqua_regD --gtest_filter="MachineGunTest.should_not_start_when_exceeding_guard"'
+tts()
+{
+	cd ~/code/p/higgs6/_build/d/ccgh/aqua/test/reg
+	mkdir -p log
+	LOG aqua_regD --gtest_filter="Sniper*" 2>&1 
+}
+alias t22='LOG hummer_regD --gtest_filter="SniperTestTriggerMatrixParams/SniperTestTriggerMatrix.test_trigger_correctness/22"'
+function ta()
+{
+  cd ~/code/p/higgs6/_build/d/ccgh/aqua/test/reg
+  LOG aqua_regD --gtest_filter="$**"
+
+}
+function tah()
+{
+  cd ~/code/p/higgs6/_build/d/ccgh/hummer/test/reg
+  LOG hummer_regD --gtest_filter="$**"
+
+}
+alias tahl='tah "SniperTestTriggerMatrixParams/SniperTestTriggerMatrix.test_trigger_correctness/23" OUT | hl "ABHI|threshold"'
+alias tal='ta "SniperTestTriggerMatrixParams/SniperTestTriggerMatrix.test_trigger_correctness/23" OUT | hl "ABHI|threshold"'
+

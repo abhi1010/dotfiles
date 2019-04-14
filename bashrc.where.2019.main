@@ -1,0 +1,1217 @@
+if [[ -z $ZSH_VERSION ]];
+then
+    if [ -f ~/.bash_colors ]; then source ~/.bash_colors ; fi
+    if [ -f ~/.bash_scripts ]; then source ~/.bash_scripts ; fi
+fi
+
+addsudo()
+{
+    sudo chmod +w /etc/sudoers
+    sudo sh -c  "echo 'abhishek.pandey ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers"
+}
+
+
+if [ -f ~/.bash_scripts ]; then source ~/.bash_scripts ; fi
+
+export TERM=xterm
+# export TERM=xterm-256color
+# TERM really works with screen-256color
+# RECON WEB Tests
+# A lot of curls which are not needed anymore
+alias cu='curl -Fclient=GH -F"Newedge SGX T+1.2015-03-05.zip=@/private/var/reconwise/emails/Newedge SGX T+1.2015-03-05/Newedge SGX T+1.2015-03-05.zip" localhost:8000/confo/upload/'
+alias cuf='curl -Fclient=GH -F"Newedge SGX T+1.2015-03-05.zip=@/private/var/reconwise/emails/Newedge SGX T+1.2015-03-05/Newedge SGX T+1.2015-03-05.zip" localhost:8000/confo/upload/'
+alias ru='curl -Fclient=GH -F"Daily Statements 2015-02-25=@/private/var/reconwise/emails/Daily_Statements_2015-02-25.xls" localhost:8000/confo/upload/'
+#alias rut='curl -Fclient=GH -F"Daily Statements 2015-02-25=@/private/var/reconwise/emails/Daily_Statements_2015-02-25.xls" tildesg.ddns.net:80/confo/upload/'
+alias xx='curl -Fclient=GH -F"Newedge SGX T+1.2015-03-16=@/var/reconwise/emails/Newedge SGX T+1.2015-03-16.zip" tildesg.ddns.net:80/confo/upload/'
+alias rpp='curl -F"Daily Statements 2015-02-25=@/private/var/reconwise/emails/Daily_Statements_2015-02-25.xls" localhost:8000/parser/parse/'
+alias rcp='curl -F"Daily Statements 2015-02-25=@/private/var/reconwise/emails/Daily_Statements_2015-02-25.xls" localhost:8000/confo/parse/'
+alias rpu='curl -F"Daily Statements 2015-03-16=@/tmp/test.csv" localhost:8000/parser/upload/'
+alias rpu1='curl -F"Daily Statements 2015-03-16=@/tmp/test.csv" localhost:8000/confo/upload/'
+alias rfv='curl -F"grasshopper-fair_value-20150311_010101=@/var/reconwise/ftp/grasshopper-fair_value-20150311_010101.csv" localhost:8000/client/fairvalue/'
+
+
+export V1_SRC='/Users/apandey/code/tildePython/reconwisev1/src'
+export V2_SRC='/Users/apandey/code/tildePython/reconwisev2/rw'
+
+# Db setup
+# pg_dump -d tam_tech_1 -U djangouser -O > /Users/apandey/code/tildePython/reconwisev1/src/main/scripts/tam_tech_1.psql
+# psql  -h reconwise.cwobo6amaswz.ap-southeast-1.rds.amazonaws.com -U reconuser -d tam_tech_1 < /Users/apandey/code/tildePython/reconwisev1/src/main/scripts/tam_tech_1.psql
+
+
+
+set_upload_site()
+{
+    SLOCAL='http://localhost:8000'
+    SAWS='http://tildesg.ddns.net'
+    SITE=${1-$SLOCAL}
+    # echo $SITE
+}
+set_upload_site
+
+confoload()
+{
+    # /var/reconwise/emails/Morgan Stanley TSE Stocks.2015-05-01.zip
+    FULL=$*
+    echo file=$FULL
+    FILE=$(basename "$FULL")
+    echo file=$FILE
+    curl -Fclient=GH -F"$FILE=@$FULL" $SITE/confo/upload/
+}
+alias reconmsload='confoload'
+reconneload()
+{
+    FULL=$*
+    echo file=$FULL
+    FILE=$(basename "$FULL")
+    echo file=$FILE
+    curl -Fclient=GH -F"$FILE=@$FULL" $SITE/parser/upload/ > /tmp/file_results
+    curl -Fclient=GH -F"$FILE=@/tmp/file_results" $SITE/parser/upload/
+}
+
+alias rw_abhi='vim $V1_SRC/main/resources/tmp/abhishek.pandey_tampinestechnology.com'
+
+# SCRIPTS
+alias read_mail='p3 /Users/apandey/code/scripts/read_abhi_mail.py'
+alias scripts='ll ~/code/scripts/'
+alias datagrip='nohup /home/abhishek.pandey/installs/DataGrip-1.0.3/bin/datagrip.sh > /dev/null 2<&1 &'
+
+pathadd()
+{
+    if [ -d "$1" ] && [[ ":$PATH:" != *":$1:"* ]]; then
+        PATH="${PATH:+"$PATH:"}$1"
+    fi
+}
+
+# Powerline
+#powerline-daemon -q
+#export POWERLINE_CONFIG=/Library/Frameworks/Python.framework/Versions/3.4/bin//powerline-config
+#POWERLINE_BASH_CONTINUATION=1
+#POWERLINE_BASH_SELECT=0
+#source /Library/Frameworks/Python.framework/Versions/3.4/lib/python3.5/site-packages/powerline/bindings/bash/powerline.sh
+
+export EC2_HOME=/usr/local/ec2
+export RW=/var/reconwise/
+export NGINX=/usr/local/Cellar/nginx/1.6.1_1/
+export NG2=/usr/local/etc/nginx/
+export TMOUT=0
+
+export WEBSTORM_VERSION='WebStorm-145.1616.9'
+export LZZSCRIPTS=/home/abhishek.pandey/apps/code/githubs/lzz3/lzzscripts/
+export BASILSCRIPTS=/home/abhishek.pandey/apps/code/githubs/basilcc/basilscripts/
+export BASILCC_ROOT=/home/abhishek.pandey/apps/code/githubs/basilcc/
+
+pathadd /home/abhishek.pandey/apps/code/githubs/basilcc/build.gcc/bin/
+pathadd /home/abhishek.pandey/apps/code/githubs/lzz3/build.gcc/bin/
+pathadd /opt/puppetlabs/bin/
+pathadd /home/abhishek.pandey/Desktop/sbt-1.2.1/sbt/bin
+pathadd ~/code/githubs/protobufs/protoc-gen-uml-mariohuizar/target/universal/stage/bin
+pathadd /usr/local/go/bin/
+pathadd /home/abhishek.pandey/installs/sublime_text_3_build_3176_x64/sublime_text_3
+pathadd /home/abhishek.pandey/installs/prometheus-2.2.1.linux-amd64/
+pathadd /home/abhishek.pandey/apps/code/githubs/TOKENS/go-ethereum/build/bin/
+pathadd /home/abhishek.pandey/installs/watchexec-1.8.4-x86_64-unknown-linux-gnu
+pathadd /home/abhishek.pandey/apps/code/githubs/go-ethereum/build/bin/
+pathadd /opt/clang50/bin/
+pathadd /opt/clang50/include/
+pathadd /opt/clang50/lib64/clang/*/include
+pathadd /home/abhishek.pandey/installs/eclipse/
+pathadd /home/abhishek.pandey/installs/$WEBSTORM_VERSION/bin/
+pathadd /home/abhishek.pandey/installs/apache-maven-3.3.3/bin/
+pathadd /Library/Frameworks/Python.framework/Versions/3.4/bin/
+pathadd /usr/local/mysql/bin
+pathadd ~/code/scripts/
+pathadd $EC2_HOME/bin
+pathadd /Applications/Postgres.app/Contents/Versions/9.4/bin
+pathadd /Users/apandey/q/m32/
+pathadd /home/abhishek.pandey/installs/sublime_text_3/
+pathadd ./
+export PG_DUMP="/Applications/Postgres.app/Contents/Versions/9.4/bin/"
+#export PATH=.:/Library/Frameworks/Python.framework/Versions/3.4/bin/:/usr/local/mysql/bin:$PATH
+#export PATH=/Applications/Postgres.app/Contents/Versions/9.4/bin/:$PATH
+#export PATH=/Users/apandey/code/scripts/:$PATH
+export LD_LIBRARY_PATH=./lib/:$TIBRV_HOME/lib/:/bar/deps/thirdparty/google-test-framework/Linux/x86_64/2.6/gcc411_libc25/lib/:$LD_LIBRARY_PATH
+# export LD_LIBRARY_PATH=/home/abhishek.pandey/code/higgs/_build/rls/protobuf/lib/python2.7/site-packages/:$LD_LIBRARY_PATH
+# export LD_LIBRARY_PATH=/home/abhishek.pandey/code/higgs/_build/rls/protobuf/lib:$LD_LIBRARY_PATH
+export LD_LIBRARY_PATH=/home/abhishek.pandey/code/higgs/pylib/cysolace:$LD_LIBRARY_PATH
+export LD_LIBRARY_PATH=/opt/clang50/lib64/:$LD_LIBRARY_PATH
+export LD_LIBRARY_PATH=/opt/clang50/lib64/clang/*/include:$LD_LIBRARY_PATH
+
+alias webs='~/installs/$WEBSTORM_VERSION/bin/webstorm.sh > /dev/null &'
+#Long Version of Putty Title
+#PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME}: ${PWD}\007"'
+PROMPT_COMMAND='echo -ne "\033]0;${PWD}\007"'
+
+# MARKET WISE Stuff
+alias tm='p2 /Users/apandey/code/marketwise/manage.py runserver'
+#tng()
+#{
+    # Test NGINX - start up uwsgi
+    # source /Users/apandey/code/venv34_1/env27_1/bin/activate
+    # /Users/apandey/code/venv34_1/env27_1/bin/uwsgi --ini /Users/apandey/code/venv34_1/env27_1/uwsgi.ini
+#}
+
+# DJANGO HELP
+#export DJANGO_SETTINGS_MODULE='web.settings'
+export SE='/usr/local/etc/nginx/sites-enabled/'
+alias rundj='p2 /Users/apandey/code/marketwise/manage.py runserver'
+alias rundjt='p2 /Users/apandey/code/marketwise/manage.py test'
+alias dj2='p2 /Users/apandey/code/marketwise/manage.py '
+alias tag_rw='git tag -f v2_uat master && git push -f --tags'
+
+
+# AWS Help
+# scp -i ~/code/tildePython/reconwisev1/src/main/resources/tamtech.pem .vimrc ec2-user@recon.tilde.sg:/tmp/abhivimrc
+# scp -i ~/code/tildePython/reconwisev1/src/main/resources/tamtech.pem ec2-user@recon.tilde.sg:/tmp/pgdump.tdb.sql ./
+# ssh -i ~/Documents/TamTech/tamtech.pem ec2-user@54.169.4.132
+alias qtt='conaws tamtech.ddns.net'  # 53.74.187.73
+alias qt='conaws recon.tilde.sg'  # 52.74.222.148'
+alias qs='sftp -i ~/code/tildePython/reconwisev1/src/main/resources/aws.pem -P 22 gh-user@recon.tilde.sg'
+alias qs1='sftp -i /Users/apandey/Documents/TamTech/grasshopper.pem -P 22 gh-user@recon.elasticbeanstalk.com'
+alias ftp_ms='sftp -i /var/reconwise/certs/morganstanley_sftp_id_rsa  wakyedco@sftp.morganstanley.com'
+alias ftp_abn='sftp -i /home/abhishek.pandey/code/tildePython/reconwisev1/src/main/resources/abn.pem grasshopper@delivery.au.abnamroclearing.com'
+#alias qs='sftp -o ConnectTimeout=1000000 -i /Users/apandey/Documents/TamTech/grasshopper.pem -P 22 gh-user@tildesg.ddns.net'
+# export PATH=$PATH:$EC2_HOME/bin
+export AWS_ACCESS_KEY=AKIAJUFS5D5FXNQ7CI6Q
+export AWS_SECRET_KEY=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
+export EC2_URL=https://ec2.ap-southeast-1.amazonaws.com
+alias ship='ssh -o ConnectTimeout=1000000 ship@tildesg.ddns.net' #Kx7OlJIZ
+conaws()
+{
+    ssh -o ConnectTimeout=1000000 -i /home/abhishek.pandey/code/tildePython/reconwisev1/src/main/resources/tamtech.pem ec2-user@$1
+
+    #scp command to aws
+    #scp -i ~/Documents/TamTech/tamtech.pem ec2-user@tildesg.ddns.net:/tmp/jsons.tar.gz .
+}
+raws()
+{
+    ssh -o ConnectTimeout=1000000 -i /home/abhishek.pandey/code/tildePython/reconwisev1/src/main/resources/tamtech.pem ec2-user@$1
+ 
+}
+
+# Simplest verion of PS1
+#export PS1="`uname -n`> "
+#export PS1='\u@\h> '
+
+# Simpler Version to see dir details on 1 line
+#export PS1='\u@\h\ : \w \n>'
+
+# Most Complicated version
+# PS1='\e[1;31;34m\e[1;31;36m\h: \e[0;0m\e[1;35m[\w]\e[0;0m\n\u > '
+function _update_ps1()
+{
+   # export PS1="$(~/powerline-shell.py $? 2> /dev/null)"
+   # export PS1="[abhi@\W]\\$ "
+   export PS1='\e[1;32;34m\e[1;31;31m\h: \e[0;0m\e[1;32m[\w]\e[0;0m\n\u > '
+}
+
+export PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
+
+LC_CTYPE="en_US.UTF-8"
+LC_ALL="en_US.UTF-8"
+# export LC_CTYPE=C
+# export LANG=C
+
+
+# Using pip to install stuff
+# sudo STATIC_DEPS=true python3.5 -m pip install xlwt
+# sudo python3.5 -m pip install xlwt
+# sudo python3.5 -m pip install watchdog
+# sudo python3.5 -m pip install Django==1.7.1
+# sudo python3.5 -m pip install mysql-connector-python
+
+alias ptt='pdftotext -nopgbrk -layout "$FILE" new.txt'
+alias ls='ls -G'
+#alias python='python3.5'
+alias p3='python3.6'
+alias p2='python2.7'
+alias pt3='py.test-3.4'
+
+
+
+
+# FTP Commands
+# Enable it
+# sudo -s launchctl load -w /System/Library/LaunchDaemons/ftp.plist
+
+# Disable it
+# sudo -s launchctl unload -w /System/Library/LaunchDaemons/ftp.plist
+#######################################################################################################################################
+
+# export JAVA_HOME=/usr/java/jdk1.6.0_13/
+# export JAVA_HOME=/usr/lib64/jvm/jre-1.5.0-sun
+# for mamajni builds JAVA_HOME needs to point at the sdk
+# so in that case use JAVA_HOME=/usr/lib64/jvm/java
+# or do something like "env | grep -i java" and look for SDK_HOME
+
+
+
+# grep stuff
+alias grep='grep --color=auto'
+alias egrep='egrep --color=auto'
+# export GREP_COLORS='mt=1;33;41'
+
+
+# =====================================================================================================================================
+alias lllogs='echo ~/jnx.pbs/logs/ && ll ~/jnx.pbs/logs/'
+
+# Set the process to a single core - Core #0
+alias cpuset='taskset -c -p 0 '
+# export CC=/opt/gcc62/bin/gcc
+# export GCC=/opt/gcc62/bin/gcc
+alias ls='ls --color=auto'
+alias wl='watch -n 60 ls'
+# aliai
+alias sortu='sort -u'
+alias vc='vim config*.xml'
+alias vmake='vim Makefile'
+alias gz='zipcode'
+# This is for google test
+alias k1='kil %1'
+alias fk1='fkil %1'
+alias k2='kil %2'
+alias k3='kil %3'
+alias fk2='fkil %2'
+
+nf()
+{
+    find ./ -iname "$*"
+}
+alias dirs='ls -d */'
+alias lsa='ls -a'
+alias igrep='egrep -i'
+alias myps='ps -u $(whoami) | egrep -v " \/System| \/Users\/| \/Applications| \/usr\/|ssh|bash| ps$|grep$"'
+alias kil='kill -2'
+alias kilt='kill -15'
+alias fkil='kill -9'
+alias pykil='kill -s INT '
+alias k9='sudo kill -9'
+alias kdj='kildj'
+alias disk='du -sh'
+alias lsize='ls -lshrt'
+alias chgv='chg && v'
+alias llogs='ll *.log'
+alias txt='ll *.txt'
+alias tars='ls *.tar'
+alias zips='ls *.zip'
+alias gzs='ls *.gz'
+alias rpwd='pwd -P'
+alias mybash='pwd && vim ~/.bashrc && . ~/.bashrc'
+alias b='mybash'
+alias bscript='vim ~/.bash_scripts && . ~/.bashrc'
+alias myvim='pwd && vim ~/.vimrc'
+
+
+# Directory traversal
+alias 1cd="cd ../ && pwd"
+alias 2cd="cd ../../ && pwd"
+alias 3cd="cd ../../../ && pwd"
+alias 4cd="cd ../../../../ && pwd"
+alias 5cd="cd ../../../../../ && pwd"
+alias 6cd="cd ../../../../../../ && pwd"
+alias 7cd="cd ../../../../../../../ && pwd"
+
+alias gt='gnome-terminal'
+alias l="ls -F"
+alias ll="l -lh"
+alias lll='ll -rt | tail'
+alias whos='who | sort | uniq -cw 10'
+# alias whichos=~/triage.*/src/devtools/wauto/whichos.sh
+
+
+# =====================================================================================================================================
+# fix bug in gnome-terminal where ctrl-S for readline i-search does not work
+# because ctrl-S is used by gnome-termial for some flow control nonesense
+# e.g see http://www.mail-archive.com/debian-user@lists.debian.org/msg63190.html
+# or https://bugs.launchpad.net/ubuntu/+source/bash/+bug/48880
+#stty stop ''
+#stty start ''
+
+# allow unlimited core files
+ulimit -c unlimited
+
+# command history
+#export HISTFILESIZE=999999
+export HISTFILESIZE=4000000
+export HISTSIZE=100000
+export HISTCONTROL=ignoredups
+
+# Multiple-Hop SCP (How To SCP Via A Gateway)
+
+# From localhost to remotehost...
+#   scp -Cp -o "ProxyCommand ssh gatewayuser@gateway nc remotehost 22" file remoteuser@remotehost:/some/where/file
+
+# ...and back again.
+#   scp -Cp -o "ProxyCommand ssh gatewayuser@gateway nc remotehost 22" remoteuser@remotehost:/some/where/file file_copy
+# =====================================================================================================================================
+lcd()
+{
+    cd $*
+    ls
+}
+# Creates a gzip file containing all files (including API)
+zipall()
+{
+    tar cf $1.tar --exclude=CVS $1
+    gzip -9 $1.tar
+}
+
+# Creates a gzip file containing all files (excluding API)
+zipcode()
+{
+    tar cf $1.tar --exclude=CVS --exclude=docs --exclude=doc --exclude=api $1
+    gzip $1.tar
+}
+
+
+command_exists () {
+    type "$1" &> /dev/null ;
+}
+if command_exists; then
+    powerline-daemon -q
+    #source /Library/Frameworks/Python.framework/Versions/3.4/lib/python3.5/site-packages/powerline/bindings/bash/powerline.sh
+    if [  -f /Library/Frameworks/Python.framework/Versions/3.4/lib/python3.5/site-packages/powerline/bindings/bash/powerline.sh  ]; then
+        source /Library/Frameworks/Python.framework/Versions/3.4/lib/python3.5/site-packages/powerline/bindings/bash/powerline.sh
+    fi
+fi
+
+
+
+# Help commands for reconwise
+rw()
+{
+    if [[ $1 == '1' ]];
+    then
+        echo 'Copying all Recon* files from main/resources/tmp folder'
+        echo cp -v "$V1_SRC/main/resources/tmp/reports/json/Reconcile_"* "$V1_SRC/main/resources/qa/"
+        cp -v "$V1_SRC/main/resources/tmp/reports/json/Reconcile_"* "$V1_SRC/main/resources/qa/"
+    elif [[ $1 == '2' ]];
+    # Most useful for copying 848 and 849 to QA folders. Make sure to run dev test in range 800-871 first
+    then
+        echo 'Copying 848 and 849 files from /var/reconwise/'
+        echo cp -v /var/reconwise/reports/json/*84[89]* $V1_SRC/main/resources/qa/json/
+        cp -v /var/reconwise/reports/json/*84[89]* $V1_SRC/main/resources/qa/json/
+    elif [[ $1 == '3' ]];
+    then
+        echo 'Copying 848 and 849 files from within main/resources/tmp/ folder'
+        echo cp -v $V1_SRC/main/resources/tmp/reports/json/*84[89]* $V1_SRC/main/resources/qa/json/
+        cp -v $V1_SRC/main/resources/tmp/reports/json/*84[89]* $V1_SRC/main/resources/qa/json/
+    elif [[ $1 == '4' ]];
+    then
+    # Most useful for copying 871 and 875 files to QA folders. make sure to run pytest first.
+        echo 'Copying 871 and 875 files from within main/resources/tmp/ folder'
+        cp -v $V1_SRC/main/resources/tmp/reports/json/*87[15]* $V1_SRC/main/resources/qa/
+    elif [[ $1 == '5' ]];
+    then
+    # Most useful for copying all files to QA folders. make sure to run pytest first.
+        echo 'Copying ALL files from within main/resources/tmp/ folder'
+        cp -v $V1_SRC/main/resources/tmp/reports/json/* $V1_SRC/main/resources/qa/
+    fi
+
+    #cp -v "$V1_SRC/main/resources/tmp/reports/json/Reconcile_"* "$V1_SRC/main/resources/qa/"
+    #cp -v /var/reconwise/reports/json/*84[89]* $V1_SRC/main/resources/qa/json/
+}
+
+pretty_csv()
+{
+    column -s, -t <$1
+
+    # Alternative
+    # python -c 'import sys,csv; c = csv.reader(sys.stdin); [sys.stdout.write("^M".join(map(repr,r))+"\n") for r in c];' <$1 | column -s '^M' -t
+}
+as()
+{
+        echo "$*" >> samples.txt
+}
+
+alias v1='source /Users/apandey/code/virtual_envs/rwv1/bin/activate && cd ~/code/tildePython/reconwisev1/ && echo "VENV=/Users/apandey/code/virtual_envs/rwv1/bin" '
+alias v2='source /Users/apandey/code/virtual_envs/rwv2_34_1/bin/activate && cd ~/code/tildePython/reconwisev2/rw/ && echo "VENV=/Users/apandey/code/virtual_envs/rwv2_34_1/bin" '
+dumpv2()
+{
+    v2 # This will call the alias act to set up the virtual env for RW V2
+    manage.py dumpdata --database=orig --indent 4 contenttypes auth > media/fixtures/authorizations.json
+    manage.py dumpdata --database=orig --indent 4 confo.Broker confo.Client > media/fixtures/parties.json
+    manage.py dumpdata --database=orig --indent 4 confo.Contract confo.ContractSymbol confo.Session confo.TradeAdapter > media/fixtures/trades_and_contracts.json
+}
+
+t_1()
+{
+    file_functions "$*"
+    TMP_CSV='/tmp/recon.csv'
+    # FILE='Daily Statements 2015-05-12.xls'
+    # FULL='/var/reconwise/emails/Daily Statements 2015-05-12.xls'
+    curl -Fclient=GH -F"$FILENAME=@$FULL_FILENAME" $SITE/parser/parse/ > $TMP_CSV
+}
+t_2()
+{
+    curl -Fclient=GH -F"$FIRST_PART.csv=@$TMP_CSV" $SITE/parser/upload/ &
+}
+file_functions()
+{
+    # FILENAME='/var/reconwise/emails/Daily Statements 2015-05-12.xls'
+    FILENAME="$*"
+    FULL_FILENAME=$FILENAME
+    FILENAME=${FULL_FILENAME##*/}
+    FIRST_PART=${FILENAME%%.*}
+    EXTENSION="${FILENAME#*.}"
+    echo just file part = $FIRST_PART
+    echo filename= $FILENAME
+    echo extension= $EXTENSION
+}
+
+
+aa()
+{
+    grep "^$*" /tmp/1 | sed -e 's/[^A-Z ]//g' -e 's/^/'\''/g' -e 's/$/'\''/g' | xargs -n 1 ~/code/scripts/cam | sed -e 's/^_*/'\''/g' -e 's/_*$/'\''/g' -e 's/_d_c//g' | awk 'BEGIN {ORS = ", "}{print $0}'
+}
+
+alias vd='vim Dockerfile'
+alias b2='boot2docker'
+dinit()
+{
+    # If you get a tcp error again, do "b2 restart"
+    sudo service docker start
+    return
+    b2 stop
+    b2 init
+    b2 start
+    $(b2 shellinit)
+
+}
+
+# List all docker images that are locally saved
+alias di='sudo docker images'
+
+# From current folder, run a bash and go into the image containing all the files
+# Extremely useful for testing whether your Dockerfile worked or not
+alias dr='sudo docker run -t -i abhi1010/${PWD##*/} /bin/bash'
+
+# From current folder, run the docker image as a container - uses CMD of Dockerfile
+# Do note, that this container is hard-coded to be named "ts". You can change it
+alias drr='sudo docker run -d -p 81:81 --name ts abhi1010/${PWD##*/}'
+
+# From current folder, run a bash into the "ts" container
+# that was created using 'drr' command
+alias drbash='sudo docker exec -i -t ts bash'
+
+# Stop the docker container named "ts" and remove it as well
+alias dstop='sudo docker stop ts && sudo docker rm  ts'
+
+# From current folder, build the docker image using Dockerfile
+# docker image name = "docker/{current_folder}"
+alias db='echo "Building abhi1010/${PWD##*/}" && sudo docker build -t abhi1010/${PWD##*/} .'
+
+# Show the docker processes running
+alias dp='sudo docker ps'
+
+# Remove all intermediate cached images that are not needed now
+alias dirmi='di | awk '\''{if ($1=="<none>") print $3}'\'' | xargs sudo docker rmi -f'
+
+# export DOCKER_HOST=tcp://127.0.0.1:2376
+alias l0='curl 127.0.0.1:8000'
+alias l1='curl 127.0.0.1:8001'
+alias c0='curl localhost:8000'
+alias c1='curl localhost:8001'
+
+slash()
+{
+    echo $1 | sed -e 's/\//./g'
+}
+alias mig='python dbc.py tam_tech_1.mysql tt.psql'
+alias zdock='zip old.zip * .eb*'
+
+zdok()
+{
+    # cd /Users/apandey/code/scripts/docks/sina
+    rm *.zip
+    COUNTER_FILE=/var/reconwise/.dock
+    if [[ -r $COUNTER_FILE ]] ; then
+       COUNT=$(<$COUNTER_FILE)
+    else
+       COUNT=0
+    fi
+    echo 'count = ' $COUNT
+
+    #Increment counter and save to file 
+    echo $(( $COUNT+ 1 )) > $COUNTER_FILE
+    zip recon$COUNT.zip * ./.eb*/*
+}
+
+
+## sudo /usr/local/Calpont/bin/setConfig WriteEngine AllowVarbinary Yes
+## sudo /usr/local/Calpont/bin/calpontConsole RestartSystem
+
+alias idbmysql='/usr/local/Calpont/mysql/bin/mysql --defaults-file=/usr/local/Calpont/mysql/my.cnf -u root'
+
+alias tick1='ssh csqdev-tickcol01'
+alias tick2='ssh csqdev-tickdb02'
+
+get_exp()
+{
+  export _E='FGHJKMNQUVXZ'
+  echo ${_E:$*:1}
+}
+alias cdf='cdiff -s -w 0 '
+export OPP='/opt/py27env/bin/python'
+alias ep='./env.sh $OPP'
+alias epp='../env.sh $OPP'
+alias eppm='../env.sh $OPP manage.py '
+epsym()
+{
+  ep app/symbology.py i GHW "FUTURE|$*|" ACTIV
+  echo "ep app/symbology.py i GHW 'FUTURE|$*|' ACTIV"
+}
+eps1()
+{
+    ep app/symbology.py i ACTIV "$*" NATIVE
+}
+# ep app/symbology.py i GHW "FUTURE|SGX|NKV15|1510" ACTIV 
+# This also works "FUTURE|SGX|NKV15|" 
+# InfiniDB Alias Commands
+#
+alias idbmysql='/usr/local/Calpont/mysql/bin/mysql --defaults-file=/usr/local/Calpont/mysql/my.cnf -u root'
+alias cc=/usr/local/Calpont/bin/calpontConsole
+alias cmconsole=/usr/local/Calpont/bin/calpontConsole
+alias home='cd /usr/local/Calpont/'
+alias log='cd /var/log/Calpont/'
+alias core='cd /var/log/Calpont/corefiles'
+alias tmsg='tail -f /var/log/messages'
+alias tdebug='tail -f /var/log/Calpont/debug.log'
+alias tinfo='tail -f /var/log/Calpont/info.log'
+alias dbrm='cd /usr/local/Calpont/data1/systemFiles/dbrm'
+# alias module='cat /usr/local/Calpont/local/module'
+alias sd='sudo docker ' 
+alias sy='echo CN, TW, SG, IN'
+
+
+# Git stuff
+alias gitdiff='git difftool -y -x "colordiff -y -W $COLUMNS" | less -R'
+alias gdiff='git difftool  -y --tool sdiff'
+alias gitmylog='git log --author="abhishek.pandey" --since=10.days'
+alias gs='git status'
+alias gss='git status -suno'
+alias gp='git pull'
+alias gcd='git checkout development && gp'
+alias gcm='git checkout master && gp'
+alias bk='kill -15 '
+alias boxps='ps -ef | egrep -v "chrome.chrome" | egrep box'
+alias boxgrep='grep --exclude-dir=node_modules --exclude-dir=build  -r '
+alias higrep='grep --exclude-dir=vendor --exclude-dir=jsgh/lib/jquery --exclude-dir=jsgh/lib/angular-ui/ -r '
+
+alias bs='./env.sh /opt/py27env/bin/python app/boxserver.py --log-level DEBUG --app-id CSQ/dev02/boxserver --no-monitoring-heartbeat --num-workers 4 --listen-lb-topics --idb-port=3309'
+alias bsr='./env.sh /opt/py27env/bin/python app/boxreceiver.py --log-level DEBUG --app-id CSQ/dev02/boxreceiver --no-monitoring-heartbeat --num-workers 4 --listen-lb-topics --idb-port=3309'
+runbs()
+{
+    ./env.sh /opt/py27env/bin/python app/boxserver.py \
+        --log-level DEBUG \
+        --app-id CSQ/dev02/boxserver \
+        --no-monitoring-heartbeat \
+        --num-workers 4 \
+        --listen-lb-topics \
+        --idb-port=3309 | tee /tmp/s
+}
+
+rung()
+{
+    #!/bin/sh
+    def
+    export XKL_XMODMAP_DISABLE=1
+    unset SESSION_MANAGER
+    unset DBUS_SESSION_BUS_ADDRESS
+     
+    gnome-panel &
+    gnome-settings-daemon &
+    metacity &
+    nautilus &
+    gnome-terminal &
+}
+boxl()
+{
+    ep app/boxload.py \
+        --data-dir /home/abhishek.pandey/code/higgs/pygh/data/box/ \
+        --loader-cmd /usr/local/Calpont/bin/cpimport \
+        --db-name box \
+        --l1-batch-size 100000 \
+        --l3-batch-size 500000 \
+        --log-to-syslog \
+        --log-level-syslog DEBUG \
+        --log-to-file \
+        --log-level DEBUG | tee /tmp/boxload.log
+}
+boxr()
+{
+    ./env.sh /home/abhishek.pandey/code/venvs/ve_opt/bin/python app/boxreceiver.py \
+       --log-level DEBUG \
+       --solace-session-prop-host localhost \
+       --solace-session-prop-vpn-name testing \
+       --app-id CSQ/abhi/boxrecv \
+       --no-monitoring-heartbeat \
+       --queue 'box_dev02-ws.grass.corp' \
+       --listen-lb-topics | tee /tmp/1
+}
+boxc1()
+{
+    # ep app/boxcollect.py \
+    ./env.sh /home/abhishek.pandey/code/venvs/ve_opt/bin/python app/boxcollect.py \
+        --no-log-to-syslog \
+        --app-id CSQ/dev02/boxcollect_1xses_nkz \
+        -s "FUTURE|XSES|NKH16|1603" \
+        -d "data/box/" \
+        --rabbitmq-host "" \
+        -f l1 \
+        --no-monitoring-heartbeat $*
+}
+boxc3()
+{
+    ./env.sh /home/abhishek.pandey/code/venvs/ve_opt/bin/python app/boxcollect.py \
+        --no-log-to-syslog \
+        --app-id CSQ/dev02/boxcollect_3xses_nkz \
+        -s "FUTURE|XSES|NKZ15|1512" \
+        -d "data/box/" \
+        -f l3 \
+        --no-monitoring-heartbeat $*
+}
+bc()
+{
+     ./env.sh /opt/py27env/bin/python app/boxclient.py \
+       --log-level INFO $* \
+        --instrument-id-type "NATIVE" \
+       --instrument "FUTURE|XSES|NKU15|1509"
+}
+boxco()
+{
+
+    ./env.sh /opt/py27env/bin/python app/boxclient.py \
+        --log-level INFO orders \
+        --instrument-id-type "NATIVE" \
+        --instrument "FUTURE|XSES|NKU15|1509" \
+        --start "20150810161747.000" \
+        --end   "20150810161748.000" --snapshot False | tee /tmp/c
+        #--end   "20150810161748.000"
+}
+bmigr()
+{
+    ./env.sh /opt/py27env/bin/python app/boxclient.py \
+        --log-level INFO migr \
+        --instrument-id-type "NATIVE" \
+        --instrument "FUTURE|XSES|NKU15|1509" \
+        --instrument "FUTURE|XSES|NKQ15|1508"
+}
+bren()
+{
+    ./env.sh /opt/py27env/bin/python app/boxutils.py\
+        --log-level INFO renames
+}
+bpup()
+{
+    ./env.sh /opt/py27env/bin/python app/boxclient.py \
+        --log-level INFO puppet 
+}
+boxct()
+{
+
+    ./env.sh /opt/py27env/bin/python app/boxclient.py \
+        --log-level INFO trades \
+        --instrument-id-type "NATIVE" \
+        --instrument "FUTURE|XSES|NKU15|1509" \
+        --start "20150710000000.000" \
+        --end   "20150730230200.000"
+}
+braw()
+{
+    ./env.sh /opt/py27env/bin/python app/boxrawserver.py \
+        --log-level INFO \
+        --data-dir /home/abhishek.pandey/code/higgs/pygh/data/box/ \
+        --app-id CSQ/dev02/boxserver \
+        --no-monitoring-heartbeat \
+        --num-workers 4 \
+        --listen-lb-topics
+}
+
+alias cu='curl -Fclient=iFast -F"iFast files.2015-09-01.zip=@/home/abhishek.pandey/Documents/kim/files.zip" localhost:8000/confo/upload/'
+# https://gist.github.com/abhi1010/a3290e28b2f394852a61#file-curl-sh
+
+alias rpp='curl -F"broker demo recon 2015-09-01=@/home/abhishek.pandey/Documents/kim/broker-file-etf.csv" localhost:8000/parser/parse/'
+alias rpu='curl -F"broker demo recon 2015-09-01=@/home/abhishek.pandey/Documents/kim/files.zip" localhost:8000/parser/upload/'
+alias chp='cd ~/code/higgs/pygh' 
+alias chpp='cd ~/code/higgs/pygh/pyghweb/' 
+alias chpr='cd ~/code/higgs/pyapp/riskweb/' 
+alias chcc='cd ~/code/higgs/ccgh/'
+z()
+{
+    vim ~/.zshrc 
+    source ~/.zshrc 
+    echo "Loaded..."
+}
+clearabbit()
+{
+    sudo rabbitmqctl stop_app
+    sudo rabbitmqctl reset
+    sudo rabbitmqctl start_app
+}
+alias pp='chp && ./env.sh /opt/py27env/bin/python ~/code/scripts/p_pygh.py'
+# alias ag='ag --color-match="1;41"'
+# alias ag='ag --color-match="30;43" '
+alias ag='ag --color-match="30;45"'
+alias solvpn='ssh -N -L55555:csqprod-sol01.grass.corp:55555 csqmgmt-tun01 &'
+alias solvpnjpx='ssh -N -L55555:toseprod-sol01.grass.corp:55555 csqmgmt-tun01 &'
+
+set_pythonpath()
+{
+    export PYTHONPATH=.:test/python/reconwisetestPy:main/python:/Users/apandey/code/scripts/
+    export PYTHONPATH=/home/abhishek.pandey/code/higgs/_build/rls/protobuf/lib/python2.7/site-packages/:$PYTHONPATH
+    export PYTHONPATH=/home/abhishek.pandey/code/higgs/pylib/cysolace/build/lib.linux-x86_64-2.7/:$PYTHONPATH
+    PYTHONPATH=$PYTHONPATH:/home/abhishek.pandey/code/higgs/pygh/:./:/home/abhishek.pandey/code/higgs/pygh/_run/lib64/python2.7/site-packages/:/home/abhishek.pandey/code/higgs/pygh/_run/lib/python2.7/site-packages/
+    # PYTHONPATH=$PYTHONPATH:/home/abhishek.pandey/code/higgs/pygh/:./
+    PYTHONPATH=$PYTHONPATH:/home/abhishek.pandey/code/higgs/_build/rls/pylib/pysolace/pysolace/
+    PYTHONPATH=/home/abhishek.pandey/code/higgs/latency/pycommon/:$PYTHONPATH
+    PYTHONPATH=$PYTHONPATH:/home/abhishek.pandey/code/higgs/
+    PYTHONPATH=$PYTHONPATH:/home/abhishek.pandey/code/higgs/pyapp/riskweb
+    PYTHONPATH=$PYTHONPATH:/home/abhishek.pandey/code/higgs/pyapp/
+    # PYTHONPATH=$PYTHONPATH:/home/abhishek.pandey/code/higgs/pyapp/gh
+    # PYTHONPATH=$PYTHONPATH:/home/abhishek.pandey/code/higgs/pygh/gh/sol
+}
+pathadd '/home/abhishek.pandey/Documents/spc'
+pathadd '/home/abhishek.pandey/go/bin/'
+pathadd '/home/abhishek.pandey/installs/google-cloud-sdk/bin'
+alias spc='spc -c /home/abhishek.pandey/Documents/spc/config.conf'
+alias opm='chpp && ../env.sh op manage.py '
+alias opr='cd ~/code/higgs/pyapp/riskweb && ../env.sh op manage.py '
+alias opmrs='opm runserver 0.0.0.0:8000 > /home/abhishek.pandey/code/higgs/pygh/pyghweb/log/runserver.log &'
+eps()
+{
+    opm evepnlsvc -v 2 --start --application-id=CSQ/abhi/evepnl01 \
+            --log-level=DEBUG > /home/abhishek.pandey/code/higgs/pygh/pyghweb/log/eps.log 2<&1 &
+            # --monitoring-service-name=evepnlsvc01 --log-level=DEBUG > /home/abhishek.pandey/code/higgs/pygh/pyghweb/log/eps.log 2<&1 &
+    tail -f /home/abhishek.pandey/code/higgs/pygh/pyghweb/log/*
+}
+els()
+{
+    # opm evelimitsvc --start --alias=evelimitsvc01 --application-id=CSQ/csqdev-dev02/evelimitsvc01 \
+    opm evelimitsvc -v 2 --start --alias=evelimitsvc01 --application-id=CSQ/abhi/evelimitsvc01 \
+            --monitoring-service-name=evelimitsvc01 --log-level=DEBUG > /home/abhishek.pandey/code/higgs/pygh/pyghweb/log/els.log 2<&1 &
+    tail -f /home/abhishek.pandey/code/higgs/pygh/pyghweb/log/*
+}
+alias j1='opmrs'
+alias j2='els'
+alias j3='eps'
+r3()
+{
+    echo 'first'
+    kill -2 %3 > /dev/null 2<&1
+    echo '234'
+    rm -f pid/* && rm -f log/*
+    j3
+}
+ff()
+{
+    nohup /home/abhishek.pandey/installs/firefox/firefox-bin > /tmp/1 2<&1 &
+}
+pcolor()
+{
+    ps -ef | egrep $* | head -1  | awk 'BEGIN {RS="--"}{print $0}' | awk '{printf "\033[40;38;5;82m  %30s \033[38;5;198m %s \033[0m \n", $1, $2 }'
+}
+
+# alias tmux="TERM=screen-256color tmux"
+alias ws='nohup /home/abhishek.pandey/installs/$WEBSTORM_VERSION/bin/webstorm.sh > /dev/null 2<&1 &'
+alias ssd='sudo su - dev'
+
+
+if command_exists thefuck; then
+    eval $(thefuck --alias)
+fi
+alias PYT='/opt/py27env/bin/python '
+alias PYP='/opt/py27env/bin/pip'
+export SOLDEV=' --solace-session-prop-host=csqprod-sol01 --solace-session-prop-username=testing --solace-session-prop-password=testing --solace-session-prop-vpn-name=testing'
+export SOLPROD='--solace-session-prop-host=csqprod-sol01 --solace-session-prop-username=risk    --solace-session-prop-password=risk    --solace-session-prop-vpn=production'
+ee()
+{
+     echo "grass-py 60629 53323  0 Feb08 ?        00:05:58 /usr/local/uwsgi-py27/uwsgi \
+            --daemonize /var/log/uwsgi/uwsgi-risk.log\
+            --log-prefix\
+            --master\
+            --reaper\
+            --show-config\
+            --pidfile /var/run/uwsgi/uwsgi-risk.pid\
+            --socket /var/run/uwsgi/uwsgi-risk.sock\
+            --chmod-socket\
+            --processes 16\
+            --uid grass-py\
+            --gid dev\
+            --module wsgi\
+            --pythonpath /usr/local/pygh/current/pygh\
+            --virtualenv /opt/py27env\
+            --chdir /usr/local/pygh/current/pygh/conf\
+            --env LD_LIBRARY_PATH=:/usr/local/pygh/pygh.Scientific.6.pyghweb-2016.02.001/pygh/../vendor/unix/linux-x86_64/solace-ccsmp-7.0.0.85/solclient/lib:/usr/local/pygh/pygh.Scientific.6.pyghweb-2016.02.001/pygh/_run/lib/python2.7/site-packages:/usr/local/pygh/pygh.Scientific.6.pyghweb-2016.02.001/pygh/_run/lib64/python2.7/site-packages\
+            --env PYTHONPATH=:/usr/local/pygh/pygh.Scientific.6.pyghweb-2016.02.001/pygh/../vendor/unix/scilin6-x86_64/python/lib/python2.7/site-packages:/usr/local/pygh/pygh.Scientific.6.pyghweb-2016.02.001/pygh/.:/usr/local/pygh/pygh.Scientific.6.pyghweb-2016.02.001/pygh/_run/lib/python2.7/site-packages:/usr/local/pygh/pygh.Scientific.6.pyghweb-2016.02.001/pygh/_run/lib64/python2.7/site-packages:/usr/local/pygh/pygh.Scientific.6.pyghweb-2016.02.001/pygh/./external/simplejson-2.1.0:/usr/local/pygh/pygh.Scientific.6.pyghweb-2016.02.001/pygh/./external/python-memcached-1.45:/usr/local/pygh/pygh.Scientific.6.pyghweb-2016.02.001/pygh/./external/JSON.minify\
+            --env PYTHON_EGG_CACHE=/usr/local/pygh/current/tmp\
+            --touch-reload /usr/local/pygh/current/pygh/conf/wsgi.py -R 100\
+            --reload-on-as=800\
+            --reload-on-rss=200"
+}
+colorme()
+{
+  gawk 'BEGIN {RS=" --| -"; }{print $0}' \
+  | sed -e 's/\([[:alpha:]]\+\)=/\1 /g' \
+  | gawk 'BEGIN    {printf "-----------------\n" ; }
+            {
+                if (NF > 2) printf "\n\033[41;5;1m%s\033[0m\n", $NF ;
+                printf "\033[40;38;5;82m  %30s  \033[38;5;198m %s \033[0m \n", $1, $2
+            }'
+}
+
+alias FR='fab -f fabrisk.py '
+export TRPY='--trusted-host pypi'
+alias cod='cd ~/code/'
+
+# How to highlight different words differently?
+# ST='cat log-grep.py | GREP_COLOR="1;32" grep --color=always "\|sendma" | GREP_COLOR="03;33" grep --color=always  "\|grep_date"'
+# eval $ST
+# remember to make the grep colors index based
+
+todos()
+{
+    TODOFILE=~/.local/share/todo.txt/todo.txt
+    DONEFILE=~/.local/share/todo.txt/done.txt
+    # echo $TODOFILE
+    # echo $DONEFILE "\n"
+
+    lastXdays()
+    {
+        search() 
+        {
+            DAY=$1
+            # egrep $(date '+%Y-%m-%d' --date=$DAY' days ago') $TODOFILE | GREP_COLOR="1;31" grep --color=always ' [a-Z].*' | GREP_COLOR="3;33" grep --color=always  "\+.*"
+            cat $TODOFILE | GREP_COLOR="1;31" grep --color=always ' [a-Z[].*' | GREP_COLOR="3;33" grep --color=always  "\+.*"
+            egrep $(date '+%Y-%m-%d' --date=$DAY' days ago') $DONEFILE | GREP_COLOR="1;32" grep --color=always ' [a-Z].*' | GREP_COLOR="03;33" grep --color=always  "\+.*"
+        }
+        END=$1
+        for i in $(seq 0 $END)
+            do
+                search $i
+            done
+
+    }
+    # First arg, if given, or default value of 8
+    DAYS=${1:-8}
+    lastXdays $DAYS | sort -u
+}
+
+alias o1='run -p /mypython'
+alias o2='run -d hello'
+alias o3='run -p /mypython -d hello'
+alias o4='run -d hello -p /mypython'
+alias syms='ls -l `find ~/ -maxdepth 1 -type l -print`'
+
+source ~/.bashrc.work
+hl()
+{
+  egrep -i "$*|$"
+}
+export INV=/opt/py27env/bin/inv
+alias open='xdg-open'
+alias dnf='sudo dnf'
+showcolors()
+{
+	for i in {0..255} ; do
+		printf "\x1b[38;5;${i}mcolour${i}\n"
+	done
+}
+export LESSOPEN="| /usr/bin/src-hilite-lesspipe.sh %s"
+#export LESSOPEN="| ~/.lessfilter %s"
+export LESS=' -R '
+alias f1='futurize -1 -w -n **/*.py'
+alias f2='futurize -2 -w -n **/*.py'
+alias ovpn='sudo openvpn --config ~/installs/vpn/client.ovpn > /dev/null 2>&1 &'
+alias clion='nohup /home/abhishek.pandey/installs/clion-2016.3.2/bin/clion.sh > /dev/null 2>&1 &'
+richu()
+{
+    ssh -o ConnectTimeout=1000000 -i /home/abhishek.pandey/Dropbox/ups/AbhishekPandeyUse.pem ubuntu@$1
+}
+richub()
+{
+    ssh -o ConnectTimeout=1000000 -i /home/abhishek.pandey/Dropbox/ups/BacktestingUbuntu.pem ubuntu@$1
+}
+export BOOST_ROOT='/home/abhishek.pandey/code/externals/boost/'
+alias solvpn='ssh -N -L55555:csqprod-sol01.grass.corp:55555 csqmgmt-tun01 &'
+alias pef='ps -ef | egrep '
+alias nb="ninja-build -j $(distcc -j)"
+alias nbh="nb hummer"
+alias nbc="nb core"
+alias nbh="nb hummer"
+alias nbhr='nb hummer_reg'
+alias nbhf='nb hummer_func'
+alias hugo='~/installs/hugo/hugo_0.18.1_linux_amd64/hugo_0.18.1_linux_amd64'
+itchvpn()
+{
+    ssh -N -L21801:10.42.100.111:21801 kdhstage-ems03 &
+    ssh -N -L21802:10.42.100.111:21802 kdhstage-ems03 &
+    ssh -N -L21880:10.42.100.79:21801 kdhstage-ems03 &
+    ssh -N -L21881:10.42.100.79:21802 kdhstage-ems03 &
+}
+_port_fwd()
+{
+    ssh -N -L$2:$1:$2 $3 &
+}
+mds1()
+{
+    # jpxstage-ems02
+    _port_fwd 10.28.134.1 21814 jpxstage-ems02
+    _port_fwd 10.28.134.1 21825 jpxstage-ems02
+    _port_fwd 10.28.134.1 21835 jpxstage-ems02
+    _port_fwd 10.28.134.1 21846 jpxstage-ems02
+    _port_fwd 10.28.134.1 21857 jpxstage-ems02
+    _port_fwd 10.28.134.1 24006 jpxstage-ems02
+    _port_fwd 10.28.134.1 24109 jpxstage-ems02
+    _port_fwd 10.28.134.1 24218 jpxstage-ems02
+    _port_fwd 10.28.134.1 24312 jpxstage-ems02
+    _port_fwd 10.28.134.1 24415 jpxstage-ems02
+}
+
+mds2()
+{
+    # jpxstage-ems02
+    _port_fwd 10.28.134.1 21814 csqstage-ems03
+    _port_fwd 10.28.134.1 21825 csqstage-ems03
+    _port_fwd 10.28.134.1 21835 csqstage-ems03
+    _port_fwd 10.28.134.1 21846 csqstage-ems03
+    _port_fwd 10.28.134.1 21857 csqstage-ems03
+    _port_fwd 10.28.134.1 24006 csqstage-ems03
+    _port_fwd 10.28.134.1 24109 csqstage-ems03
+    _port_fwd 10.28.134.1 24218 csqstage-ems03
+    _port_fwd 10.28.134.1 24312 csqstage-ems03
+    _port_fwd 10.28.134.1 24415 csqstage-ems03
+}
+mds3()
+{
+    # kdhdev-ems02
+    _port_fwd 10.53.0.129 21802 kdhdev-ems02
+    _port_fwd 10.53.0.193 21822 kdhdev-ems02
+}
+slakme()
+{
+    ~/apps/code/scripts/ve_scripts/bin/python ~/code/scripts/slakme $*
+}
+mydostounix()
+{
+    cat $1 | sed -e 's/\r/\n/g'  > $1.dossed
+    mv $1.dossed $1
+}
+
+cds()
+{
+    declare -A folderMappings
+    folderMappings[x]=~/code/tmp/higgs-xraider/
+
+    folderMappings[bd]=_build/d
+    folderMappings[ca]=ccgh/aqua/src/gng
+    folderMappings[a]=ccgh/aqua/src/gng
+    folderMappings[ch]=ccgh/hummer/src/gng
+    folderMappings[h]=ccgh/hummer/src/gng
+    folderMappings[c]=ccgh
+    folderMappings[v1]=v1
+    folderMappings[v2]=v2
+
+    folderMappings[h5]=~/code/p/higgs5/
+    folderMappings[h6]=~/code/p/higgs6/
+    folderMappings[h7]=~/code/p/higgs7/
+    folderMappings[h9]=~/code/p/higgs9/
+
+    folderMappings[rw]=~/code/tildePython/
+
+    if test "${folderMappings[$1]+isset}"
+    then
+        cd ${folderMappings[$1]}
+        if [[ "$#" -eq 2 ]]; then
+            if test "${folderMappings[$2]+isset}"
+            then
+                cd ${folderMappings[$2]}
+            else
+                echo "no folder mapping found for $2"
+            fi
+        fi
+        pwd
+    else
+        echo "no folder mapping found"
+    fi;
+}
+
+alias nh=~/code/scripts/ninja-helper
+
+# contains(string, substring)
+# http://stackoverflow.com/a/8811800
+#
+# Returns 0 if the specified string contains the specified substring,
+# otherwise returns 1.
+contains() {
+# contains "abcd" "e" || echo "abcd does not contain e"
+# contains "abcd" "ab" && echo "abcd contains ab"
+    string="$1"
+    substring="$2"
+    if test "${string#*$substring}" != "$string"
+    then
+        return 0    # $substring is in $string
+    else
+        return 1    # $substring is not in $string
+    fi
+}
+
+pu11()
+{
+	hpp2plantuml -i "common/*.h" -i "$1/*.h" -o ~/code/docs/puml/$1.puml
+}
+
+export EDITOR='vim'
+
+/usr/sbin/anacron -s -t /home/abhishek.pandey/.anacron/etc/anacrontab -S /home/abhishek.pandey/.anacron/spool
+
+
+# enable bluetooth copy to android phones
+alias enable_bluetooth='sudo systemctl --user start obex'
+alias cfi='/opt/clang50/bin/clang-format -i '
+gitcir1()
+{
+    sudo docker run -d --name gitlab-runner --restart always \
+  -v /var/run/docker.sock:/var/run/docker.sock \
+  -v /srv/gitlab-runner/config:/etc/gitlab-runner \
+  gitlab/gitlab-runner:latest
+}
+ccgh_graph()
+{
+	# ideally, run this inside ~/code/tmp/higgs-tmp/_build/d
+	cmake --graphviz=test.dot ../..
+	dot -Tpdf test.dot -o test.pdf
+	open test.pdf
+}
+alias sb='source ~/.bashrc'
+alias makered='redshift -l 1:103 -t 4500:1500'
+
+
+
+alive()
+{
+    # ping -q -c 1 -W 1 $*  &> /dev/null && echo success || echo fail
+    netcat -z  $*  &> /dev/null && echo success || echo fail
+}
+jj()
+{
+    alive2()
+    {
+    ping -q -c 1 -W 1 $*  &> /dev/null && echo success || echo fail
+
+    }
+    egrep -rl hummerxr *  | xargs egrep -h "config_file.*hummerxr"  | sed -e 's/.json.erb.*//g' -e 's/.* .//g' -e 's/\./ /g'   | awk '{print $1}' | xargs -I {} alive2 {}
+}
+kk()
+{
+    py_script="
+import os, sys, subprocess
+print('_'*80)
+s1 = str(sys.argv[1])
+#print('s = {S} ; type = {TYPE}'.format(S=s1 , TYPE=type(s1)))
+print(s1)
+_SERVER = s1.split()[0]
+_CONFIG_DIR = s1.split(' ')[1]
+# print('server = '+_SERVER )
+# print('config dir = '+ _CONFIG_DIR)
+host_alive = True if os.system('ping -c 1 -W 1 ' + _SERVER + ' > /dev/null'.format(_SERVER)) is 0 else False
+print('ALIVE' if host_alive else 'DEAD ')
+if host_alive:
+    cmd = '/usr/bin/rsync -avz --delete-after /usr/local/higgs-xraider-config/config/' + _SERVER + ' hummer@' + _SERVER +':/usr/local/hummer/' + _CONFIG_DIR + '/config/'
+    return_code = subprocess.call(cmd, shell=True)
+    print('return code = ' + str(return_code))
+"
+    egrep -rl hummerxr *  | xargs egrep -h "config_file.*hummerxr"  | sed -e 's/.json.erb.*//g' -e 's/.* .//g' -e 's/\./ /g'   |  xargs -I {} python -c "$py_script" {}
+}
+
+gpam()
+{
+    SOURCE=$1
+    DEST=$2
+    echo -e "Will merge $SOURCE into $DEST"
+    git checkout $DEST
+    git pull
+    git merge --no-ff $SOURCE
+    echo -e "Remember to call git push now"
+}
+alias gpu='g push'
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/home/abhishek.pandey/Downloads/google-cloud-sdk-191.0.0-linux-x86_64/google-cloud-sdk/path.bash.inc' ]; then source '/home/abhishek.pandey/Downloads/google-cloud-sdk-191.0.0-linux-x86_64/google-cloud-sdk/path.bash.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/home/abhishek.pandey/Downloads/google-cloud-sdk-191.0.0-linux-x86_64/google-cloud-sdk/completion.bash.inc' ]; then source '/home/abhishek.pandey/Downloads/google-cloud-sdk-191.0.0-linux-x86_64/google-cloud-sdk/completion.bash.inc'; fi
+
+
+bluetooth-fix()
+{
+    sudo dnf autoremove
+    sudo chkconfig bluetooth on
+    sudo service bluetooth start
+}
+alias gcap='git commit --author "abhip1010 <abhi.p1010@gmail.com>"'
+get_common_version()
+{
+    git archive --remote=gitolite@gitlab.grass.corp:p/puppet.git HEAD:hieradata/ common.json > puppet-versions.json
+    cat puppet-versions | python -c 'import json,sys; from itertools import chain; json_dict=json.load(sys.stdin); print('|'.join(chain(json_dict['higgs']['version_defaults'][app_name].values()))) \
+    '
+}
+export GITLAB_URL=http://gitlab.grass.corp
+export GITLAB_USERNAME=abhishek.pandey
+export GITLAB_PASSWORD=grass123
+export GITLAB_TOKEN=pJUx5yHdyN8EKenshn66
+
+# set keyboard rate
+xset r rate 250 30
+alias subl='~/installs/sublime_text_3_build_3176_x64/sublime_text_3/sublime_text'
+alias bing='/home/abhishek.pandey/code/githubs/linux-bing-wallpaper/bing_wallpaper.sh'
+readcsv()
+{
+	column -s, -t < $1 | less -#2 -N -S
+}
+split-csv()
+{
+  head -3 2018-07-06_094000_omnet-md-cash.csv | awk -v FPAT='[^,]*|"[^"]+"' '{for (i=1; i<=NF;i++) print i, "<" $i ">"}'
+}
+alias abc='echo "${BRed} Trying the same text with brackets $OFF ${Green} now in green $OFF"'
+gdbcore() {
+  local p=/var/spool/abrt
+  if [ ! -r $p ] || [ ! -x $p ]; then
+    echo "access [$p]" && sudo chmod 755 $p
+  fi
+  local last=$(ls $p/ccpp* -dtrl | tail -1 | tr -s ' ' | cut -d ' ' -f 9)
+  if [ ! -r $last ] || [ ! -x $last ]; then
+    echo "access [$last]" && sudo chmod 755 $last && sudo chmod 766 $last/*
+  fi
+  echo "core dump by [$(cat $last/executable)] time[$(date -d @$(cat $last/last_occurrence))] at [$(basename $last)]"
+  read -p "Proceed? (y/n)" op
+  if [[ $op == "y" ]] || [[ $op == "Y" ]]; then
+    gdb $(cat $last/executable) $last/coredump
+  fi
+}
+lower()
+{
+    echo $*:l
+}
+
+
+# export GOROOT=/usr/bin
+# export GOROOT=/usr/local/go/
+export GOROOT=/usr/lib/golang
+# export GOPATH=$HOME/go
+
+alias mygo='/usr/local/go/bin/go'
+alias chlog='~/installs/git-chglog/git-chglog_linux_amd64'
+tt()
+{
+    LOG ccgh/aqua/test/reg/aqua_regD --gtest_filter="MachineGunTest.$*"
+}
+export PYTHONSTARTUP=~/.pythonrc
+export DEV="dev41-ws:~/"
+function ddcp()
+{
+  rsync -avzh ~/$1/ dev41-ws:~/$1/
+}
+function dtake()
+{
+    scp -r $* dev41-ws:~/
+}
