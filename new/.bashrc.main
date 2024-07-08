@@ -1,0 +1,28 @@
+
+[ -z ${APP_PATH+x} ] && APP_PATH="$HOME/code/dotfiles"
+# [ -z ${APP_PATH+x} ] && APP_PATH="$HOME/adots"
+
+loadif() {
+    if [ -e "$1" ]; then
+        # ln -sf "$1" "$2"
+        source "$1"
+        echo "File " "$1" "has been sourced"
+    else
+        return echo "File not found. Pls provide file name correctly!"
+    fi
+}
+
+# declare -a bash_files=("file1" "file2" "file3")
+# for i in "${bash_files[@]}"
+# do
+#     echo "$i"
+# done
+echo "sourcing bash"
+
+loadif "$APP_PATH/bashrc.before"
+loadif "$APP_PATH/bashrc.colors"
+loadif "$APP_PATH/bashrc.common"
+loadif "$APP_PATH/bashrc.scripts"
+loadif "$APP_PATH/bashrc.local"
+
+# Local file can have loadif "$APP_PATH/bashrc.where.aws"
