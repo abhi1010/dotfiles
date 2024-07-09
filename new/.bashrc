@@ -2,6 +2,8 @@
 
 
 
+export ZSH="$HOME/.oh-my-zsh"
+
 
 
 
@@ -140,10 +142,9 @@ pathadd()
     fi
 }
 
-pathadd ~/code/githubs/depot_tools/
+pathadd ~/.oh-my-zsh/
 pathadd /usr/local/mysql/bin
 pathadd /opt/local/bin/
-pathadd /opt/homebrew/
 pathadd $EC2_HOME/bin
 pathadd .
 
@@ -194,4 +195,5 @@ llg(){
 nfi() {
   find . -iname "*$**"
 }
+
 

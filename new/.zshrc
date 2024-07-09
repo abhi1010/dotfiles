@@ -114,18 +114,18 @@ source $ZSH/oh-my-zsh.sh
 
 
 
-export ZSH=/Users/apandey/.oh-my-zsh
+export ZSH=~/.oh-my-zsh
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-# ZSH_THEME="robbyrussell"
+ZSH_THEME="robbyrussell"
 # ZSH_THEME="powerline"
 # ZSH_THEME="solarized-powerline"
 # ZSH_THEME="powerline-pills"
 # ZSH_THEME="agnoster-light"
-ZSH_THEME="zys"
+# ZSH_THEME="zys"
 # ZSH_THEME="jwalter"
 
 POWERLINE_DETECT_SSH="true"
@@ -140,9 +140,8 @@ POWERLINE_GIT_UNMERGED="═"
 POWERLINE_HIDE_HOST_NAME="true"
 
 
-export PATH="/usr/lib64/qt-3.3/bin:/usr/lib64/ccache:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin:/home/abhishek.pandey/.local/bin:/home/abhishek.pandey/bin:."
+export PATH="/usr/lib64/qt-3.3/bin:/usr/lib64/ccache:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin:."
 
-eval $(/opt/homebrew/bin/brew shellenv)
 
 
 alias -g T=" > /tmp/1 2>&1"
