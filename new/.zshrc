@@ -73,7 +73,7 @@ export ZSH="$HOME/.oh-my-zsh"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
+plugins=(git dirhistory  zsh-syntax-highlighting zsh-autosuggestions)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -102,7 +102,6 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-
 
 
 
@@ -151,3 +150,5 @@ alias gpu='git push'
 # Powerline Pills Theme
 # export POWERLINE_PILLS="/Users/ap/code/themes/powerline-pills-zsh"
 # source /Users/ap/code/themes/oh-my-git/prompt.sh
+
+# [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

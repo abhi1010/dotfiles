@@ -27,6 +27,7 @@ export LD_LIBRARY_PATH=./lib/:$TIBRV_HOME/lib/:/bar/deps/thirdparty/google-test-
 
 
 alias ls='ls -G'
+alias lc='colorls -lA --sd'
 
 #######################################################################################################################################
 
@@ -51,6 +52,14 @@ export LESSOPEN='|~/.lessfilter %s'
 # =====================================================================================================================================
 
 # aliai
+alias fck='thefuck'
+alias ctl='sudo systemctl'
+alias vsta='sudo systemctl start eon.x11vnc'
+alias vsto='sudo systemctl stop eon.x11vnc'
+alias vstt='sudo systemctl status eon.x11vnc'
+alias spi='sudo apt install -y'
+alias sps='sudo apt search'
+alias ta='tmux attach || tmux new'
 alias wtf='watch -n 0.1 tail -f'
 alias tf='tail -f'
 alias su='sort -u'
@@ -196,4 +205,34 @@ nfi() {
   find . -iname "*$**"
 }
 
+pc() {
+    local user="jeremy"
+    local server=""
+    
+    case $1 in
+        c*)
+            server="casper"
+            ;;
+        n*)
+            server="napoleon"
+            ;;
+        h*)
+            server="hercules"
+            ;;
+        p*)
+            server="pluto"
+            ;;
+        r*)
+            server="risky"
+            ;;
+        *)
+            echo "Unknown server keyword: $1"
+            return 1
+            ;;
+    esac
 
+    ssh "${user}@${server}"
+}
+
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
