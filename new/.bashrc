@@ -6,7 +6,7 @@ export ZSH="$HOME/.oh-my-zsh"
 
 
 
-
+export LESS="IFRSX"
 export TMOUT=0
 export LD_LIBRARY_PATH=./lib/:$TIBRV_HOME/lib/:/bar/deps/thirdparty/google-test-framework/Linux/x86_64/2.6/gcc411_libc25/lib/:$LD_LIBRARY_PATH
 
