@@ -11,45 +11,193 @@
 # hlsearch on (H) or off (h):
 ~h
 # Last Search Pattern:
-~MSle0~/loadin
+~Msle0~/\<gitlab\>
+
+# Last Substitute String:
+$
 
 # Command Line History (newest to oldest):
-:wq
-|2,0,1720487060,,"wq"
 :q
-|2,0,1720486942,,"q"
+|2,0,1735013319,,"q"
+:wq
+|2,0,1735013316,,"wq"
+:q!
+|2,0,1733196778,,"q!"
+:e
+|2,0,1733196077,,"e"
 :Wq
-|2,0,1720446781,,"Wq"
+|2,0,1731409556,,"Wq"
+:ZZ
+|2,0,1731154489,,"ZZ"
+:500
+|2,0,1730948302,,"500"
+:wq!
+|2,0,1730903453,,"wq!"
+:q@
+|2,0,1730887929,,"q@"
 :w
-|2,0,1720445659,,"w"
+|2,0,1730867019,,"w"
+:hi Error ctermfg=DarkGray guifg=DarkGray ctermbg=Black cterm=bold
+|2,0,1730855867,,"hi Error ctermfg=DarkGray guifg=DarkGray ctermbg=Black cterm=bold"
+:hi Error ctermfg=DarkGray guifg=DarkGray ctermbg=Black cterm=nounderline
+|2,0,1730855864,,"hi Error ctermfg=DarkGray guifg=DarkGray ctermbg=Black cterm=nounderline"
+:hi Error ctermfg=DarkGray guifg=DarkGray ctermbg=Black cterm=normal
+|2,0,1730855855,,"hi Error ctermfg=DarkGray guifg=DarkGray ctermbg=Black cterm=normal"
+:hi Error ctermfg=DarkGray guifg=DarkGray ctermbg=Black 
+|2,0,1730855842,,"hi Error ctermfg=DarkGray guifg=DarkGray ctermbg=Black "
+:hi Error ctermfg=DarkGray guifg=DarkGray ctermbg=Black cterm=underline
+|2,0,1730855796,,"hi Error ctermfg=DarkGray guifg=DarkGray ctermbg=Black cterm=underline"
+:hi Error ctermfg=Gray guifg=DarkGray ctermbg=Black cterm=underline
+|2,0,1730855790,,"hi Error ctermfg=Gray guifg=DarkGray ctermbg=Black cterm=underline"
+:hi Error ctermfg=Gray guifg=Gray ctermbg=Black cterm=underline
+|2,0,1730855742,,"hi Error ctermfg=Gray guifg=Gray ctermbg=Black cterm=underline"
+:hi Error ctermfg=Gray guifg=Gray ctermbg= cterm=underline
+|2,0,1730855737,,"hi Error ctermfg=Gray guifg=Gray ctermbg= cterm=underline"
+:hi Error ctermfg=Gray guifg=Gray cterm=underline
+|2,0,1730855730,,"hi Error ctermfg=Gray guifg=Gray cterm=underline"
+:hi Error ctermfg=Gray guifg=Gray ctermbg=DarkGray cterm=underline
+|2,0,1730855717,,"hi Error ctermfg=Gray guifg=Gray ctermbg=DarkGray cterm=underline"
+:hi Error ctermfg=Gray guifg=Gray ctermbg=Gray cterm=underline
+|2,0,1730855709,,"hi Error ctermfg=Gray guifg=Gray ctermbg=Gray cterm=underline"
+:hi Error ctermfg=Red guifg=Gray ctermbg=Gray cterm=underline
+|2,0,1730855704,,"hi Error ctermfg=Red guifg=Gray ctermbg=Gray cterm=underline"
+:hi Error ctermfg=Red guifg=Red ctermbg=Black cterm=underline
+|2,0,1730855690,,"hi Error ctermfg=Red guifg=Red ctermbg=Black cterm=underline"
+:hi Error ctermfg=Red guifg=Red ctermbg=Gray cterm=underline
+|2,0,1730855683,,"hi Error ctermfg=Red guifg=Red ctermbg=Gray cterm=underline"
+:hi Error ctermfg=Red guifg=Red ctermbg=Blue cterm=underline
+|2,0,1730855593,,"hi Error ctermfg=Red guifg=Red ctermbg=Blue cterm=underline"
+:hi Error ctermfg=Red guifg=Red ctermbg=Blue
+|2,0,1730855559,,"hi Error ctermfg=Red guifg=Red ctermbg=Blue"
+:hi Error ctermfg=Black guifg=Black
+|2,0,1730855548,,"hi Error ctermfg=Black guifg=Black"
+:hi Error ctermfg=Red guifg=Black
+|2,0,1730855536,,"hi Error ctermfg=Red guifg=Black"
+:hi Error ctermfg=Black guifg=Red
+|2,0,1730855524,,"hi Error ctermfg=Black guifg=Red"
+:hi Error ctermfg=Red guifg=Red
+|2,0,1730855514,,"hi Error ctermfg=Red guifg=Red"
+:highlight link ALEErrorLine SpellBad
+|2,0,1730855468,,"highlight link ALEErrorLine SpellBad"
+:hi SpellBad cterm=underline ctermfg=red ctermbg=NONE
+|2,0,1730855459,,"hi SpellBad cterm=underline ctermfg=red ctermbg=NONE"
+:set termguicolors
+|2,0,1730855252,,"set termguicolors"
+:hi Comment ctermfg=Blue
+|2,0,1730854449,,"hi Comment ctermfg=Blue"
+:hi hi Comment ctermfg=LightBlu
+|2,0,1730854440,,"hi hi Comment ctermfg=LightBlu"
+:hi comment ctermfg=red
+|2,0,1730854436,,"hi comment ctermfg=red"
+:hi Comment ctermfg=red
+|2,0,1730854431,,"hi Comment ctermfg=red"
+::mds::L2Layer{ id[0]  trade_id[<null>]
+|2,0,1730814867,,":mds::L2Layer{ id[0]  trade_id[<null>]"
+:11
+|2,0,1730447732,,"11"
 
 # Search String History (newest to oldest):
-?/loadin
-|2,1,1720487059,47,"loadin"
-?/eq
-|2,1,1720449466,47,"eq"
-?/-eq
-|2,1,1720449465,47,"-eq"
-?//eq
-|2,1,1720449463,47,"/eq"
-?/bashrc
-|2,1,1720449395,47,"bashrc"
-?/pathadd
-|2,1,1720449201,47,"pathadd"
-?/export
-|2,1,1720449164,47,"export"
-?/zsh
-|2,1,1720445456,47,"zsh"
-?/hh
-|2,1,1720445354,47,"hh"
-?/abhi
-|2,1,1720445268,47,"abhi"
-?/user
-|2,1,1720445259,47,"user"
-?/users
-|2,1,1720445194,47,"users"
-?/homeb
-|2,1,1720444781,47,"homeb"
+? \<gitlab\>
+|2,1,1735013308,,"\\<gitlab\\>"
+?/feed
+|2,1,1733213506,47,"feed"
+?/NKH5 INDEX
+|2,1,1733204839,47,"NKH5 INDEX"
+?/XOSE@FUT_225_250313
+|2,1,1733204815,47,"XOSE@FUT_225_250313"
+?/NIH5 INDEX
+|2,1,1733204793,47,"NIH5 INDEX"
+?/1000657580
+|2,1,1733204334,47,"1000657580"
+?/sendor
+|2,1,1733204270,47,"sendor"
+?/mapeon.*225h5
+|2,1,1733204083,47,"mapeon.*225h5"
+?/mapeon.*225h
+|2,1,1733204078,47,"mapeon.*225h"
+?/mapeon.*225
+|2,1,1733203948,47,"mapeon.*225"
+?/eonsym
+|2,1,1733203487,47,"eonsym"
+?/mapeon: 
+|2,1,1733203464,47,"mapeon: "
+?/mapeon
+|2,1,1733203443,47,"mapeon"
+?/order
+|2,1,1733203353,47,"order"
+?/bbgName=.*225H
+|2,1,1733203318,47,"bbgName=.*225H"
+?/bbgName=
+|2,1,1733203306,47,"bbgName="
+? \<1000768168\>
+|2,1,1733203250,,"\\<1000768168\\>"
+? \<1000655688\>
+|2,1,1733200663,,"\\<1000655688\\>"
+?/225H5
+|2,1,1733200410,47,"225H5"
+?/410
+<20241203-121757.323928 |MTID.16|INFO| ####LAOM#### BuildContracts:0: PartA: Id: 1000768168; Added: sec_id=1000768168,bbgname=OSE.225H5,underlying=,localSymbol=,exchange=LA::OSE,prodtype=,currency=JPY,productCurrency=,longCurren      cy=,shortCurrency=,contractSize=1,multiplier=1,ricBase=,firstTradingDay=1/1/0001 12:00:00 am,expiration=31/12/9999 11:59:59 pm,strike=0,callPut=0,leverage=0,hedgingInstrument
+|2,1,1733200400,47,"20241203-121757.323928 |MTID.16|INFO| ####LAOM#### BuildContracts:0: PartA: Id: 1000768168; Added: sec_id=1000768168,bbgname=OSE.225H5,underlying=,localSymbol=,exchange=LA::OSE,prodtype=,currency=JPY,productCurrency=,longCurren      cy=,shortCurrency=,contractSize=1,multiplier=1,ricBase=,firstTradingDay=1/1/0001 12:00:00 am,expiration=31/12/9999 11:59:59 pm,strike=0,callPut=0,leverage=0,hedgingInstrument"
+?/225h5
+|2,1,1733199775,47,"225h5"
+?/1000655688
+|2,1,1733199529,47,"1000655688"
+?/s:0: Parallel mapped.*225H5
+|2,1,1733199502,47,"s:0: Parallel mapped.*225H5"
+?/s:0: Parallel mapped
+|2,1,1733199493,47,"s:0: Parallel mapped"
+?/ose.225h5
+|2,1,1733198957,47,"ose.225h5"
+?/22
+|2,1,1733198755,47,"22"
+?/ts:0: Parallel mapped .*XOSE-ITIVITI.225
+|2,1,1733198695,47,"ts:0: Parallel mapped .*XOSE-ITIVITI.225"
+?/ts:0: Parallel mapped .*XOSE
+|2,1,1733198651,47,"ts:0: Parallel mapped .*XOSE"
+?/ts:0: Parallel mapped .*xose
+|2,1,1733198646,47,"ts:0: Parallel mapped .*xose"
+?/xose.*
+|2,1,1733198641,47,"xose.*"
+?/xose
+|2,1,1733198638,47,"xose"
+?/ts:0: Parallel mapped 
+|2,1,1733198598,47,"ts:0: Parallel mapped "
+?/ Parallel mapp
+|2,1,1733198332,47," Parallel mapp"
+?// Parallel mapp
+|2,1,1733198331,47,"/ Parallel mapp"
+?/partb
+|2,1,1733196804,47,"partb"
+?/map:q
+|2,1,1733196774,47,"map:q"
+?/unmapp
+|2,1,1733196562,47,"unmapp"
+?/type
+|2,1,1733196274,47,"type"
+?/fut
+|2,1,1733196267,47,"fut"
+?/225
+|2,1,1733196236,47,"225"
+?/nikkei
+|2,1,1733196229,47,"nikkei"
+?/nk22
+|2,1,1733196227,47,"nk22"
+?/ose.225mh5
+|2,1,1733196212,47,"ose.225mh5"
+?/mapped
+|2,1,1733196183,47,"mapped"
+?/routermgr
+|2,1,1733196088,47,"routermgr"
+?/riskmgr
+|2,1,1733196085,47,"riskmgr"
+?/bbg
+|2,1,1733195311,47,"bbg"
+?/BuildContracts:0: Id
+|2,1,1733195220,47,"BuildContracts:0: Id"
+?/BuildContracts:0: mapped
+|2,1,1733194239,47,"BuildContracts:0: mapped"
+?/LAProduct:0 create
+|2,1,1733194209,47,"LAProduct:0 create"
 
 # Expression History (newest to oldest):
 
@@ -59,350 +207,1116 @@
 
 # Registers:
 "0	LINE	0
-	pathadd ~/code/githubs/depot_tools/
-|3,0,0,1,1,0,1720449180,"pathadd ~/code/githubs/depot_tools/"
-""1	LINE	0
-	echo -e "loading zshrc"
-|3,1,1,1,1,0,1720487059,"echo -e \"loading zshrc\""
+	pathadd ~/.oh-my-zsh/
+|3,0,0,1,1,0,1731409544,"pathadd ~/.oh-my-zsh/"
+"1	LINE	0
+	import logging
+	import time
+	
+	# Configure the logger
+	logging.basicConfig(filename='app.log', level=logging.INFO, format='%(asctime)s - %(message)s')
+	
+	def main():
+	    while True:
+	        current_time = time.strftime("%Y-%m-%d %H:%M:%S")
+	        logging.info(f"Current time: {current_time}")
+	        time.sleep(5)
+	
+	if __name__ == "__main__":
+	    main()
+|3,0,1,1,14,0,1731075615,"import logging","import time","","# Configure the logger","logging.basicConfig(filename='app.log', level=logging.INFO, format='%(asctime)s - %(message)s')","","def main():","    while True:","        current_time = time.strftime(\"%Y-%m-%d %H:%M:%S\")","        logging.info(f\"Current time: {current_time}\")","        time.sleep(5)","","if __name__ == \"__main__\":","    main()"
 "2	LINE	0
-	echo -e "loading bashrc"
-|3,0,2,1,1,0,1720486994,"echo -e \"loading bashrc\""
+	744815-}]
+|3,0,2,1,1,0,1730964508,"744815-}]"
 "3	LINE	0
-	    echo -e "loading zsh 0...."
-|3,0,3,1,1,0,1720486983,"    echo -e \"loading zsh 0....\""
+	744814-  }
+|3,0,3,1,1,0,1730964507,"744814-  }"
 "4	LINE	0
-	    echo -e "loading bash 0...."
-|3,0,4,1,1,0,1720486969,"    echo -e \"loading bash 0....\""
+	744813-    ASK:
+|3,0,4,1,1,0,1730964505,"744813-    ASK:"
 "5	LINE	0
-	if [ -n "$ZSH_VERSION" ]; then
-	  echo -e "supposed to load zsh"
-	  source ~/.zshrc
-	fi
-|3,0,5,1,4,0,1720486934,"if [ -n \"$ZSH_VERSION\" ]; then","  echo -e \"supposed to load zsh\"","  source ~/.zshrc","fi"
+	744812-    BID:
+|3,0,5,1,1,0,1730964505,"744812-    BID:"
 "6	LINE	0
-	echo -e "loaded zprofile 3"
-|3,0,6,1,1,0,1720486919,"echo -e \"loaded zprofile 3\""
+	744811-  pb::mds::L2Layer{ id[0]  trade_id[7929866988405591454]  trade_px[7574.000000]  trade_qty[1] 
+|3,0,6,1,1,0,1730964505,"744811-  pb::mds::L2Layer{ id[0]  trade_id[7929866988405591454]  trade_px[7574.000000]  trade_qty[1] "
 "7	LINE	0
-	echo -e "loading zprofile 3"
-|3,0,7,1,1,0,1720486919,"echo -e \"loading zprofile 3\""
+	744723-2024-11-07 15:20:49.936890 D {ExtractorL2Xxxx.cpp:717:notif_MBLOverlapRefresh} seqNum[3] cachePb_ :[pb::mds::L2{ event_type[<null>]  seq_num[<null>]  symbol[<null>]  ts_utc_mkt[<null>]  ts_utc_server[<null>] 
+	744724-}]
+	744725-2024-11-07 15:20:49.936891 D {ExtractorL2Xxxx.cpp:41:getLayerTradeId} tag_trade_id_val[7929866988405591454]
+	270
+<744726-2024-11-07 15:20:49.936895 D {ExtractorL2Xxxx.cpp:752:notif_MBLOverlapRefresh} AB: seqNum[3] symbol 1: [XHKF@HHIM5], layerId[0] trade_id_s[7929866988405591454] pbLayer[pb::mds::L2Layer{ id[0]  trade_id[7929866988405591454]  trade_px[<null>]  trade_qty[<null>] 
+	744727-  BID:
+	744728-  ASK:
+	744729-}]
+	270
+<744730-2024-11-07 15:20:49.936901 D {ExtractorL2Xxxx.cpp:770:notif_MBLOverlapRefresh} AB: seqNum[3] symbol 2: [XHKF@HHIM5], layerId[0] trade_id_s[7929866988405591454] pbLayer[pb::mds::L2Layer{ id[0]  trade_id[7929866988405591454]  trade_px[<null>]  trade_qty[<null>] 
+	744731-  BID:
+	744732-  ASK:
+	744733-}]
+	270
+<744734-2024-11-07 15:20:49.936906 D {ExtractorL2Xxxx.cpp:797:notif_MBLOverlapRefresh} AB: seqNum[3] symbol 3: [XHKF@HHIM5], layerId[0] trade_id_s[7929866988405591454] pbLayer[pb::mds::L2Layer{ id[0]  trade_id[7929866988405591454]  trade_px[<null>]  trade_qty[<null>] 
+	744735-  BID:
+	744736-  ASK:
+	744737-    pb::mds::L2Layer::Level{ px[7630.000000]  qty[0]  num_orders[0] }
+	744738-    pb::mds::L2Layer::Level{ px[7649.000000]  qty[0]  num_orders[0] }
+	744739-}]
+	270
+<744740-2024-11-07 15:20:49.936912 D {ExtractorL2Xxxx.cpp:815:notif_MBLOverlapRefresh} AB: seqNum[3] symbol 4: [XHKF@HHIM5], layerId[0] trade_id_s[7929866988405591454] pbLayer[pb::mds::L2Layer{ id[0]  trade_id[7929866988405591454]  trade_px[<null>]  trade_qty[<null>] 
+	744741-  BID:
+	744742-  ASK:
+	744743-    pb::mds::L2Layer::Level{ px[7630.000000]  qty[0]  num_orders[0] }
+	744744-    pb::mds::L2Layer::Level{ px[7649.000000]  qty[0]  num_orders[0] }
+	744745-    pb::mds::L2Layer::Level{ px[7889.000000]  qty[0]  num_orders[0] }
+	744746-}]
+	744747-2024-11-07 15:20:49.936921 D {ExtractorL2Xxxx.cpp:834:notif_MBLOverlapRefresh} AB: seqNum[3] has_trade_id: [true] pbLayer [pb::mds::L2Layer{ id[0]  trade_id[7929866988405591454]  trade_px[<null>]  trade_qty[<null>] 
+	744748-  BID:
+	744749-  ASK:
+	744750-    pb::mds::L2Layer::Level{ px[7630.000000]  qty[0]  num_orders[0] }
+	744751-    pb::mds::L2Layer::Level{ px[7649.000000]  qty[0]  num_orders[0] }
+	744752-    pb::mds::L2Layer::Level{ px[7889.000000]  qty[0]  num_orders[0] }
+	744753-    pb::mds::L2Layer::Level{ px[7649.000000]  qty[2]  num_orders[1] }
+	744754-    pb::mds::L2Layer::Level{ px[7889.000000]  qty[1]  num_orders[1] }
+	744755-}]
+|3,0,7,1,33,0,1730964501,"744723-2024-11-07 15:20:49.936890 D {ExtractorL2Xxxx.cpp:717:notif_MBLOverlapRefresh} seqNum[3] cachePb_ :[pb::mds::L2{ event_type[<null>]  seq_num[<null>]  symbol[<null>]  ts_utc_mkt[<null>]  ts_utc_server[<null>] ","744724-}]","744725-2024-11-07 15:20:49.936891 D {ExtractorL2Xxxx.cpp:41:getLayerTradeId} tag_trade_id_val[7929866988405591454]",>269
+|<"744726-2024-11-07 15:20:49.936895 D {ExtractorL2Xxxx.cpp:752:notif_MBLOverlapRefresh} AB: seqNum[3] symbol 1: [XHKF@HHIM5], layerId[0] trade_id_s[7929866988405591454] pbLayer[pb::mds::L2Layer{ id[0]  trade_id[7929866988405591454]  trade_px[<null>]  trade_qty[<null>] ","744727-  BID:","744728-  ASK:","744729-}]",>269
+|<"744730-2024-11-07 15:20:49.936901 D {ExtractorL2Xxxx.cpp:770:notif_MBLOverlapRefresh} AB: seqNum[3] symbol 2: [XHKF@HHIM5], layerId[0] trade_id_s[7929866988405591454] pbLayer[pb::mds::L2Layer{ id[0]  trade_id[7929866988405591454]  trade_px[<null>]  trade_qty[<null>] ","744731-  BID:","744732-  ASK:","744733-}]",>269
+|<"744734-2024-11-07 15:20:49.936906 D {ExtractorL2Xxxx.cpp:797:notif_MBLOverlapRefresh} AB: seqNum[3] symbol 3: [XHKF@HHIM5], layerId[0] trade_id_s[7929866988405591454] pbLayer[pb::mds::L2Layer{ id[0]  trade_id[7929866988405591454]  trade_px[<null>]  trade_qty[<null>] ","744735-  BID:","744736-  ASK:","744737-    pb::mds::L2Layer::Level{ px[7630.000000]  qty[0]  num_orders[0] }","744738-    pb::mds::L2Layer::Level{ px[7649.000000]  qty[0]  num_orders[0] }","744739-}]",>269
+|<"744740-2024-11-07 15:20:49.936912 D {ExtractorL2Xxxx.cpp:815:notif_MBLOverlapRefresh} AB: seqNum[3] symbol 4: [XHKF@HHIM5], layerId[0] trade_id_s[7929866988405591454] pbLayer[pb::mds::L2Layer{ id[0]  trade_id[7929866988405591454]  trade_px[<null>]  trade_qty[<null>] ","744741-  BID:","744742-  ASK:","744743-    pb::mds::L2Layer::Level{ px[7630.000000]  qty[0]  num_orders[0] }","744744-    pb::mds::L2Layer::Level{ px[7649.000000]  qty[0]  num_orders[0] }",>78
+|<"744745-    pb::mds::L2Layer::Level{ px[7889.000000]  qty[0]  num_orders[0] }","744746-}]","744747-2024-11-07 15:20:49.936921 D {ExtractorL2Xxxx.cpp:834:notif_MBLOverlapRefresh} AB: seqNum[3] has_trade_id: [true] pbLayer [pb::mds::L2Layer{ id[0]  trade_id[7929866988405591454]  trade_px[<null>]  trade_qty[<null>] ","744748-  BID:","744749-  ASK:","744750-    pb::mds::L2Layer::Level{ px[7630.000000]  qty[0]  num_orders[0] }",>78
+|<"744751-    pb::mds::L2Layer::Level{ px[7649.000000]  qty[0]  num_orders[0] }","744752-    pb::mds::L2Layer::Level{ px[7889.000000]  qty[0]  num_orders[0] }","744753-    pb::mds::L2Layer::Level{ px[7649.000000]  qty[2]  num_orders[1] }","744754-    pb::mds::L2Layer::Level{ px[7889.000000]  qty[1]  num_orders[1] }","744755-}]"
 "8	LINE	0
-	emulate zsh
-|3,0,8,1,1,0,1720486769,"emulate zsh"
+	744756-2024-11-07 15:20:49.936932 D {ExtractorL2Xxxx.cpp:835:notif_MBLOverlapRefresh} AB: seqNum[3] has_trade_id: [true] cachePb_ [pb::mds::L2{ event_type[<null>]  seq_num[<null>]  symbol[<null>]  ts_utc_mkt[<null>]  ts_utc_server[<null>] 
+	744757-  pb::mds::L2Layer{ id[0]  trade_id[7929866988405591454]  trade_px[<null>]  trade_qty[<null>] 
+	744758-    BID:
+	744759-    ASK:
+	744760-      pb::mds::L2Layer::Level{ px[7630.000000]  qty[0]  num_orders[0] }
+	744761-      pb::mds::L2Layer::Level{ px[7649.000000]  qty[0]  num_orders[0] }
+	744762-      pb::mds::L2Layer::Level{ px[7889.000000]  qty[0]  num_orders[0] }
+	744763-      pb::mds::L2Layer::Level{ px[7649.000000]  qty[2]  num_orders[1] }
+	744764-      pb::mds::L2Layer::Level{ px[7889.000000]  qty[1]  num_orders[1] }
+	744765-  }
+	744766-}]
+	744767-2024-11-07 15:20:49.936933 D {ExtractorL2Xxxx.cpp:836:notif_MBLOverlapRefresh} AB: seqNum[3] has_trade_id: [true] symbol 5: [XHKF@HHIM5], layerId[0] trade_id_s[7929866988405591454]
+	744768-2024-11-07 15:20:49.936944 T {ExtractorL2I.cpp:67:prepAndPubL2} AB: Seq+1[4] cachePb_[pb::mds::L2{ event_type[eEvtMbp]  seq_num[4]  symbol[XHKF@HHIM5]  ts_utc_mkt[<null>]  ts_utc_server[<null>] 
+	744769-  pb::mds::L2Layer{ id[0]  trade_id[7929866988405591454]  trade_px[<null>]  trade_qty[<null>] 
+	744770-    BID:
+	744771-    ASK:
+	744772-      pb::mds::L2Layer::Level{ px[7630.000000]  qty[0]  num_orders[0] }
+	744773-      pb::mds::L2Layer::Level{ px[7649.000000]  qty[0]  num_orders[0] }
+	744774-      pb::mds::L2Layer::Level{ px[7889.000000]  qty[0]  num_orders[0] }
+	744775-      pb::mds::L2Layer::Level{ px[7649.000000]  qty[2]  num_orders[1] }
+	744776-      pb::mds::L2Layer::Level{ px[7889.000000]  qty[1]  num_orders[1] }
+	744777-  }
+	744778-}]
+	373
+<744779-2024-11-07 15:20:49.937036 T {ExtractorL2I.cpp:102:prepAndPubL2} AB: Seq+1[4] cachePb_[pb::mds::L2{ event_type[eEvtMbp]  seq_num[4]  symbol[XHKF@HHIM5]  ts_utc_mkt[pb::core::Timestamp{seconds[1730964047] nanos[75924000] _[2024-11-07 07:20:47.75,924,000]}]  ts_utc_server[pb::core::Timestamp{seconds[1730964047] nanos[75000000] _[2024-11-07 07:20:47.75,000,000]}] 
+	744780-  pb::mds::L2Layer{ id[0]  trade_id[7929866988405591454]  trade_px[<null>]  trade_qty[<null>] 
+	744781-    BID:
+	744782-    ASK:
+	744783-      pb::mds::L2Layer::Level{ px[7630.000000]  qty[0]  num_orders[0] }
+	744784-      pb::mds::L2Layer::Level{ px[7649.000000]  qty[0]  num_orders[0] }
+	744785-      pb::mds::L2Layer::Level{ px[7889.000000]  qty[0]  num_orders[0] }
+	744786-      pb::mds::L2Layer::Level{ px[7649.000000]  qty[2]  num_orders[1] }
+	744787-      pb::mds::L2Layer::Level{ px[7889.000000]  qty[1]  num_orders[1] }
+	744788-  }
+	744789-}]
+	744808-    pb::mds::L2Layer::Level{ px[7889.000000]  qty[1]  num_orders[1] }
+	744809-}]
+	744810-2024-11-07 15:20:49.937220 T {ExtractorL2I.cpp:67:prepAndPubL2} AB: Seq+1[5] cachePb_[pb::mds::L2{ event_type[eEvtLastTrade]  seq_num[5]  symbol[XHKF@HHIM5]  ts_utc_mkt[<null>]  ts_utc_server[<null>] 
+|3,0,8,1,37,0,1730964490,"744756-2024-11-07 15:20:49.936932 D {ExtractorL2Xxxx.cpp:835:notif_MBLOverlapRefresh} AB: seqNum[3] has_trade_id: [true] cachePb_ [pb::mds::L2{ event_type[<null>]  seq_num[<null>]  symbol[<null>]  ts_utc_mkt[<null>]  ts_utc_server[<null>] ","744757-  pb::mds::L2Layer{ id[0]  trade_id[7929866988405591454]  trade_px[<null>]  trade_qty[<null>] ","744758-    BID:","744759-    ASK:",>80
+|<"744760-      pb::mds::L2Layer::Level{ px[7630.000000]  qty[0]  num_orders[0] }","744761-      pb::mds::L2Layer::Level{ px[7649.000000]  qty[0]  num_orders[0] }","744762-      pb::mds::L2Layer::Level{ px[7889.000000]  qty[0]  num_orders[0] }","744763-      pb::mds::L2Layer::Level{ px[7649.000000]  qty[2]  num_orders[1] }","744764-      pb::mds::L2Layer::Level{ px[7889.000000]  qty[1]  num_orders[1] }","744765-  }","744766-}]",>189
+|<"744767-2024-11-07 15:20:49.936933 D {ExtractorL2Xxxx.cpp:836:notif_MBLOverlapRefresh} AB: seqNum[3] has_trade_id: [true] symbol 5: [XHKF@HHIM5], layerId[0] trade_id_s[7929866988405591454]","744768-2024-11-07 15:20:49.936944 T {ExtractorL2I.cpp:67:prepAndPubL2} AB: Seq+1[4] cachePb_[pb::mds::L2{ event_type[eEvtMbp]  seq_num[4]  symbol[XHKF@HHIM5]  ts_utc_mkt[<null>]  ts_utc_server[<null>] ",>103
+|<"744769-  pb::mds::L2Layer{ id[0]  trade_id[7929866988405591454]  trade_px[<null>]  trade_qty[<null>] ","744770-    BID:","744771-    ASK:","744772-      pb::mds::L2Layer::Level{ px[7630.000000]  qty[0]  num_orders[0] }","744773-      pb::mds::L2Layer::Level{ px[7649.000000]  qty[0]  num_orders[0] }","744774-      pb::mds::L2Layer::Level{ px[7889.000000]  qty[0]  num_orders[0] }","744775-      pb::mds::L2Layer::Level{ px[7649.000000]  qty[2]  num_orders[1] }",>80
+|<"744776-      pb::mds::L2Layer::Level{ px[7889.000000]  qty[1]  num_orders[1] }","744777-  }","744778-}]","744779-2024-11-07 15:20:49.937036 T {ExtractorL2I.cpp:102:prepAndPubL2} AB: Seq+1[4] cachePb_[pb::mds::L2{ event_type[eEvtMbp]  seq_num[4]  symbol[XHKF@HHIM5]  ts_utc_mkt[pb::core::Timestamp{seconds[1730964047] nanos[75924000] _[2024-11-07 07:20:47.75,924,000]}]  ts_utc_server[pb::core::Timestamp{seconds[1730964047] nanos[75000000] _[2024-11-07 07:20:47.75,000,000]}] ",>103
+|<"744780-  pb::mds::L2Layer{ id[0]  trade_id[7929866988405591454]  trade_px[<null>]  trade_qty[<null>] ","744781-    BID:","744782-    ASK:","744783-      pb::mds::L2Layer::Level{ px[7630.000000]  qty[0]  num_orders[0] }","744784-      pb::mds::L2Layer::Level{ px[7649.000000]  qty[0]  num_orders[0] }","744785-      pb::mds::L2Layer::Level{ px[7889.000000]  qty[0]  num_orders[0] }","744786-      pb::mds::L2Layer::Level{ px[7649.000000]  qty[2]  num_orders[1] }",>80
+|<"744787-      pb::mds::L2Layer::Level{ px[7889.000000]  qty[1]  num_orders[1] }","744788-  }","744789-}]","744808-    pb::mds::L2Layer::Level{ px[7889.000000]  qty[1]  num_orders[1] }","744809-}]","744810-2024-11-07 15:20:49.937220 T {ExtractorL2I.cpp:67:prepAndPubL2} AB: Seq+1[5] cachePb_[pb::mds::L2{ event_type[eEvtLastTrade]  seq_num[5]  symbol[XHKF@HHIM5]  ts_utc_mkt[<null>]  ts_utc_server[<null>] "
 "9	LINE	0
-	emulate sh
-|3,0,9,1,1,0,1720486762,"emulate sh"
-"-	CHAR	0
-	z
-|3,0,36,0,1,0,1720486979,"z"
+	382
+<744790-2024-11-07 15:20:49.937173 T {MdsApp.cpp:188:evtOnL2} published: amqpTopic[md.XHKF.L2.HHIM5] l2[pb::mds::L2{ event_type[eEvtMbp]  seq_num[4]  symbol[XHKF@HHIM5]  ts_utc_mkt[pb::core::Timestamp{seconds[1730964047] nanos[75924000] _[2024-11-07 07:20:47.75,924,000]}]  ts_utc_server[pb::core::Timestamp{seconds[1730964047] nanos[75000000] _[2024-11-07 07:20:47.75,000,000]}] 
+	744791-  pb::mds::L2Layer{ id[0]  trade_id[7929866988405591454]  trade_px[<null>]  trade_qty[<null>] 
+	744792-    BID:
+	744793-    ASK:
+	744794-      pb::mds::L2Layer::Level{ px[7630.000000]  qty[0]  num_orders[0] }
+	744795-      pb::mds::L2Layer::Level{ px[7649.000000]  qty[0]  num_orders[0] }
+	744796-      pb::mds::L2Layer::Level{ px[7889.000000]  qty[0]  num_orders[0] }
+	744797-      pb::mds::L2Layer::Level{ px[7649.000000]  qty[2]  num_orders[1] }
+	744798-      pb::mds::L2Layer::Level{ px[7889.000000]  qty[1]  num_orders[1] }
+	744799-  }
+	744800-}]
+	744801-2024-11-07 15:20:49.937213 D {ExtractorL2Xxxx.cpp:845:notif_MBLOverlapRefresh} AB: seqNum[3] Finished has_trade_id: [true] symbol 5: [XHKF@HHIM5],  pbLayer[pb::mds::L2Layer{ id[0]  trade_id[7929866988405591454]  trade_px[<null>]  trade_qty[<null>] 
+	744802-  BID:
+	744803-  ASK:
+	744804-    pb::mds::L2Layer::Level{ px[7630.000000]  qty[0]  num_orders[0] }
+	744805-    pb::mds::L2Layer::Level{ px[7649.000000]  qty[0]  num_orders[0] }
+	744806-    pb::mds::L2Layer::Level{ px[7889.000000]  qty[0]  num_orders[0] }
+	744807-    pb::mds::L2Layer::Level{ px[7649.000000]  qty[2]  num_orders[1] }
+|3,0,9,1,18,0,1730964482,"744790-2024-11-07 15:20:49.937173 T {MdsApp.cpp:188:evtOnL2} published: amqpTopic[md.XHKF.L2.HHIM5] l2[pb::mds::L2{ event_type[eEvtMbp]  seq_num[4]  symbol[XHKF@HHIM5]  ts_utc_mkt[pb::core::Timestamp{seconds[1730964047] nanos[75924000] _[2024-11-07 07:20:47.75,924,000]}]  ts_utc_server[pb::core::Timestamp{seconds[1730964047] nanos[75000000] _[2024-11-07 07:20:47.75,000,000]}] ",>103
+|<"744791-  pb::mds::L2Layer{ id[0]  trade_id[7929866988405591454]  trade_px[<null>]  trade_qty[<null>] ","744792-    BID:","744793-    ASK:","744794-      pb::mds::L2Layer::Level{ px[7630.000000]  qty[0]  num_orders[0] }","744795-      pb::mds::L2Layer::Level{ px[7649.000000]  qty[0]  num_orders[0] }","744796-      pb::mds::L2Layer::Level{ px[7889.000000]  qty[0]  num_orders[0] }","744797-      pb::mds::L2Layer::Level{ px[7649.000000]  qty[2]  num_orders[1] }",>80
+|<"744798-      pb::mds::L2Layer::Level{ px[7889.000000]  qty[1]  num_orders[1] }","744799-  }","744800-}]","744801-2024-11-07 15:20:49.937213 D {ExtractorL2Xxxx.cpp:845:notif_MBLOverlapRefresh} AB: seqNum[3] Finished has_trade_id: [true] symbol 5: [XHKF@HHIM5],  pbLayer[pb::mds::L2Layer{ id[0]  trade_id[7929866988405591454]  trade_px[<null>]  trade_qty[<null>] ","744802-  BID:","744803-  ASK:","744804-    pb::mds::L2Layer::Level{ px[7630.000000]  qty[0]  num_orders[0] }",>78
+|<"744805-    pb::mds::L2Layer::Level{ px[7649.000000]  qty[0]  num_orders[0] }","744806-    pb::mds::L2Layer::Level{ px[7889.000000]  qty[0]  num_orders[0] }","744807-    pb::mds::L2Layer::Level{ px[7649.000000]  qty[2]  num_orders[1] }"
+""-	CHAR	0
+	v
+|3,1,36,0,1,0,1732791108,"v"
 
 # File marks:
-'0  4  0  ~/.zshrc
-|4,48,4,0,1720487060,"~/.zshrc"
-'1  4  0  ~/.bashrc
-|4,49,4,0,1720486996,"~/.bashrc"
-'2  31  0  ~/.profile
-|4,50,31,0,1720486986,"~/.profile"
-'3  153  0  ~/.zshrc
-|4,51,153,0,1720486942,"~/.zshrc"
-'4  154  0  ~/.zshrc
-|4,52,154,0,1720486942,"~/.zshrc"
-'5  199  0  ~/.bashrc
-|4,53,199,0,1720486935,"~/.bashrc"
-'6  200  0  ~/.bashrc
-|4,54,200,0,1720486935,"~/.bashrc"
-'7  1  0  ~/.zprofile
-|4,55,1,0,1720486920,"~/.zprofile"
-'8  2  0  ~/.zprofile
-|4,56,2,0,1720486770,"~/.zprofile"
-'9  3  0  ~/.zprofile
-|4,57,3,0,1720486770,"~/.zprofile"
+'0  7  7  ~/src/supernova/.git/config
+|4,48,7,7,1735013914,"~/src/supernova/.git/config"
+'1  1  0  ~/src/supernova/.git/config
+|4,49,1,0,1735013319,"~/src/supernova/.git/config"
+'2  1  0  ~/src/supernova/.git/config
+|4,50,1,0,1735013319,"~/src/supernova/.git/config"
+'3  7  11  ~/src/supernova/.git/config
+|4,51,7,11,1735013316,"~/src/supernova/.git/config"
+'4  7  11  ~/src/supernova/.git/config
+|4,52,7,11,1735013316,"~/src/supernova/.git/config"
+'5  7  11  ~/src/supernova/.git/config
+|4,53,7,11,1735013316,"~/src/supernova/.git/config"
+'6  1  0  ~/src/supernova/.gitcon
+|4,54,1,0,1735013297,"~/src/supernova/.gitcon"
+'7  1  0  ~/src/ansible/ans.sh
+|4,55,1,0,1735012974,"~/src/ansible/ans.sh"
+'8  94  8  /mnt/c/backups/configs/PROD/SGSpark.json
+|4,56,94,8,1733213969,"/mnt/c/backups/configs/PROD/SGSpark.json"
+'9  17  3  /mnt/c/backups/configs/fe.json
+|4,57,17,3,1733213510,"/mnt/c/backups/configs/fe.json"
 
 # Jumplist (newest first):
--'  4  0  ~/.zshrc
-|4,39,4,0,1720487060,"~/.zshrc"
--'  1  0  ~/.zshrc
-|4,39,1,0,1720487059,"~/.zshrc"
--'  4  0  ~/.bashrc
-|4,39,4,0,1720486996,"~/.bashrc"
--'  4  0  ~/.bashrc
-|4,39,4,0,1720486996,"~/.bashrc"
--'  1  0  ~/.bashrc
-|4,39,1,0,1720486990,"~/.bashrc"
--'  1  0  ~/.bashrc
-|4,39,1,0,1720486990,"~/.bashrc"
--'  31  0  ~/.profile
-|4,39,31,0,1720486986,"~/.profile"
--'  31  0  ~/.profile
-|4,39,31,0,1720486986,"~/.profile"
--'  31  0  ~/.profile
-|4,39,31,0,1720486986,"~/.profile"
--'  31  0  ~/.profile
-|4,39,31,0,1720486986,"~/.profile"
--'  1  0  ~/.profile
-|4,39,1,0,1720486964,"~/.profile"
--'  1  0  ~/.profile
-|4,39,1,0,1720486964,"~/.profile"
--'  1  0  ~/.profile
-|4,39,1,0,1720486964,"~/.profile"
--'  1  0  ~/.profile
-|4,39,1,0,1720486964,"~/.profile"
--'  153  0  ~/.zshrc
-|4,39,153,0,1720486942,"~/.zshrc"
--'  154  0  ~/.zshrc
-|4,39,154,0,1720486942,"~/.zshrc"
--'  154  0  ~/.zshrc
-|4,39,154,0,1720486942,"~/.zshrc"
--'  154  0  ~/.zshrc
-|4,39,154,0,1720486942,"~/.zshrc"
--'  154  0  ~/.zshrc
-|4,39,154,0,1720486942,"~/.zshrc"
--'  1  0  ~/.zshrc
-|4,39,1,0,1720486941,"~/.zshrc"
--'  1  0  ~/.zshrc
-|4,39,1,0,1720486941,"~/.zshrc"
--'  1  0  ~/.zshrc
-|4,39,1,0,1720486941,"~/.zshrc"
--'  1  0  ~/.zshrc
-|4,39,1,0,1720486941,"~/.zshrc"
--'  199  0  ~/.bashrc
-|4,39,199,0,1720486935,"~/.bashrc"
--'  200  0  ~/.bashrc
-|4,39,200,0,1720486935,"~/.bashrc"
--'  200  0  ~/.bashrc
-|4,39,200,0,1720486935,"~/.bashrc"
--'  200  0  ~/.bashrc
-|4,39,200,0,1720486935,"~/.bashrc"
--'  200  0  ~/.bashrc
-|4,39,200,0,1720486935,"~/.bashrc"
--'  199  0  ~/.bashrc
-|4,39,199,0,1720486935,"~/.bashrc"
--'  200  0  ~/.bashrc
-|4,39,200,0,1720486935,"~/.bashrc"
--'  200  0  ~/.bashrc
-|4,39,200,0,1720486935,"~/.bashrc"
--'  200  0  ~/.bashrc
-|4,39,200,0,1720486935,"~/.bashrc"
--'  200  0  ~/.bashrc
-|4,39,200,0,1720486935,"~/.bashrc"
--'  200  0  ~/.bashrc
-|4,39,200,0,1720486934,"~/.bashrc"
--'  201  0  ~/.bashrc
-|4,39,201,0,1720486934,"~/.bashrc"
--'  201  0  ~/.bashrc
-|4,39,201,0,1720486934,"~/.bashrc"
--'  201  0  ~/.bashrc
-|4,39,201,0,1720486934,"~/.bashrc"
--'  201  0  ~/.bashrc
-|4,39,201,0,1720486934,"~/.bashrc"
--'  200  0  ~/.bashrc
-|4,39,200,0,1720486934,"~/.bashrc"
--'  201  0  ~/.bashrc
-|4,39,201,0,1720486934,"~/.bashrc"
--'  201  0  ~/.bashrc
-|4,39,201,0,1720486934,"~/.bashrc"
--'  201  0  ~/.bashrc
-|4,39,201,0,1720486934,"~/.bashrc"
--'  201  0  ~/.bashrc
-|4,39,201,0,1720486934,"~/.bashrc"
--'  1  0  ~/.bashrc
-|4,39,1,0,1720486930,"~/.bashrc"
--'  1  0  ~/.bashrc
-|4,39,1,0,1720486930,"~/.bashrc"
--'  1  0  ~/.bashrc
-|4,39,1,0,1720486930,"~/.bashrc"
--'  1  0  ~/.bashrc
-|4,39,1,0,1720486930,"~/.bashrc"
--'  1  0  ~/.bashrc
-|4,39,1,0,1720486930,"~/.bashrc"
--'  1  0  ~/.bashrc
-|4,39,1,0,1720486930,"~/.bashrc"
--'  1  0  ~/.bashrc
-|4,39,1,0,1720486930,"~/.bashrc"
--'  1  0  ~/.bashrc
-|4,39,1,0,1720486930,"~/.bashrc"
--'  1  0  ~/.zprofile
-|4,39,1,0,1720486920,"~/.zprofile"
--'  1  0  ~/.zprofile
-|4,39,1,0,1720486920,"~/.zprofile"
--'  1  0  ~/.zprofile
-|4,39,1,0,1720486920,"~/.zprofile"
--'  1  0  ~/.zprofile
-|4,39,1,0,1720486920,"~/.zprofile"
--'  1  0  ~/.zprofile
-|4,39,1,0,1720486920,"~/.zprofile"
--'  1  0  ~/.zprofile
-|4,39,1,0,1720486920,"~/.zprofile"
--'  1  0  ~/.zprofile
-|4,39,1,0,1720486920,"~/.zprofile"
--'  1  0  ~/.zprofile
-|4,39,1,0,1720486920,"~/.zprofile"
--'  1  0  ~/.zprofile
-|4,39,1,0,1720486920,"~/.zprofile"
--'  1  0  ~/.zprofile
-|4,39,1,0,1720486920,"~/.zprofile"
--'  1  0  ~/.zprofile
-|4,39,1,0,1720486920,"~/.zprofile"
--'  1  0  ~/.zprofile
-|4,39,1,0,1720486920,"~/.zprofile"
--'  1  0  ~/.zprofile
-|4,39,1,0,1720486920,"~/.zprofile"
--'  1  0  ~/.zprofile
-|4,39,1,0,1720486920,"~/.zprofile"
--'  1  0  ~/.zprofile
-|4,39,1,0,1720486920,"~/.zprofile"
--'  1  0  ~/.zprofile
-|4,39,1,0,1720486920,"~/.zprofile"
--'  1  0  ~/.zprofile
-|4,39,1,0,1720486920,"~/.zprofile"
--'  1  0  ~/.zprofile
-|4,39,1,0,1720486920,"~/.zprofile"
--'  1  0  ~/.zprofile
-|4,39,1,0,1720486920,"~/.zprofile"
--'  1  0  ~/.zprofile
-|4,39,1,0,1720486920,"~/.zprofile"
--'  1  0  ~/.zprofile
-|4,39,1,0,1720486920,"~/.zprofile"
--'  1  0  ~/.zprofile
-|4,39,1,0,1720486920,"~/.zprofile"
--'  1  0  ~/.zprofile
-|4,39,1,0,1720486920,"~/.zprofile"
--'  1  0  ~/.zprofile
-|4,39,1,0,1720486920,"~/.zprofile"
--'  1  0  ~/.zprofile
-|4,39,1,0,1720486920,"~/.zprofile"
--'  1  0  ~/.zprofile
-|4,39,1,0,1720486920,"~/.zprofile"
--'  1  0  ~/.zprofile
-|4,39,1,0,1720486920,"~/.zprofile"
--'  1  0  ~/.zprofile
-|4,39,1,0,1720486920,"~/.zprofile"
--'  1  0  ~/.zprofile
-|4,39,1,0,1720486920,"~/.zprofile"
--'  1  0  ~/.zprofile
-|4,39,1,0,1720486920,"~/.zprofile"
--'  1  0  ~/.zprofile
-|4,39,1,0,1720486920,"~/.zprofile"
--'  1  0  ~/.zprofile
-|4,39,1,0,1720486920,"~/.zprofile"
--'  2  0  ~/.zprofile
-|4,39,2,0,1720486770,"~/.zprofile"
--'  3  0  ~/.zprofile
-|4,39,3,0,1720486770,"~/.zprofile"
--'  2  0  ~/.zprofile
-|4,39,2,0,1720486770,"~/.zprofile"
--'  3  0  ~/.zprofile
-|4,39,3,0,1720486770,"~/.zprofile"
--'  2  0  ~/.zprofile
-|4,39,2,0,1720486770,"~/.zprofile"
--'  3  0  ~/.zprofile
-|4,39,3,0,1720486770,"~/.zprofile"
--'  2  0  ~/.zprofile
-|4,39,2,0,1720486770,"~/.zprofile"
--'  3  0  ~/.zprofile
-|4,39,3,0,1720486770,"~/.zprofile"
--'  2  0  ~/.zprofile
-|4,39,2,0,1720486770,"~/.zprofile"
--'  3  0  ~/.zprofile
-|4,39,3,0,1720486770,"~/.zprofile"
--'  2  0  ~/.zprofile
-|4,39,2,0,1720486770,"~/.zprofile"
--'  3  0  ~/.zprofile
-|4,39,3,0,1720486770,"~/.zprofile"
--'  2  0  ~/.zprofile
-|4,39,2,0,1720486770,"~/.zprofile"
--'  3  0  ~/.zprofile
-|4,39,3,0,1720486770,"~/.zprofile"
--'  2  0  ~/.zprofile
-|4,39,2,0,1720486770,"~/.zprofile"
--'  3  0  ~/.zprofile
-|4,39,3,0,1720486770,"~/.zprofile"
--'  2  0  ~/.zprofile
-|4,39,2,0,1720486770,"~/.zprofile"
+-'  7  7  ~/src/supernova/.git/config
+|4,39,7,7,1735013914,"~/src/supernova/.git/config"
+-'  1  0  ~/src/supernova/.git/config
+|4,39,1,0,1735013745,"~/src/supernova/.git/config"
+-'  1  0  ~/src/supernova/.git/config
+|4,39,1,0,1735013319,"~/src/supernova/.git/config"
+-'  7  11  ~/src/supernova/.git/config
+|4,39,7,11,1735013316,"~/src/supernova/.git/config"
+-'  7  11  ~/src/supernova/.git/config
+|4,39,7,11,1735013316,"~/src/supernova/.git/config"
+-'  24  28  ~/src/supernova/.git/config
+|4,39,24,28,1735013315,"~/src/supernova/.git/config"
+-'  21  17  ~/src/supernova/.git/config
+|4,39,21,17,1735013315,"~/src/supernova/.git/config"
+-'  24  28  ~/src/supernova/.git/config
+|4,39,24,28,1735013315,"~/src/supernova/.git/config"
+-'  21  17  ~/src/supernova/.git/config
+|4,39,21,17,1735013315,"~/src/supernova/.git/config"
+-'  24  28  ~/src/supernova/.git/config
+|4,39,24,28,1735013315,"~/src/supernova/.git/config"
+-'  21  17  ~/src/supernova/.git/config
+|4,39,21,17,1735013315,"~/src/supernova/.git/config"
+-'  19  28  ~/src/supernova/.git/config
+|4,39,19,28,1735013314,"~/src/supernova/.git/config"
+-'  16  17  ~/src/supernova/.git/config
+|4,39,16,17,1735013314,"~/src/supernova/.git/config"
+-'  19  28  ~/src/supernova/.git/config
+|4,39,19,28,1735013314,"~/src/supernova/.git/config"
+-'  16  17  ~/src/supernova/.git/config
+|4,39,16,17,1735013314,"~/src/supernova/.git/config"
+-'  19  28  ~/src/supernova/.git/config
+|4,39,19,28,1735013314,"~/src/supernova/.git/config"
+-'  16  17  ~/src/supernova/.git/config
+|4,39,16,17,1735013314,"~/src/supernova/.git/config"
+-'  1  0  ~/src/supernova/.git/config
+|4,39,1,0,1735013302,"~/src/supernova/.git/config"
+-'  1  0  ~/src/supernova/.gitcon
+|4,39,1,0,1735013297,"~/src/supernova/.gitcon"
+-'  1  0  ~/src/supernova/.gitcon
+|4,39,1,0,1735013297,"~/src/supernova/.gitcon"
+-'  1  0  ~/src/supernova/.gitcon
+|4,39,1,0,1735013297,"~/src/supernova/.gitcon"
+-'  1  0  ~/src/supernova/.gitcon
+|4,39,1,0,1735013297,"~/src/supernova/.gitcon"
+-'  1  0  ~/src/supernova/.gitcon
+|4,39,1,0,1735013297,"~/src/supernova/.gitcon"
+-'  1  0  ~/src/supernova/.gitcon
+|4,39,1,0,1735013297,"~/src/supernova/.gitcon"
+-'  1  0  ~/src/supernova/.gitcon
+|4,39,1,0,1735013297,"~/src/supernova/.gitcon"
+-'  1  0  ~/src/supernova/.gitcon
+|4,39,1,0,1735013297,"~/src/supernova/.gitcon"
+-'  1  0  ~/src/ansible/ans.sh
+|4,39,1,0,1735012974,"~/src/ansible/ans.sh"
+-'  1  0  ~/src/ansible/ans.sh
+|4,39,1,0,1735012974,"~/src/ansible/ans.sh"
+-'  1  0  ~/src/ansible/ans.sh
+|4,39,1,0,1735012974,"~/src/ansible/ans.sh"
+-'  1  0  ~/src/ansible/ans.sh
+|4,39,1,0,1735012974,"~/src/ansible/ans.sh"
+-'  1  0  ~/src/ansible/ans.sh
+|4,39,1,0,1735012974,"~/src/ansible/ans.sh"
+-'  1  0  ~/src/ansible/ans.sh
+|4,39,1,0,1735012974,"~/src/ansible/ans.sh"
+-'  1  0  ~/src/ansible/ans.sh
+|4,39,1,0,1735012974,"~/src/ansible/ans.sh"
+-'  1  0  ~/src/ansible/ans.sh
+|4,39,1,0,1735012974,"~/src/ansible/ans.sh"
+-'  1  0  ~/src/ansible/ans.sh
+|4,39,1,0,1735012974,"~/src/ansible/ans.sh"
+-'  1  0  ~/src/ansible/ans.sh
+|4,39,1,0,1735012974,"~/src/ansible/ans.sh"
+-'  1  0  ~/src/ansible/ans.sh
+|4,39,1,0,1735012974,"~/src/ansible/ans.sh"
+-'  1  0  ~/src/ansible/ans.sh
+|4,39,1,0,1735012974,"~/src/ansible/ans.sh"
+-'  1  0  ~/src/ansible/ans.sh
+|4,39,1,0,1735012974,"~/src/ansible/ans.sh"
+-'  1  0  ~/src/ansible/ans.sh
+|4,39,1,0,1735012974,"~/src/ansible/ans.sh"
+-'  1  0  ~/src/ansible/ans.sh
+|4,39,1,0,1735012974,"~/src/ansible/ans.sh"
+-'  1  0  ~/src/ansible/ans.sh
+|4,39,1,0,1735012974,"~/src/ansible/ans.sh"
+-'  94  8  /mnt/c/backups/configs/PROD/SGSpark.json
+|4,39,94,8,1733213969,"/mnt/c/backups/configs/PROD/SGSpark.json"
+-'  94  8  /mnt/c/backups/configs/PROD/SGSpark.json
+|4,39,94,8,1733213969,"/mnt/c/backups/configs/PROD/SGSpark.json"
+-'  94  8  /mnt/c/backups/configs/PROD/SGSpark.json
+|4,39,94,8,1733213969,"/mnt/c/backups/configs/PROD/SGSpark.json"
+-'  94  8  /mnt/c/backups/configs/PROD/SGSpark.json
+|4,39,94,8,1733213969,"/mnt/c/backups/configs/PROD/SGSpark.json"
+-'  94  8  /mnt/c/backups/configs/PROD/SGSpark.json
+|4,39,94,8,1733213969,"/mnt/c/backups/configs/PROD/SGSpark.json"
+-'  94  8  /mnt/c/backups/configs/PROD/SGSpark.json
+|4,39,94,8,1733213969,"/mnt/c/backups/configs/PROD/SGSpark.json"
+-'  94  8  /mnt/c/backups/configs/PROD/SGSpark.json
+|4,39,94,8,1733213969,"/mnt/c/backups/configs/PROD/SGSpark.json"
+-'  94  8  /mnt/c/backups/configs/PROD/SGSpark.json
+|4,39,94,8,1733213969,"/mnt/c/backups/configs/PROD/SGSpark.json"
+-'  94  8  /mnt/c/backups/configs/PROD/SGSpark.json
+|4,39,94,8,1733213969,"/mnt/c/backups/configs/PROD/SGSpark.json"
+-'  94  8  /mnt/c/backups/configs/PROD/SGSpark.json
+|4,39,94,8,1733213969,"/mnt/c/backups/configs/PROD/SGSpark.json"
+-'  94  8  /mnt/c/backups/configs/PROD/SGSpark.json
+|4,39,94,8,1733213969,"/mnt/c/backups/configs/PROD/SGSpark.json"
+-'  94  8  /mnt/c/backups/configs/PROD/SGSpark.json
+|4,39,94,8,1733213969,"/mnt/c/backups/configs/PROD/SGSpark.json"
+-'  94  8  /mnt/c/backups/configs/PROD/SGSpark.json
+|4,39,94,8,1733213969,"/mnt/c/backups/configs/PROD/SGSpark.json"
+-'  94  8  /mnt/c/backups/configs/PROD/SGSpark.json
+|4,39,94,8,1733213969,"/mnt/c/backups/configs/PROD/SGSpark.json"
+-'  94  8  /mnt/c/backups/configs/PROD/SGSpark.json
+|4,39,94,8,1733213969,"/mnt/c/backups/configs/PROD/SGSpark.json"
+-'  94  8  /mnt/c/backups/configs/PROD/SGSpark.json
+|4,39,94,8,1733213969,"/mnt/c/backups/configs/PROD/SGSpark.json"
+-'  94  8  /mnt/c/backups/configs/PROD/SGSpark.json
+|4,39,94,8,1733213969,"/mnt/c/backups/configs/PROD/SGSpark.json"
+-'  94  8  /mnt/c/backups/configs/PROD/SGSpark.json
+|4,39,94,8,1733213969,"/mnt/c/backups/configs/PROD/SGSpark.json"
+-'  94  8  /mnt/c/backups/configs/PROD/SGSpark.json
+|4,39,94,8,1733213969,"/mnt/c/backups/configs/PROD/SGSpark.json"
+-'  94  8  /mnt/c/backups/configs/PROD/SGSpark.json
+|4,39,94,8,1733213969,"/mnt/c/backups/configs/PROD/SGSpark.json"
+-'  94  8  /mnt/c/backups/configs/PROD/SGSpark.json
+|4,39,94,8,1733213969,"/mnt/c/backups/configs/PROD/SGSpark.json"
+-'  94  8  /mnt/c/backups/configs/PROD/SGSpark.json
+|4,39,94,8,1733213969,"/mnt/c/backups/configs/PROD/SGSpark.json"
+-'  94  8  /mnt/c/backups/configs/PROD/SGSpark.json
+|4,39,94,8,1733213969,"/mnt/c/backups/configs/PROD/SGSpark.json"
+-'  94  8  /mnt/c/backups/configs/PROD/SGSpark.json
+|4,39,94,8,1733213969,"/mnt/c/backups/configs/PROD/SGSpark.json"
+-'  94  8  /mnt/c/backups/configs/PROD/SGSpark.json
+|4,39,94,8,1733213969,"/mnt/c/backups/configs/PROD/SGSpark.json"
+-'  94  8  /mnt/c/backups/configs/PROD/SGSpark.json
+|4,39,94,8,1733213969,"/mnt/c/backups/configs/PROD/SGSpark.json"
+-'  94  8  /mnt/c/backups/configs/PROD/SGSpark.json
+|4,39,94,8,1733213969,"/mnt/c/backups/configs/PROD/SGSpark.json"
+-'  94  8  /mnt/c/backups/configs/PROD/SGSpark.json
+|4,39,94,8,1733213969,"/mnt/c/backups/configs/PROD/SGSpark.json"
+-'  94  8  /mnt/c/backups/configs/PROD/SGSpark.json
+|4,39,94,8,1733213969,"/mnt/c/backups/configs/PROD/SGSpark.json"
+-'  94  8  /mnt/c/backups/configs/PROD/SGSpark.json
+|4,39,94,8,1733213969,"/mnt/c/backups/configs/PROD/SGSpark.json"
+-'  94  8  /mnt/c/backups/configs/PROD/SGSpark.json
+|4,39,94,8,1733213969,"/mnt/c/backups/configs/PROD/SGSpark.json"
+-'  94  8  /mnt/c/backups/configs/PROD/SGSpark.json
+|4,39,94,8,1733213969,"/mnt/c/backups/configs/PROD/SGSpark.json"
+-'  1  0  /mnt/c/backups/configs/PROD/SGSpark.json
+|4,39,1,0,1733213536,"/mnt/c/backups/configs/PROD/SGSpark.json"
+-'  1  0  /mnt/c/backups/configs/PROD/SGSpark.json
+|4,39,1,0,1733213536,"/mnt/c/backups/configs/PROD/SGSpark.json"
+-'  1  0  /mnt/c/backups/configs/PROD/SGSpark.json
+|4,39,1,0,1733213536,"/mnt/c/backups/configs/PROD/SGSpark.json"
+-'  1  0  /mnt/c/backups/configs/PROD/SGSpark.json
+|4,39,1,0,1733213536,"/mnt/c/backups/configs/PROD/SGSpark.json"
+-'  1  0  /mnt/c/backups/configs/PROD/SGSpark.json
+|4,39,1,0,1733213536,"/mnt/c/backups/configs/PROD/SGSpark.json"
+-'  1  0  /mnt/c/backups/configs/PROD/SGSpark.json
+|4,39,1,0,1733213536,"/mnt/c/backups/configs/PROD/SGSpark.json"
+-'  1  0  /mnt/c/backups/configs/PROD/SGSpark.json
+|4,39,1,0,1733213536,"/mnt/c/backups/configs/PROD/SGSpark.json"
+-'  1  0  /mnt/c/backups/configs/PROD/SGSpark.json
+|4,39,1,0,1733213536,"/mnt/c/backups/configs/PROD/SGSpark.json"
+-'  1  0  /mnt/c/backups/configs/PROD/SGSpark.json
+|4,39,1,0,1733213536,"/mnt/c/backups/configs/PROD/SGSpark.json"
+-'  1  0  /mnt/c/backups/configs/PROD/SGSpark.json
+|4,39,1,0,1733213536,"/mnt/c/backups/configs/PROD/SGSpark.json"
+-'  1  0  /mnt/c/backups/configs/PROD/SGSpark.json
+|4,39,1,0,1733213536,"/mnt/c/backups/configs/PROD/SGSpark.json"
+-'  1  0  /mnt/c/backups/configs/PROD/SGSpark.json
+|4,39,1,0,1733213536,"/mnt/c/backups/configs/PROD/SGSpark.json"
+-'  1  0  /mnt/c/backups/configs/PROD/SGSpark.json
+|4,39,1,0,1733213536,"/mnt/c/backups/configs/PROD/SGSpark.json"
+-'  1  0  /mnt/c/backups/configs/PROD/SGSpark.json
+|4,39,1,0,1733213536,"/mnt/c/backups/configs/PROD/SGSpark.json"
+-'  1  0  /mnt/c/backups/configs/PROD/SGSpark.json
+|4,39,1,0,1733213536,"/mnt/c/backups/configs/PROD/SGSpark.json"
+-'  1  0  /mnt/c/backups/configs/PROD/SGSpark.json
+|4,39,1,0,1733213536,"/mnt/c/backups/configs/PROD/SGSpark.json"
+-'  1  0  /mnt/c/backups/configs/PROD/SGSpark.json
+|4,39,1,0,1733213536,"/mnt/c/backups/configs/PROD/SGSpark.json"
+-'  1  0  /mnt/c/backups/configs/PROD/SGSpark.json
+|4,39,1,0,1733213536,"/mnt/c/backups/configs/PROD/SGSpark.json"
+-'  1  0  /mnt/c/backups/configs/PROD/SGSpark.json
+|4,39,1,0,1733213536,"/mnt/c/backups/configs/PROD/SGSpark.json"
+-'  1  0  /mnt/c/backups/configs/PROD/SGSpark.json
+|4,39,1,0,1733213536,"/mnt/c/backups/configs/PROD/SGSpark.json"
+-'  1  0  /mnt/c/backups/configs/PROD/SGSpark.json
+|4,39,1,0,1733213536,"/mnt/c/backups/configs/PROD/SGSpark.json"
+-'  1  0  /mnt/c/backups/configs/PROD/SGSpark.json
+|4,39,1,0,1733213536,"/mnt/c/backups/configs/PROD/SGSpark.json"
+-'  1  0  /mnt/c/backups/configs/PROD/SGSpark.json
+|4,39,1,0,1733213536,"/mnt/c/backups/configs/PROD/SGSpark.json"
+-'  1  0  /mnt/c/backups/configs/PROD/SGSpark.json
+|4,39,1,0,1733213536,"/mnt/c/backups/configs/PROD/SGSpark.json"
+-'  1  0  /mnt/c/backups/configs/PROD/SGSpark.json
+|4,39,1,0,1733213536,"/mnt/c/backups/configs/PROD/SGSpark.json"
+-'  1  0  /mnt/c/backups/configs/PROD/SGSpark.json
+|4,39,1,0,1733213536,"/mnt/c/backups/configs/PROD/SGSpark.json"
 
 # History of marks within files (newest to oldest):
 
-> ~/.zshrc
-	*	1720487059	0
-	"	4	0
-	.	4	0
-	+	145	0
-	+	123	0
-	+	128	1
-	+	117	11
-	+	143	113
-	+	143	0
-	+	143	114
-	+	4	0
+> ~/src/supernova/.git/config
+	*	1735013750	0
+	"	7	7
+	^	7	30
+	.	7	30
+	+	7	30
+
+> ~/src/supernova/.gitcon
+	*	1735013296	0
+	"	1	0
+
+> ~/src/ansible/ans.sh
+	*	1735012973	0
+	"	1	0
+
+> /mnt/c/backups/configs/PROD/SGSpark.json
+	*	1733213966	0
+	"	94	8
+
+> /mnt/c/backups/configs/fe.json
+	*	1733213507	0
+	"	17	3
+
+> /mnt/c/code/eon/oms/20241129_kelly_sample.csv
+	*	1733208379	0
+	"	26	0
+
+> /mnt/c/code/eon/oms/20241129_sample.csv
+	*	1733208357	0
+	"	1	0
+
+> /mnt/c/code/hk/trading/SgRouter/bin/Debug/log/SgRouter.20241203.133553.log
+	*	1733204841	0
+	"	25985	86
+
+> /mnt/c/code/hk/trading/SgRouter/bin/Debug/log/SgRouter.20241203.132721.log
+	*	1733204083	0
+	"	165234	39
+
+> /mnt/c/code/hk/trading/SgRouter/bin/Debug/log/SgRouter.20241203.121752.log
+	*	1733203563	0
+	"	165234	66
+	a	20	129
+	b	34675	90
+	c	165234	47
+
+> /mnt/c/code/hk/trading/SgRouter/bin/Debug/log/SgRouter.20241203.113304.log
+	*	1733199464	0
+	"	35203	86
+
+> /mnt/c/code/hk/trading/SgRouter/bin/Debug/log/SgRouter.20241203.112214.log
+	*	1733196777	0
+	"	35610	58
+	.	35610	57
+	+	35610	57
+
+> /mnt/c/code/hk/trading/SgRouter/bin/Debug/log/SgRouter.20241203.111639.log
+	*	1733196125	0
+	"	28	39
+
+> /mnt/c/code/hk/trading/SgRouter/bin/Debug/log/SgRouter.20241202.170953.log
+	*	1733195472	0
+	"	41779	39
+	a	1045	51
+
+> /mnt/c/code/hk/trading/SgRouter/bin/Debug/log/SgRouter.20241202.163728.log
+	*	1733130624	0
+	"	29	0
+
+> /mnt/c/code/hk/trading/SgRouter/bin/Debug/log/SgRouter.20241202.162219.log
+	*	1733127936	0
+	"	17	113
+
+> /mnt/c/backups/sgrouter/MQ_RabbitClient.cs
+	*	1733117141	0
+	"	144	6
+
+> /mnt/c/backups/20241129_generated_results.csv
+	*	1733112258	0
+	"	1	0
+
+> ~/20241129_generated_results.csv
+	*	1732908643	0
+	"	182	0
+
+> ~/src/supernova/requirements.txt
+	*	1732849121	0
+	"	1	0
+
+> ~/src/supernova/kellypage.sh.log
+	*	1732808103	0
+	"	41	58
+
+> ~/src/supernova/macddates.csv
+	*	1732791490	0
+	"	88768	0
+
+> ~/src/supernova/deployments/scripts/kellypage/kellypage.sh
+	*	1732791229	0
+	"	5	34
+	^	5	35
+	.	5	34
+	+	4	34
+	+	5	34
+
+> ~/src/supernova/kellypagepage.sh.log
+	*	1732791140	0
+	"	1	0
+
+> /mnt/c/backups/prod-systemd/napoleon/system/kellypage.service
+	*	1732769371	0
+	"	8	0
+
+> /mnt/c/backups/crons/napoleon.crons
+	*	1732769325	0
+	"	26	2
 
 > ~/.bashrc
-	*	1720486994	0
-	"	4	0
-	.	4	0
-	+	4	22
-	+	5	0
-	+	6	0
-	+	145	20
+	*	1732600456	0
+	"	31	6
+	^	264	2
+	.	264	1
+	+	1	0
+	+	30	32
+	+	270	0
+	+	271	40
+	+	56	0
+	+	57	11
+	+	155	5
+	+	162	15
+	+	158	41
+	+	264	1
+
+> /mnt/c/code/eon/oms/.gitignore
+	*	1731655846	0
+	"	7	0
+	^	7	0
+	.	6	10
+	+	1	5
+	+	6	10
+
+> ~/src/hk-itiviti-uat/.gitignore
+	*	1731562211	0
+	"	3	6
+	^	3	7
+	.	3	0
+	+	1	4
+	+	2	3
+	+	3	0
+
+> ~/src/sim-start-stop/day/Log/SimAdapter-20241113-1.log
+	*	1731484592	0
+	"	2724	0
+
+> /mnt/c/code/hk/trading/SgRouter/bin/Debug/log/SgRouter.20241113.log
+	*	1731481931	0
+	"	33900	110
+
+> ~/src/sim-start-stop/day/Log/SimAdapter-20241113-0.log
+	*	1731475374	0
+	"	1	0
+
+> ~/src/misc/scripts/remove-artifacts.sh
+	*	1731301543	0
+	"	5	33
+	^	5	34
+	.	5	33
+	+	7	18
+	+	5	33
+
+> ~/src/misc/remove-artifacts.sh
+	*	1731301447	0
+	"	1	0
+	^	25	0
+	.	24	0
+	+	24	0
+
+> /tmp/1
+	*	1731154489	0
+	"	459	18
+	^	5022	0
+	.	5023	0
+	+	1	0
+	+	498	0
+	+	473	0
+	+	5023	0
+	+	5022	0
+	+	5023	0
+	a	225	68
+	b	4554478	115
+	c	10681	141
+
+> ~/src/eon-sample/app.py
+	*	1731075616	0
+	"	24	9
+	^	24	10
+	.	24	0
+	+	1	0
+	+	24	0
+
+> ~/src/eon-sample/app.
+	*	1731075609	0
+	"	1	0
+
+> /tmp/3
+	*	1731045699	0
+	"	25981	77
+
+> ~/mds-xtks/log/copy.log
+	*	1731044187	0
+	"	560	140
+	^	2793295	0
+	.	886919	0
+	+	2793296	0
+	+	2793292	0
+	+	2793296	0
+	+	2793294	0
+	+	886917	0
+	+	886919	0
+	a	2385125	90
+	b	2793336	34
+
+> ~/mds-xtks/log/mds-feedos.current.log
+	*	1731042458	0
+	"	1383976	6
+
+> ~/mds-xtks/run-backup02.sh
+	*	1731042440	0
+	"	16	1
+	^	16	2
+	.	16	1
+	+	17	38
+	+	13	0
+	+	14	0
+	+	16	0
+	+	17	0
+	+	16	1
+
+> ~/mds-xtks/mds-feedos-nov05-l2-xtks-full.json
+	*	1731042430	0
+	"	61	4
+	^	77	6
+	.	77	4
+	+	58	72
+	+	59	4
+	+	60	4
+	+	61	4
+	+	75	5
+	+	76	5
+	+	77	5
+	+	59	4
+	+	60	4
+	+	61	4
+	+	75	4
+	+	76	4
+	+	77	4
+
+> ~/mds-xtks/mds-feedos-nov05-l1-l2-l2.10-all.json
+	*	1731042417	0
+	"	1	0
+	^	67	20
+	.	67	19
+	+	60	16
+	+	62	19
+	+	65	16
+	+	67	19
+
+> ~/mds-eq/mds-feedos.json
+	*	1731042397	0
+	"	75	4
+
+> ~/src/spark/.clang-format
+	*	1731037564	0
+	"	2	0
+
+> /tmp/2
+	*	1731030846	0
+	"	495	114
+	b	2128	62
+
+> ~/.zshrc
+	*	1731026615	0
+	"	148	21
+	^	148	22
+	.	148	21
+	+	141	13
 	+	148	0
-	+	145	0
-	+	200	0
-	+	200	21
-	+	200	0
-	+	200	6
-	+	200	2
-	+	200	0
-	+	4	0
+	+	149	0
+	+	148	10
+	+	149	21
+	+	148	21
 
-> ~/.profile
-	*	1720486985	0
-	"	31	0
-	^	15	13
-	.	22	0
-	+	18	0
-	+	19	15
-	+	20	10
-	+	21	15
-	+	22	20
-	+	23	11
-	+	14	29
-	+	22	21
-	+	14	20
-	+	15	11
-	+	14	26
-	+	22	25
-	+	14	22
-	+	15	12
+> ~/mds-xtks/log/mds-feedos.20241107-152030.885539427.log
+	*	1730977184	0
+	"	36907509	39
+
+> ~/mds-xtks/log/mds-feedos-nov05-l1-l2-l2.10-all.json
+	*	1730964005	0
+	"	1	0
+
+> ~/src/spark/build/sparkcpp/mds-feedos/src/mds-feedos-nov05-l1-l2-l2.10-all.json
+	*	1730963583	0
+	"	121	10
+	^	52	4
+	.	53	3
+	+	60	15
+	+	65	15
+	+	173	9
+	+	186	0
+	+	210	9
+	+	52	3
+	+	53	3
+
+> ~/mds-xtks/mds-feedos.json
+	*	1730963577	0
+	"	45	4
+
+> ~/mds-xtks/log/mds-feedos.20241107-150355.326863702.log
+	*	1730963405	0
+	"	2301604	4
+
+> ~/src/spark/build/sparkcpp/mds-feedos/src/run-backup02.sh
+	*	1730963122	0
+	"	1	0
+	^	14	57
+	.	14	56
+	+	7	51
+	+	6	0
+	+	7	0
+	+	6	1
+	+	7	0
+	+	8	0
+	+	10	42
+	+	9	0
+	+	10	0
+	+	9	1
+	+	11	2
+	+	9	0
+	+	14	56
+	+	9	1
+	+	17	0
+	+	16	0
+	+	14	1
+	+	11	0
+	+	13	73
+	+	14	56
+
+> ~/mds-xtks/log/copy.olg
+	*	1730955611	0
+	"	1	0
+
+> ~/src/spark/build/sparkcpp/mds-feedos/src/cpm
+	*	1730949443	0
+	"	6	17
+	^	6	18
+	.	6	17
+	+	4	26
+	+	5	22
+	+	4	53
+	+	5	53
+	+	2	68
+	+	3	66
+	+	6	17
+
+> ~/src/spark/build/sparkcpp/mds_collector-feedos/src/mds_collector-feedos.json
+	*	1730947082	0
+	"	28	0
+	.	11	0
+	+	3	0
+	+	7	0
+	+	11	0
+
+> ~/src/spark/build/sparkcpp/mds_collector-feedos/src/mds-feedos.js
+	*	1730947073	0
+	"	1	0
+
+> ~/src/spark/build/sparkcpp/mds_collector-feedos/src/mds-feedos.current.log
+	*	1730947068	0
+	"	1	0
+
+> ~/mds-eq/log/mds-feedos.current.log
+	*	1730947052	0
+	"	32	57
+
+> ~/src/spark/build/sparkcpp/mds_collector-feedos/src/log/mds_collector-feedos.current.log
+	*	1730944959	0
+	"	1	0
+
+> ~/src/spark/build/sparkcpp/mds_collector-feedos/src/mds_collector-feedos
+	*	1730944691	0
+	"	1	0
+
+> ~/mds-eq/mds-feedos-nov05-l1-eq.json
+	*	1730943196	0
+	"	16	14
+	.	16	0
+	+	16	0
+
+> ~/mds-eq/run-backup02.sh
+	*	1730940444	0
+	"	14	1
+	^	14	2
+	.	14	1
+	+	15	45
+	+	14	1
+
+> ~/src/spark/build/sparkcpp/mds-feedos/src/mds-feedos-nov05-l1-eq.json
+	*	1730940224	0
+	"	77	4
+	^	87	17
+	.	77	4
+	+	68	0
+	+	74	0
+	+	73	0
+	+	70	5
+	+	71	5
+	+	72	5
+	+	82	16
+	+	87	16
+	+	75	4
+	+	76	4
+	+	77	4
+
+> ~/src/spark/build/sparkcpp/mds-feedos/src/mds-feedos-nov05-l2-xtks-full.json
+	*	1730940176	0
+	"	80	16
+	^	85	17
+	.	85	16
+	+	80	16
+	+	85	16
+
+> ~/src/spark/build/sparkcpp/mds-feedos/src/mds-feedos-nov05-l1-l2-l2.10-xtks.json
+	*	1730940059	0
+	"	69	21
+	^	68	22
+	.	68	21
+	+	17	47
+	+	17	78
+	+	17	48
+	+	23	0
+	+	17	0
 	+	22	0
+	+	27	6
+	+	28	6
+	+	17	35
+	+	21	22
+	+	17	6
+	+	17	3
+	+	6	29
+	+	29	0
+	+	30	3
+	+	21	32
+	+	17	61
+	+	17	0
+	+	17	5
+	+	17	0
+	+	17	52
+	+	19	32
+	+	23	16
+	+	24	19
+	+	28	16
+	+	29	19
+	+	3	0
+	+	13	0
+	+	17	0
+	+	16	0
+	+	54	0
+	+	62	52
+	+	58	55
+	+	59	4
+	+	62	5
+	+	60	4
+	+	61	4
+	+	62	8
+	+	62	0
+	+	62	4
+	+	64	3
+	+	63	33
+	+	59	6
+	+	60	6
+	+	61	6
+	+	65	4
+	+	67	4
+	+	64	4
+	+	65	38
+	+	66	4
+	+	67	0
+	+	64	6
+	+	63	55
+	+	65	6
+	+	66	6
+	+	53	0
+	+	70	4
+	+	71	4
+	+	72	4
+	+	70	60
+	+	69	0
+	+	70	6
+	+	71	6
+	+	72	6
+	+	59	4
+	+	60	4
+	+	61	4
+	+	81	15
+	+	86	15
+	+	62	0
+	+	73	0
+	+	75	4
+	+	76	4
+	+	77	4
+	+	69	4
+	+	70	4
+	+	71	4
+	+	74	21
+	+	68	21
 
-> ~/.zprofile
-	*	1720486919	0
+> ~/src/spark/build/sparkcpp/mds-feedos/src/log/mds-feedos.current.log
+	*	1730939585	0
 	"	1	0
-	.	2	0
-	+	2	0
-	+	1	25
-	+	2	14
-	+	1	26
-	+	2	25
+	^	177680	46
+	.	177680	45
+	+	343508	0
+	+	1	1
+	+	1073549	1
+	+	707373	1
+	+	177680	45
+
+> ~/src/spark/build/sparkcpp/mds-feedos/src/log/run-backup02.sh
+	*	1730938894	0
+	"	1	0
+
+> ~/src/spark/build/sparkcpp/mds-feedos/src/log/run-back
+	*	1730938887	0
+	"	1	0
+
+> ~/src/spark/build/sparkcpp/mds-feedos/src/log/copy.log
+	*	1730938736	0
+	"	1	0
+	.	584280	0
+	+	610059	0
+	+	584280	142
+	+	584280	0
+	a	2614478	84
+	b	610059	65
+
+> ~/src/gh/flask-examples/bot/hel.py
+	*	1730904734	0
+	"	7	16
+	^	7	17
+	.	7	16
+	+	7	16
+
+> /etc/hosts
+	*	1730903456	0
+	"	8	1
+	^	8	2
+	.	8	1
+	+	8	1
+
+> ~/src/gh/flask-examples/bot/etc/hosts
+	*	1730903440	0
+	"	1	0
+
+> ~/src/gh/flask-examples/hello/hello.py
+	*	1730902433	0
+	"	8	0
+	^	8	0
+	.	8	0
+	+	6	0
+	+	11	50
+	+	8	0
+
+> ~/src/gh/flask-examples/hello/app.py
+	*	1730901073	0
+	"	7	32
+	^	7	33
+	.	7	0
+	+	1	23
+	+	7	0
+
+> ~/src/spark/build/sparkcpp/mds-feedos/src/log/mds-feedos.20241106-181025.495746698.log
+	*	1730887931	0
+	"	1	1
+
+> ~/.vimrc
+	*	1730865767	0
+	"	1	0
+	^	16	65
+	.	16	64
+	+	13	16
+	+	12	19
+	+	12	0
+	+	13	26
+	+	12	1
+	+	14	0
+	+	13	1
+	+	14	19
+	+	12	3
+	+	13	3
+	+	12	4
+	+	13	4
+	+	14	26
+	+	16	47
 	+	1	0
-	+	2	0
-	+	1	0
-	+	2	0
+	+	16	64
 
-> ~/code/spark/.zshrc
-	*	1720449388	0
+> ~/src/spark/build/sparkcpp/mds-feedos/src/log/mds-feedos.20241106-113627.880917628.log
+	*	1730864723	0
 	"	1	0
 
-> ~/code/spark/.bashrc
-	*	1720449385	0
+> ~/src/spark/build/sparkcpp/mds-feedos/src/log/mds-feedos.20241105-190911.899238177.log
+	*	1730864624	0
+	"	436312	30
+
+> ~/src/spark/build/sparkcpp/mds-feedos/src/log/currn
+	*	1730864199	0
 	"	1	0
 
-> ~/.zshprofile
-	*	1720447114	0
+> /tmp/9428.wrong.log
+	*	1730859476	0
+	"	654	4
+	b	529	4
+
+> ~/src/spark/build/sparkcpp/mds-feedos/src/mds-feedos-nov05-l1-l2-l2.10.json
+	*	1730856268	0
+	"	43	12
+	^	65	16
+	.	65	15
+	+	60	16
+	+	65	16
+	+	82	0
+	+	89	0
+	+	93	8
+	+	93	0
+	+	57	0
+	+	53	0
+	+	53	48
+	+	52	47
+	+	53	0
+	+	52	48
+	+	60	15
+	+	65	15
+
+> ~/src/spark/build/sparkcpp/mds-feedos/src/run-
+	*	1730855418	0
 	"	1	0
 
-> ~/.zshrc.globals
-	*	1720445291	0
+> ~/.viminfo
+	*	1730855026	0
+	"	194	98
+
+> ~/.vim/.netrwhist
+	*	1730855001	0
 	"	1	0
 
-> ~/.bash_profile
-	*	1720445277	0
+> ~/src/spark/build/sparkcpp/mds-feedos/src/mds-feedos.json
+	*	1730853065	0
+	"	58	0
+	^	51	0
+	.	50	6
+	+	50	6
+
+> ~/src/spark/build/sparkcpp/mds-feedos/src/log/mds-feedos.20241105-130758.173992252.log
+	*	1730803071	0
+	"	178615	111
+
+> ~/src/spark/build/sparkcpp/mds-feedos/src/mds-feedos-backup02-l2.json
+	*	1730794046	0
+	"	58	4
+
+> ~/src/spark/build/sparkcpp/mds-feedos/src/run-bak
+	*	1730793841	0
+	"	1	0
+
+> ~/src/spark/build/sparkcpp/mds-feedos/src/copy.log
+	*	1730789193	0
+	"	1	0
+
+> ~/src/spark/build/sparkcpp/mds-feedos/src/copy
+	*	1730789190	0
+	"	1	0
+
+> ~/src/spark/build/sparkcpp/mds-feedos/src/log/mds-feedos.20241105-140906.517142600.log
+	*	1730787586	0
+	"	1	0
+
+> ~/src/spark/build/sparkcpp/mds-feedos/src/log/mds-feedos.20241105-132605.564312282.log
+	*	1730787448	0
+	"	197400	67
+
+> ~/src/spark/build/sparkcpp/mds-feedos/src/log/mds-feedos.20241105-103922.099349945.log
+	*	1730785927	0
+	"	187952	51
+
+> ~/src/spark/build/sparkcpp/mds-feedos/src/log/README
+	*	1730784442	0
+	"	2	66
+	^	2	67
+	.	2	66
+	+	1	55
+	+	2	66
+
+> ~/src/spark/build/sparkcpp/mds-feedos/src/mds-feedos-nov05-l1.json
+	*	1730783273	0
+	"	62	19
+	^	62	20
+	.	62	19
+	+	60	12
+	+	61	16
+	+	62	15
+	+	60	12
+	+	65	15
+	+	66	12
+	+	67	19
+	+	66	16
+	+	65	15
+	+	62	19
+
+> ~/src/spark/build/sparkcpp/mds-feedos/src/log/log/mds-feedos.current.log
+	*	1730780195	0
+	"	1	0
+
+> ~/src/spark/build/sparkcpp/mds-feedos/src/mds-feedos-backup02-regular.json
+	*	1730775524	0
+	"	66	7
+
+> ~/src/spark/build/sparkcpp/mds-feedos/src/mds-feedos-backup02-l2-and-l2_10.json
+	*	1730774301	0
+	"	84	0
+	.	84	0
+	+	84	0
+
+> ~/src/spark/build/sparkcpp/mds-feedos/src/mds-feedos-tse-l1-l2-l2.10.json
+	*	1730773831	0
 	"	1	0

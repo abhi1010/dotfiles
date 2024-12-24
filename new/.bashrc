@@ -6,7 +6,7 @@ export ZSH="$HOME/.oh-my-zsh"
 
 
 
-export LESS="IFRSX"
+
 export TMOUT=0
 export LD_LIBRARY_PATH=./lib/:$TIBRV_HOME/lib/:/bar/deps/thirdparty/google-test-framework/Linux/x86_64/2.6/gcc411_libc25/lib/:$LD_LIBRARY_PATH
 
@@ -27,6 +27,7 @@ export LD_LIBRARY_PATH=./lib/:$TIBRV_HOME/lib/:/bar/deps/thirdparty/google-test-
 
 
 alias ls='ls -G'
+alias ls='eza -l --icons --git -a'
 alias lc='colorls -lA --sd'
 
 #######################################################################################################################################
@@ -52,7 +53,8 @@ export LESSOPEN='|~/.lessfilter %s'
 # =====================================================================================================================================
 
 # aliai
-alias fck='thefuck'
+eval $(thefuck --alias)
+alias fck='fuck'
 alias ctl='sudo systemctl'
 alias vsta='sudo systemctl start eon.x11vnc'
 alias vsto='sudo systemctl stop eon.x11vnc'
@@ -150,7 +152,14 @@ pathadd()
         PATH="${PATH:+"$PATH:"}$1"
     fi
 }
+pythonpathadd()
+{
+    if [ -d "$1" ] && [[ ":$PATH:" != *":$1:"* ]]; then
+        PYTHONPATH="${PYTHONPATH:+"$PYTHONPATH:"}$1"
+    fi
+}
 
+pythonpathadd ./
 pathadd ~/.oh-my-zsh/
 pathadd /usr/local/mysql/bin
 pathadd /opt/local/bin/
@@ -166,9 +175,10 @@ function cd() {
 }
 
 sp() {
-  [ -d ".env" ] && source .env/bin/activate
-  [ -d "ve" ] && source ve/bin/activate
-  [ -d "venv" ] && source venv/bin/activate
+  [[ -d "ve_ubuntu" && -f "ve_ubuntu/bin/activate" ]] && source ve_ubuntu/bin/activate
+  [[ -d ".env" && -f ".env/bin/activate" ]] && source .env/bin/activate
+  [[ -d "ve" && -f "ve/bin/activate" ]] && source ve/bin/activate
+  [[ -d "venv" && -f "venv/bin/activate" ]] && source venv/bin/activate
 }
 
 # git aliases
@@ -210,6 +220,18 @@ pc() {
     local server=""
     
     case $1 in
+        208)
+            user="abhi"
+            server="10.0.0.208"
+            ;;
+        209)
+            user="abhi"
+            server="10.0.0.209"
+            ;;
+        d*)
+            user="abhi"
+            server="10.0.0.209"
+            ;;
         c*)
             server="casper"
             ;;
@@ -224,6 +246,7 @@ pc() {
             ;;
         r*)
             server="risky"
+            user="alan"
             ;;
         *)
             echo "Unknown server keyword: $1"
@@ -233,6 +256,16 @@ pc() {
 
     ssh "${user}@${server}"
 }
-
+nl() {
+  echo "$*" | awk 'BEGIN {RS=","; ORS="\n"} {print $0}' | sed -e 's/KUCOIN/BINANCE/g' | xclip 
+}
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+# eval "$(/bin/brew shellenv)"
+nl() {
+  echo "$*" | awk 'BEGIN {RS=","; ORS="\n"} {print $0}' | sed -e 's/KUCOIN/BINANCE/g' | sort -u | xclip -sel clip
+}
+alias dk=docker
+alias dc=docker-compose
+export BROWSER=wslview
+# git commit --date='2024-10-07 10:12:00' -m 
