@@ -256,7 +256,7 @@ pc() {
 
     ssh "${user}@${server}"
 }
-nl() {
+nl1() {
   echo "$*" | awk 'BEGIN {RS=","; ORS="\n"} {print $0}' | sed -e 's/KUCOIN/BINANCE/g' | xclip 
 }
 
@@ -264,6 +264,8 @@ nl() {
 # eval "$(/bin/brew shellenv)"
 nl() {
   echo "$*" | awk 'BEGIN {RS=","; ORS="\n"} {print $0}' | sed -e 's/KUCOIN/BINANCE/g' | sort -u | xclip -sel clip
+  echo -e "Number of items: " $(echo "$*" | awk 'BEGIN {RS=","; ORS="\n"} {print $0}' | wc -l)
+
 }
 alias dk=docker
 alias dc=docker-compose
