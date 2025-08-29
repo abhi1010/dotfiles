@@ -1,0 +1,315 @@
+#!/usr/bin/env bash
+
+
+
+
+# Add folders to $PATH
+# Ensures that $PATH always has only one instance of folder names in it
+pathadd()
+{
+    if [ -d "$1" ] && [[ ":$PATH:" != *":$1:"* ]]; then
+        PATH="${PATH:+"$PATH:"}$1"
+    fi
+}
+
+pathadd /opt/homebrew/opt/llvm@14/bin
+pathadd /opt/homebrew/bin/
+pathadd ~/code/githubs/depot_tools/
+pathadd $HOME/.cargo/bin
+pathadd /Library/Frameworks/Python.framework/Versions/3.11/bin/
+pathadd /usr/local/mysql/bin
+pathadd /opt/local/bin/
+pathadd /opt/homebrew/
+# pathadd $EC2_HOME/bin
+pathadd /Applications/Postgres.app/Contents/Versions/9.4/bin
+pathadd .
+pathadd "$(brew --prefix)/opt/python@3.11/libexec/bin"
+# pathadd /opt/homebrew/anaconda3/bin/
+alias python=python3
+
+
+aa()
+{
+    grep "^$*" /tmp/1 | sed -e 's/[^A-Z ]//g' -e 's/^/'\''/g' -e 's/$/'\''/g' | xargs -n 1 ~/code/scripts/cam | sed -e 's/^_*/'\''/g' -e 's/_*$/'\''/g' -e 's/_d_c//g' | awk 'BEGIN {ORS = ", "}{print $0}'
+}
+
+
+
+export TMOUT=0
+export LD_LIBRARY_PATH=./lib/:$TIBRV_HOME/lib/:/bar/deps/thirdparty/google-test-framework/Linux/x86_64/2.6/gcc411_libc25/lib/:$LD_LIBRARY_PATH
+
+#Long Version of Putty Title
+#PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME}: ${PWD}\007"'
+# PROMPT_COMMAND='echo -ne "\033]0;${PWD}\007"'
+# Simplest verion of PS1
+#export PS1="`uname -n`> "
+#export PS1='\u@\h> '
+
+# Simpler Version to see dir details on 1 line
+#export PS1='\u@\h\ : \w \n>'
+
+# Most Complicated version
+#PS1='\e[1;31;40m\u \e[1;31;40mon \h \e[0;0m\e[1;31m[\w]\n > \e[0;0m'
+#PS1='\e[1;31;34m\u\e[1;31;34m@\h: \e[0;0m\e[1;31m[\w]\n>\e[0;0m'
+# PS1='\e[1;31;34m\e[1;31;36m\h: \e[0;0m\e[1;35m[\w]\e[0;0m\n\u > '
+
+alias ls='ls -G'
+alias l3='ls -lrth'
+alias ua='uname -a'
+
+#######################################################################################################################################
+
+
+#######################################################################################################################################
+
+export PATH=$JAVA_HOME/bin/:$PATH
+export PATH=./:$PATH
+
+export BROWSER=firefox
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
+
+
+
+if [ `uname -s` = "SunOS" ]; then
+    export PATH=/opt/SUNWspro/bin:/usr/bin:/usr/local/bin:/usr/ccs/bin:/usr/sbin:$PATH
+    export MANPATH=/opt/SUNWspro/man:/usr/share/man:$MANPATH
+    export JAVA_HOME=/usr/j2se
+fi
+
+
+source /Users/abhi/code/dots/dotfiles/hhighlight.sh
+if test -z "$SOURCED_HOME_BASHRC" ; then
+   readonly SOURCED_HOME_BASHRC=true
+fi
+
+# less stuff
+export LESS='-Ri'
+export LESSOPEN='|~/.lessfilter %s'
+
+
+
+# =====================================================================================================================================
+
+# aliai
+alias ta1='tmux attach || tmux new'
+alias t0='tmux attach -t 0'
+alias ta='tmux new -As0'
+alias tf='tail -f'
+alias wtf='watch -n 0.1 tail -f'
+alias wtf1='watch -n 0.1 tail -f /tmp/1'
+alias su='sort -u'
+alias k1='kil %1'
+alias fk1='fkil %1'
+alias k2='kil %2'
+alias fk2='fkil %2'
+alias dirs='ls -d */'
+alias k15='kill -15'
+alias k9='kill -9'
+alias disk='du -sh'
+alias lsize='ls -lshrt'
+alias txt='ll *.txt'
+alias tars='ls *.tar'
+alias zips='ls *.zip'
+alias gzs='ls *.gz'
+alias rpwd='pwd -P'
+alias mybash='pwd && vim ~/.bashrc && . ~/.bashrc'
+alias b='mybash'
+alias z='pwd && vim ~/.zshrc && . ~/.zshrc'
+alias bscript='vim ~/.bash_scripts && . ~/.bashrc'
+alias myvim='pwd && vim ~/.vimrc'
+
+
+# Directory traversal
+alias 1cd="cd ../ && pwd"
+alias .1="cd ../ && pwd"
+alias 2cd="cd ../../ && pwd"
+alias .2="cd ../../ && pwd"
+alias 3cd="cd ../../../ && pwd"
+alias .3="cd ../../../ && pwd"
+alias 4cd="cd ../../../../ && pwd"
+alias .4="cd ../../../../ && pwd"
+alias 5cd="cd ../../../../../ && pwd"
+alias .5="cd ../../../../../ && pwd"
+alias 6cd="cd ../../../../../../ && pwd"
+alias .6="cd ../../../../../../ && pwd"
+alias 7cd="cd ../../../../../../../ && pwd"
+alias .7="cd ../../../../../../../ && pwd"
+
+
+alias edit=kd
+alias fixbird="rm -f ~/.thunderbird/zaxocis8.default/.parentlock"
+alias ftpw='lftp ftp.wombatfs.com'
+alias gt='gnome-terminal'
+alias l="ls -F"
+alias ll="l -lh"
+alias lll='ll -rt | tail'
+alias md='mkdir -p'
+alias whos='who | sort | uniq -cw 10'
+alias tunnel='ssh -Nf -p 12345 -g -L 9878:10.119.20.238:9878 localhost'
+alias 208='ssh abhi@10.0.0.208'
+alias 209='ssh abhi@10.0.0.209'
+alias devab='ssh abhi@10.0.0.209'
+
+# alias whichos=~/triage.*/src/devtools/wauto/whichos.sh
+
+
+# =====================================================================================================================================
+# fix bug in gnome-terminal where ctrl-S for readline i-search does not work
+# because ctrl-S is used by gnome-termial for some flow control nonesense
+# e.g see http://www.mail-archive.com/debian-user@lists.debian.org/msg63190.html
+# or https://bugs.launchpad.net/ubuntu/+source/bash/+bug/48880
+stty stop ''
+stty start ''
+
+# allow unlimited core files
+ulimit -c unlimited
+
+# command history
+export HISTFILESIZE=999999
+export HISTCONTROL=ignoredups
+
+
+#export LD_LIBRARY_PATH=./lib/:$TIBRV_HOME/lib/:/var/userspace/acanfora/gtest-1.6.0/:/usr/local/lib:/var/userspace/acanfora/gtest-1.6.0/lib/:$LD_LIBRARY_PATH
+export LD_LIBRARY_PATH=./lib/:$TIBRV_HOME/lib/:$LD_LIBRARY_PATH
+export LD_LIBRARY_PATH=/usr/local/lib:/usr/lib:/usr/local/lib64:/usr/lib64:$LD_LIBRARY_PATH
+export LD_LIBRARY_PATH=/usr/local/gcc/4.8.2/lib64/:/usr/local/gcc/4.8.2/libexec/gcc/x86_64-unknown-linux-gnu/4.8.2/:/usr/local/gcc/4.8.2/:$LD_LIBRARY_PATH
+
+
+
+# Creates symbolic links
+# Note: Can use multiple values in here like "link config osederiv asxtrade om"
+
+
+
+
+
+#######################################################################################################################################
+
+alias p3=python
+wp() {
+  which python3
+}
+function cd() {
+  builtin cd "$@"
+  sp
+}
+
+sp() {
+  [ -d ".env" ] && source .env/bin/activate
+  [ -d "ve" ] && source ve/bin/activate
+  [ -d "venv" ] && source venv/bin/activate
+}
+
+pef() {
+  ps -ef | egrep "$*" | egrep -v "grep \-\-color" | egrep "$*"
+}
+alias nf="find . -iname "
+alias v1='vim /tmp/1'
+alias v2='vim /tmp/2'
+alias gpu='git push'
+alias gs='git status'
+alias gpl='git pull'
+alias cct='cd ~/code/crypto/trading-utils'
+
+export HDF5_DIR=/opt/homebrew/opt/hdf5 
+export BLOSC_DIR=/opt/homebrew/opt/c-blosc
+
+
+alias ccf='cd ~/code/crypto/freqtrade'
+export PYTHONPATH="${PYTHONPATH}:./"
+
+alias mini='ssh abhi@abhi-mini.local'
+alias moni='mosh abhi-mini'
+
+sync_m() {
+# scp -r abhi@abhi-mini.local:~/code/crypto/$1/ ./
+rsync -avP abhi@abhi-mini.local:~/code/crypto/$1/ ./$1/
+}
+
+# powerline-daemon -q
+# POWERLINE_BASH_CONTINUATION=1
+# POWERLINE_BASH_SELECT=1
+
+
+alias tanse='ag "Previous Update...| Final list of options.." -A 10 /Users/abhi/code/crypto/trading-utils/logs/automated_ta_nse__2024*'
+tnse() {
+  ag "Previous Update.." -A 300 /Users/abhi/code/crypto/trading-utils/logs/$* | ag -v " [1-6] / 8"
+}
+tnse8() {
+  ag --nofilename "Previous Update.." -A 300 /Users/abhi/code/crypto/trading-utils/logs/automated_ta_nse__2024* | ag -v " [1-7] / 8"
+}
+tnse9() {
+  FILE=$(ls -th /Users/abhi/code/crypto/trading-utils/logs/automated_ta_nse__2024* | head -1)
+  ag --nofilename "Previous Update.." -A 300 $FILE | ag -v " [1-7] / 8"
+}
+lu(){
+  FILE=$(ls -rt ./logs | tail -1)
+  echo -e "FILE = ./logs/$FILE"
+  vim ./logs/$FILE
+}
+llg(){
+  ITEMS=${1:-5}
+  ls -lrth logs/ | tail -$ITEMS
+}
+wtfl(){
+  FILE=$(ls -rt /Users/abhi/code/crypto/trading-utils/logs | tail -1)
+  echo -e "FILE = $FILE"
+  wtf /Users/abhi/code/crypto/trading-utils/logs/$FILE
+}
+nfi(){
+  find . -iname "*$**"
+}
+
+
+
+alias txndb='open /Users/abhi/code/crypto/trading-utils/trading/configs/txn.db'
+alias ptn='pytest tests/test_dhan_utils.py  -n 5'
+alias ccron='crontab -l'
+alias cronw='ccron | ag weekend | ag "^[0-9]+"'
+split()
+{
+  /Users/abhi/code/crypto/trading-utils/ve/bin/python3 /Users/abhi/code/crypto/trading-utils/trading/common/util_strings.py $*
+}
+
+
+nl() {
+  echo "$*" | awk 'BEGIN {RS=","; ORS="\n"} {print $0}'| sort -u | sed -e 's/KUCOIN/BINANCE/g' | pbcopy
+}
+
+# . "$HOME/.cargo/env"
+alias m8='mosh abhi@10.0.0.248'
+alias s8='ssh  abhi@10.0.0.248'
+
+s29(){
+  words="$*"
+
+	# Replace commas with newlines
+	echo "$words" | tr ',' '\n' | awk '{
+	    group[NR] = $0
+	    if (NR % 29 == 0) {
+		for (i = NR-28; i <= NR; i++) {
+		    printf "%s%s", group[i], (i == NR ? "\n" : ",")
+		}
+	    }
+	}
+
+	END {
+	    # Handle remaining words if not a multiple of 29
+	    remainder = NR % 29
+	    if (remainder > 0) {
+		for (i = NR-remainder+1; i <= NR; i++) {
+		    printf "%s%s", group[i], (i == NR ? "\n" : ",")
+		}
+	    }
+	}'
+}
+
+sync_books() {
+  rsync -avz --update "/Users/abhi/Documents/books/" abhi-mini:"/Users/abhi/Documents/books/"
+  rsync -avz --update abhi-mini:"/Users/abhi/Documents/books/" "/Users/abhi/Documents/books/"
+}
+
+
+csv_col() { tail -n +2 "$1" | cut -d',' -f1 | tr '\n' ',' | sed 's/,$//' | pbcopy && echo "Copied to clipboard"; }
+
