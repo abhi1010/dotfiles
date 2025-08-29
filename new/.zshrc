@@ -138,12 +138,15 @@ POWERLINE_GIT_RENAMED="➜"
 POWERLINE_GIT_UNMERGED="═"
 POWERLINE_HIDE_HOST_NAME="true"
 
+PROMPT=${PROMPT/\%c/\%~}
 
 export PATH="/usr/lib64/qt-3.3/bin:/usr/lib64/ccache:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin:."
 
 
 
 alias -g T=" > /tmp/1 2>&1"
+alias -g T2=" > /tmp/2 2>&1"
+alias -g T3=" > /tmp/3 2>&1"
 alias -g TT=" | tee /tmp/1 2>&1"
 alias gpu='git push'
 
